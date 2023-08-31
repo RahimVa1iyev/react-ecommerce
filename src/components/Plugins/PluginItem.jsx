@@ -86,7 +86,6 @@ const PluginItem = (props) => {
                     }
                 })
 
-
         }
         else if (count >= 5) {
             alert("Maximum 5 product elave ede bilersiz")

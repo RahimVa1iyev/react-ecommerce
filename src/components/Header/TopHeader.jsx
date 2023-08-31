@@ -41,13 +41,6 @@ const TopHeader = () => {
     useEffect( () => {
         getData();
     },[token]);
-  
-
-    
-
-   
-
-
 
 return (
     <>

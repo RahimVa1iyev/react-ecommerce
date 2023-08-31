@@ -7,6 +7,7 @@ import { handleOpen, removeFromCompareProduct, setCompareProduct } from '../../c
 import { handleClose } from '../../control/modalSlice';
 import DetailItem from '../Detail/DetailItem';
 import  {FiX} from "react-icons/fi"
+import { act } from 'react-dom/test-utils';
 
 
 
@@ -26,12 +27,12 @@ const style = {
 };
 
 const Modals = () => {
-  const { modalOpen, selectedProduct,compareProduct,activeIcon } = useSelector((store) => store.modal)
+  const { modalOpen, selectedProduct,compareProduct,activeIcon,orderItems } = useSelector((store) => store.modal)
   const disPatch = useDispatch()
   const handleOpenModal = () => {
     disPatch(handleOpen());
   };
-  
+  console.log("orderitems",orderItems);
 
   const handleCloseModal = () => {
     disPatch(handleClose());
@@ -45,9 +46,6 @@ const Modals = () => {
       
       parent.removeChild(pr)
     })
-    
-    
-  
   }
 
   return (
@@ -83,6 +81,7 @@ const Modals = () => {
                 </div>
               </div>
             </div>:
+            activeIcon === "scale"?
             <div className='compare-table'>
                
                <div className="compare-modal-header">
@@ -149,6 +148,41 @@ const Modals = () => {
                 </div>
                </div>
 
+            </div> :
+            <div>
+              {
+                orderItems && orderItems.map((item,index)=>(
+                  <div  className='my-wishlist-side '>
+
+                  <div className="my-wishlist-box d-flex align-items-center justify-content-between">
+                      <div className="left-side d-flex align-items-center ">
+                          <div className="my-wishlist-img">
+                             <img src={item.image} alt="my img" />
+                                
+                              
+                          </div>
+                          <div className="my-wishlist-content d-flex flex-column  ">
+                              <h4 className='content-title' >{item.name}</h4>
+                              {
+                                  item.discountedPrice > 0 ?
+                                      <div className="content-price d-flex align-items-center gap-2 ">
+                                          <span className='new-price' >${item.discountedPrice}</span>
+                                          <del className='old-price' >${item.salePrice}</del>
+                                      </div> :
+                                      <div className="content-price">
+                                          <span className='new-price' >${item.salePrice}</span>
+                                      </div>
+
+
+                              }
+                              <span className={item.stockStatus ===true? "content-stock inStock"  : "content-stock outStock"} >{item.stockStatus ===true? "In Stock" : "Out Stock"}</span>
+                          </div>
+                      </div>
+                    
+                  </div>
+              </div>
+                ))
+              }
             </div>
             }
           </div>

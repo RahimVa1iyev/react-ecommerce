@@ -1,15 +1,37 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import {FiX} from 'react-icons/fi'
+import { FiX } from 'react-icons/fi'
 import pr1 from '../assets/image/pr1.png'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import Modals from '../components/Modal/Modals'
+import { getBasketItems, handleOpen, handleView } from '../control/modalSlice'
 
 
 const Profile = () => {
 
     const [orders, setOrders] = useState();
     const [token, setToken] = useState(localStorage.getItem('authToken'));
+    const [user, setUser] = useState();
+    const [wishlistItems, setWishlistItems] = useState();
+    const [clicked , setClicked] = useState(0);
+    const [toggle,setToggle] = useState(1)
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
+    console.log(wishlistItems);
+    const initialValues = {
+        firstname: user && user.firstName,
+        lastname: user && user.lastName,
+        email: user && user.email,
+        phoneNumber: user && user.phoneNumber,
+        username: user && user.userName,
+        address: '',
+        currentPassword: '',
+        newPassword: '',
+        confirmPassword: ''
+    }
 
     const getOrders = async () => {
         await axios.get(`https://localhost:7039/api/Orders/all`, {
@@ -34,10 +56,89 @@ const Profile = () => {
 
         return `${day}-${month}-${year}`;
     }
-    console.log(orders);
+
+    const onSubmit = (values) => {
+        const updateUser = async () => {
+            await axios.put(`https://localhost:7039/api/Users`, values, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+                .then(res => {
+                    localStorage.removeItem('authToken');
+                    navigate('/login');
+
+                })
+                .catch(err => console.log(err.response.data))
+        }
+
+        updateUser();
+
+    }
+
+    const getUser = async () => {
+
+        if (token) {
+            await axios.get('https://localhost:7039/api/Users', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+                .then(response => {
+                    setUser(response.data)
+                })
+                .catch(error => {
+                    console.error('An error occurred', error);
+                });
+        }
+        else {
+            console.log('Token has not found');
+        }
+    }
+
+    const getWishlistItem = () => {
+        let wishlist = localStorage.getItem("wishlist");
+
+        if (wishlist !== undefined) {
+            setWishlistItems(JSON.parse(wishlist));
+        } else {
+            setWishlistItems([]);
+        }
+    }
+
+    const DeleteHandler = (id) =>{
+        setClicked(clicked +1)
+        let wishlists = JSON.parse(localStorage.getItem("wishlist"));
+        const index = wishlists.indexOf(wishlists.find(c => c.id === id));
+        wishlists.splice(index, 1);
+        if (JSON.stringify(wishlists) === "[]") {
+            localStorage.removeItem("wishlist");
+        } else {
+            localStorage.setItem("wishlist", JSON.stringify(wishlists));
+        }
+
+    }
+
+    const toggleHandle = (number) =>{
+
+        setToggle(number)
+    }
+    const getOrderItems = (id) =>{
+        dispatch(handleView())
+        dispatch(handleOpen())
+        dispatch(getBasketItems(id))
+    }
+
+
+
     useEffect(() => {
+        getUser()
         getOrders();
     }, [])
+
+    useEffect(() =>{
+        getWishlistItem();
+    },[clicked])
 
     return (
         <>
@@ -58,24 +159,24 @@ const Profile = () => {
                         <div className="wizard">
                             <nav className="profile-nav">
 
-                                <div className="nav-box d-flex justify-content-between align-items-center">
+                                <div onClick={()=>toggleHandle(1)} className="nav-box d-flex justify-content-between align-items-center">
                                     <div>
-                                        <div className="nav-title">Orders List</div>
+                                        <div className={toggle===1?'active-nav-title' : 'nav-title'}>Orders List</div>
                                     </div>
-                                    <span className="">6</span>
+                                    <span className={toggle===1?'active-nav-title' : 'title-count'}>{orders && orders.length}</span>
                                 </div>
 
-                                <div className="nav-box">
-                                    <div className='nav-title'>
+                                <div onClick={()=>toggleHandle(2)} className="nav-box">
+                                    <div className={toggle===2?'active-nav-title' : 'nav-title'}>
                                         Profile Settings
                                     </div>
                                 </div>
 
-                                <div className="nav-box d-flex justify-content-between align-items-center">
+                                <div onClick={()=>toggleHandle(3)} className="nav-box d-flex justify-content-between align-items-center">
                                     <div>
-                                        <div className="nav-title">My Wishlist</div>
+                                        <div className={toggle===3?'active-nav-title' : 'nav-title'}>My Wishlist</div>
                                     </div>
-                                    <span className="">3</span>
+                                    <span className={toggle===3?'active-nav-title' : 'title-count'}>{wishlistItems && wishlistItems.length}</span>
                                 </div>
 
                                 <div className="nav-box">
@@ -91,7 +192,7 @@ const Profile = () => {
 
                     <div className="col-lg-8 pb-5">
 
-                        <div className="table-responsive d-none">
+                        <div className={toggle === 1 ? 'table-responsive' : 'd-none'}>
                             <table className="table table-hover mb-0">
                                 <thead className='table-header'>
                                     <tr>
@@ -107,12 +208,12 @@ const Profile = () => {
 
                                     {
                                         orders && orders.map((order, index) => (
-                                            <tr>
+                                            <tr key={index}>
                                                 <td>{order.totalItem}</td>
                                                 <td>{formatDateTime(order.isCreateAt)}</td>
                                                 <td><span className={order.status === 1 ? "order-status warning" : order.status === 2 ? "order-status accept" : "order-status danger"}>{order.status === 1 ? "Pending" : order.status === 2 ? "Accepted" : "Rejected"}</span></td>
                                                 <td><span>$760.50</span></td>
-                                                <td><span>$760.50</span></td>
+                                                <td className='view'><button onClick={()=> getOrderItems(order.id)} >View</button></td>
 
                                             </tr>
                                         ))
@@ -123,102 +224,134 @@ const Profile = () => {
                         </div>
 
 
-                       <div className="form-side d-none">
-                       <Formik  >
-                            <Form className='form-content-profile'>
-                                <div className="row align-items-center ">
+                        <div className={toggle === 2 ? 'form-side' : 'd-none'}>
+                            <Formik enableReinitialize initialValues={initialValues} onSubmit={onSubmit}  >
+                                <Form className='form-content-profile'>
+                                    <div className="row align-items-center ">
 
-                                    <div className="row align-items-center justify-content-between">
-                                        <div className="col-lg-6">
-                                            <div className="form-data-profil">
-                                                <Field className="profile-custom-input " type="text" id="firstname" name="firstname" placeholder="First Name" />
+                                        <div className="row align-items-center justify-content-between">
+                                            <div className="col-lg-6">
+                                                <div className="form-data-profil">
+                                                    <Field className="profile-custom-input " type="text" id="firstname" name="firstname" placeholder="First Name" />
+                                                </div>
+                                            </div>
+                                            <div className="col-lg-6">
+                                                <div className="form-data-profil ">
+                                                    <Field className="profile-custom-input " type="text" id="lastname" name="lastname" placeholder="Last Name" />
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div className="row">
+                                            <div className="col-lg-6"><div className="form-data-profil ">
+                                                <Field className="profile-custom-input " type="email" id="email" name="email" placeholder="Email" />
+                                            </div></div>
+                                            <div className="col-lg-6">
+                                                <div className="form-data-profil">
+                                                    <Field className="profile-custom-input" type="text" id="phoneNumber" name="phoneNumber" placeholder="Phone" />
+                                                </div>
                                             </div>
                                         </div>
-                                        <div className="col-lg-6">
-                                            <div className="form-data-profil ">
-                                                <Field className="profile-custom-input " type="text" id="lastname" name="lastname" placeholder="Last Name" />
+                                        <div className="row ">
+                                            <div className="col-lg-6">
+                                                <div className="form-data-profil">
+                                                    <Field className="profile-custom-input" type="text" id="username" name="username" placeholder="Username" />
+                                                </div>
+                                            </div>
+
+                                            <div className="col-lg-6">
+                                                <div className="form-data-profil">
+                                                    <Field className="profile-custom-input" type="text" id="address" name="address" placeholder="Address" />
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+
+                                        <div className="row">
+                                            <div className="col-lg-4">
+                                                <div className="form-data-profil ">
+                                                    <Field className="profile-custom-input" type="password" id="currentPassword" name="currentPassword" placeholder="Current Password" />
+
+                                                </div>
+                                            </div>
+                                            <div className="col-lg-4">
+                                                <div className="form-data-profil ">
+                                                    <Field className="profile-custom-input " type="password" id="newPassword" name="newPassword" placeholder="New Password" />
+
+                                                </div>
+                                            </div>
+                                            <div className="col-lg-4">
+                                                <div className="form-data-profil">
+                                                    <Field className="profile-custom-input " type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" />
+                                                </div>
                                             </div>
                                         </div>
 
                                     </div>
 
-                                    <div className="row">
-                                        <div className="col-lg-6"><div className="form-data-profil ">
-                                            <Field className="profile-custom-input " type="email" id="email" name="email" placeholder="Email" />
-                                        </div></div>
-                                        <div className="col-lg-6">
-                                            <div className="form-data-profil">
-                                                <Field className="profile-custom-input" type="text" id="phoneNumber" name="phoneNumber" placeholder="Phone" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="row ">
-
-                                        <div className="col-lg-12">
-                                            <div className="form-data-profil">
-                                                <Field className="profile-custom-input" type="text" id="address" name="address" placeholder="Address" />
-                                            </div>
-                                        </div>
+                                    <div className="update-btn">
+                                        <button type='submit' >Update Profile</button>
 
                                     </div>
 
-                                    <div className="row">
-                                        <div className="col-lg-4">
-                                            <div className="form-data-profil ">
-                                                <Field className="profile-custom-input" type="password" id="currentPassword" name="currentPassword" placeholder="Current Password" />
-
-                                            </div>
-                                        </div>
-                                        <div className="col-lg-4">
-                                            <div className="form-data-profil ">
-                                                <Field className="profile-custom-input " type="password" id="newPassword" name="newPassword" placeholder="New Password" />
-
-                                            </div>
-                                        </div>
-                                        <div className="col-lg-4">
-                                            <div className="form-data-profil">
-                                                <Field className="profile-custom-input " type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div className="update-btn">
-                                    <button type='submit' >Update Profile</button>
-
-                                </div>
 
 
-                           
-                            </Form>
+                                </Form>
 
-                        </Formik>
-                       </div>
-
-
-                        <div className="my-wishlist-side">
-                             <div className="my-wishlist-box d-flex align-items-center justify-content-between">
-                                <div className="left-side d-flex align-items-center ">
-                                <div className="my-wishlist-img">
-                                    <img src={pr1} alt="" />
-                                </div>
-                                <div className="my-wishlist-content d-flex flex-column ">
-                                    <h4 className='content-title' >Product dummy title</h4>
-                                    <span className='content-price' >$4569.99</span>
-                                    <span className='content-stock' >In Stock</span>
-                                </div>
-                                </div>
-                                <div className="add-to-card">
-                                    <button>Add to Cart</button>
-                                </div>
-                                <FiX className='delete-wish' />
-                             </div>
+                            </Formik>
                         </div>
+
+
+                        {
+                            wishlistItems && wishlistItems.map((item, index) => (
+                                <div  className={toggle ===3 ? 'my-wishlist-side ' : 'd-none' }>
+
+                                    <div className="my-wishlist-box d-flex align-items-center justify-content-between">
+                                        <div className="left-side d-flex align-items-center ">
+                                            <div className="my-wishlist-img">
+                                                {
+                                                    item.images.map((img, index) => (
+                                                        img.imageStatus && <img src={img.imageName} alt="my img" />
+                                                    ))
+                                                }
+                                            </div>
+                                            <div className="my-wishlist-content d-flex flex-column  ">
+                                                <h4 className='content-title' >{item.name}</h4>
+                                                {
+                                                    item.discountedPrice > 0 ?
+                                                        <div className="content-price d-flex align-items-center gap-2 ">
+                                                            <span className='new-price' >${item.discountedPrice}</span>
+                                                            <del className='old-price' >${item.salePrice}</del>
+                                                        </div> :
+                                                        <div className="content-price">
+                                                            <span className='new-price' >${item.salePrice}</span>
+                                                        </div>
+
+
+                                                }
+                                                <span className={item.stockStatus ===true? "content-stock inStock"  : "content-stock outStock"} >{item.stockStatus ===true? "In Stock" : "Out Stock"}</span>
+                                            </div>
+                                        </div>
+                                        <div className="add-to-card">
+                                            <button>Add to Cart</button>
+                                        </div>
+                                        <FiX onClick={()=> DeleteHandler(item.id)} className='delete-wish' />
+                                    </div>
+                                </div>
+
+                            ))
+                        }
 
                     </div>
                 </div>
             </div>
+
+            <div className="modal">
+          <Modals />
+        </div>
         </>
     )
 }

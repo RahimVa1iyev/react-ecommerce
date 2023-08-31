@@ -183,7 +183,7 @@ a.list-group-item, .list-group-item-action {
         border-bottom: 1px solid #efefee;
         padding-bottom: 10px;
     }
-
+     .title-count,
     .nav-title{
         color: #404040;
         font-weight: 600;
@@ -192,6 +192,12 @@ a.list-group-item, .list-group-item-action {
         &:hover{
             color: #f9706a;
         }
+    }
+    .active-nav-title{
+        font-weight: 600;
+        font-size: 15px;
+        color: #f9706a;
+
     }
 }
 
@@ -210,8 +216,29 @@ a.list-group-item, .list-group-item-action {
     td{
         font-size: 13px;
         font-weight: 400;
-        padding: 12px 0;
+        padding: 20px 0;
         text-align: center;
+    }
+    .view{
+        font-size: 13px;
+        font-weight: 400;
+        padding: 15px 0;
+        text-align: center;
+
+     button{
+        padding: 5px 10px;
+        text-align: center;
+        color: #fff;
+        border: none;
+        background-color: #f9706a;
+        border-radius: 2px;
+        transition: 0.4s;
+
+        &:hover{
+            background-color: #212529;
+            transition: 0.4s;
+        }
+     }
     }
    }
 }
@@ -270,12 +297,15 @@ a.list-group-item, .list-group-item-action {
 }
 
 .my-wishlist-side{
-    width: 85%;
+    width: 90%;
     padding: 25px 30px ;
     position: relative;
     box-shadow: 0 8px 20px 0 rgba(0, 0, 0, .15);
+margin-bottom: 20px;
+   
 
     .left-side{
+        width: 78%;
         .my-wishlist-img{
             background-color: #e0e0e0;
             border-radius: 8px;
@@ -291,15 +321,31 @@ a.list-group-item, .list-group-item-action {
             .content-title{
                 font-size: 15px;
                 font-weight: 600;
+                line-height: 22px;
     
             }
             .content-price{
+               .new-price{
                 font-size: 13px ;
                 font-weight: 500;
+                color: #f9706a;
+               }
+               .old-price {
+                font-size: 11px;
+                font-weight: 500;
+                 color: #8c8c8c;
+               }
             }
             .content-stock{
                 font-size: 13px;
                 font-weight: 500;
+                padding-top: 4px;
+            }
+
+            .inStock{
+                color: greenyellow;
+            }
+            .outStock{
                 color: red;
             }
         }

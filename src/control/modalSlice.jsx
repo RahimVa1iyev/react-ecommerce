@@ -1,10 +1,13 @@
 import  { createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const initialState ={
     modalOpen : false,
     selectedProduct:0,
     compareProduct : [],
-    activeIcon:""
+    activeIcon:"",
+    orderItems:[],
+
 }
 
 const modalSlice = createSlice({
@@ -36,6 +39,13 @@ const modalSlice = createSlice({
 
         handleScale :(state)=>{
             state.activeIcon ="scale";
+        },
+
+        handleView :(state)=>{
+            state.activeIcon = "view";
+        },
+        setOrderItem: (state,action) => {
+            state.orderItems = action.payload;
         }
 
     },
@@ -43,5 +53,22 @@ const modalSlice = createSlice({
 })
 
 
-export const { handleOpen, handleClose , setSelectedProduct , setCompareProduct ,handleEye,handleScale,removeFromCompareProduct } = modalSlice.actions;
+export const getBasketItems = (id) => async (dispatch) => {
+    console.log("id",id);
+    try {
+        const token = localStorage.getItem('authToken')
+        const response = await axios.get(`https://localhost:7039/api/Orders/orderitems/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        dispatch(setOrderItem(response.data));
+    } catch (error) {
+    console.log(error.response.data);
+};
+}
+
+
+export const { handleOpen, handleClose , setSelectedProduct , setCompareProduct ,handleEye,handleView,handleScale,removeFromCompareProduct,setOrderItem } = modalSlice.actions;
 export default modalSlice.reducer
