@@ -1,0 +1,130 @@
+@import "../abstracts/extend";
+@import "../abstracts/variables";
+
+.container-own {
+    @extend .container-extend;
+}
+
+.slid {
+    height: 75vh;
+}
+
+.slider-class {}
+
+.slider-right-side {
+    .watch-img {
+        width: 100%;
+    }
+}
+
+.slider-left-side {
+    text-align: left;
+
+    h4 {
+        font-size: 24px;
+        font-weight: 400;
+        color: #333;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 50px;
+        font-weight: 600;
+        margin-bottom: 15px;
+        color: #333;
+        width: 750px;
+    }
+
+    p {
+        font-size: 18px;
+        font-weight: 400;
+        margin-bottom: 35px;
+        color: #333;
+        width: 100%;
+    }
+
+    a {
+        padding: 15px 25px;
+        background-color: $button-color;
+        font-size: 16px;
+        font-weight: 700;
+        text-align: center;
+        color: #fff;
+        border: none;
+
+        &:hover {
+            background-color: #333;
+            transition: 0.5s;
+        }
+    }
+}
+
+
+@media(max-width :576px) {
+
+    .slid {
+        height: 90vh !important;
+        z-index: -1;
+    }
+
+    #slider-media {
+        display: flex;
+        flex-direction: column-reverse;
+
+
+        .slider-left-side {
+            padding: 0 !important;
+            text-align: center !important;
+
+            h4 {
+                font-size: 18px;
+                font-weight: 400;
+                color: #333;
+                margin-bottom: 5px;
+                width: 100%;
+            }
+
+            h1 {
+                font-size: 30px;
+                font-weight: 600;
+                margin-bottom: 10px;
+                color: #333;
+                width: 350px;
+            }
+
+            p {
+                font-size: 14px;
+                font-weight: 400;
+                margin-bottom: 35px;
+                color: #333;
+                width: 100%;
+            }
+
+            a {
+                padding: 11px 21px;
+                background-color: $button-color;
+                font-size: 14px;
+                font-weight: 700;
+                text-align: center;
+                color: #fff;
+                border: none;
+
+                &:hover {
+                    background-color: #333;
+                    transition: 0.5s;
+                }
+            }
+
+        }
+
+        .slider-right-side {
+            padding: 50px !important;
+
+            img {
+                width: 100%;
+                height: 250px;
+            }
+        }
+    }
+}

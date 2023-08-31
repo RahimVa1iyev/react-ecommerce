@@ -1,0 +1,102 @@
+@import "../abstracts/extend";
+@import "../abstracts/variables";
+
+.container-own {
+    @extend .container-extend;
+}
+
+.login-page{
+    width: 555px;
+    height: 435px;
+    .form-side{
+        padding: 30px;
+        background-color: #fff;
+        width: 475px;
+        height: 270px;
+        box-shadow: 0 5px 4px #0000001a;
+    }
+}
+
+.register-page{
+    width: 555px;
+    height: 655px;
+    
+}
+
+.login-page,
+.register-page{
+    background: #f3f3f3 none repeat scroll 0 0;
+    padding: 37px 40px;
+    margin: 100px auto;
+
+    .login-text,
+    .register-text{
+        text-align: center;
+
+        h2 {
+            color: #333;
+            font-size: 30px;
+            margin-bottom: 5px;
+            text-transform: capitalize;
+            font-weight: 600;
+
+        }
+
+        p {
+            color: #666;
+            font-size: 15px;
+            font-weight: 400;
+        }
+    }
+
+    .form-side {
+     
+        margin-top: 20px;
+
+        .form-data {
+            margin-bottom: 20px;
+
+            .customInput {
+                line-height: 20px;
+                width: 100%;
+                padding: 10px 20px;
+                border: 1px solid #e0e0e0;
+                outline: none;
+                background-color: #fff;
+                font-size: 14px;
+                font-weight: 400;
+                color: #333;
+            }
+        }
+
+        .btn-side {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            
+            margin: 30px 0;
+            button {
+                background-color: #000;
+                border: medium none;
+                color: #fff;
+                cursor: pointer;
+                display: inline-block;
+                font-size: 14px;
+                font-weight: 400;
+                height: 40px;
+                line-height: 24px;
+                margin-bottom: 0;
+                padding: 8px 25px;
+                border-radius: 0;
+                text-align:center;
+                transition: 0.4s;
+                &:hover{
+                    background-color: $button-color;
+                    transition: 0.4s;
+                }
+            }
+        }
+    }
+
+
+}

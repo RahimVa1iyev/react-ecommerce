@@ -1,0 +1,119 @@
+.container-form {
+    height: 38%;
+    min-height: 270px;
+
+    .form-content {
+        width: 25%;
+    }
+
+    .dash-input {
+        width: 100%;
+        padding: 5px 8px;
+        border: 2px solid #344767;
+        color: #344767;
+
+    }
+}
+
+.images{
+    width: 70px;
+    
+    
+}
+.check-input{
+    width: 250px;
+    height: 20px;
+    border: 10px solid #344767;
+    color: #344767  ;
+
+}
+
+.slider-form{
+    height: 85%;
+}
+
+.product-form{
+    height: 93%;
+
+}
+.slider-form,
+.product-form {
+
+    .form-content {
+        width: 55%;
+    }
+
+    .dash-input {
+        width: 100%;
+        border: 2.39px solid #344767;
+        padding: 5px 8px;
+        outline-color: #2459d5;
+    }
+
+    .select-input {
+        width: 100%;
+        border-radius: 5px;
+        border: 1.6px solid #344767;
+        outline-color: #2666ff;
+    }
+}
+
+.slider-form,
+.product-form,
+.container-form {
+    background-color: #fff;
+    border-radius: 15px;
+    margin-top: 40px;
+    padding: 20px;
+    box-shadow: 1px 7px 25px -1px rgba(92, 90, 92, 0.76);
+    h6 {
+        color: #344767;
+        font-size: 24px;
+        font-weight: 600;
+        text-align: center;
+    }
+    .form-content {
+        margin: 0 auto;
+
+        button {
+            background-color: #344767;
+            width: 100%;
+            margin-top: 15px;
+            padding: 8px 0;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .form-body {
+            margin-top: 40px;
+         
+
+            .dash-input {
+                border-radius: 5px;
+                color: #344767;
+            }
+
+            label {
+
+                font-size: 16px;
+                font-weight: 500;
+                color: #344767;
+                margin-bottom: 5px;
+                
+                span {
+                    color: red;
+                }
+            }
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            font-weight: 500;
+            text-align: center;
+
+        }
+    }
+}

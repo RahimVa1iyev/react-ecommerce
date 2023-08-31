@@ -1,0 +1,19 @@
+@import "../abstracts/extend";
+
+.container-own{
+    @extend .container-extend;
+}
+
+.collection-box{
+    padding: 60px 0;
+}
+
+.collection-left-side,
+.collection-right-side{
+    img{
+        width: 100%;
+        &:hover{
+            opacity: 0.7;
+        }
+    }
+}

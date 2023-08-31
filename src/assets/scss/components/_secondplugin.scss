@@ -1,0 +1,67 @@
+@import "../abstracts/extend";
+@import "../abstracts/variables";
+
+.container-own {
+    @extend .container-extend;
+}
+
+.second-plugin-box {
+
+    width: 360px;
+    height: 130px;
+
+
+    .second-pl-left {
+        width: 100px;
+        height: 130px;
+        background-color: #f8f8f8f8;
+
+        img {
+            width: 100px;
+            height: 110px;
+        }
+    }
+
+    .second-pl-right {
+        padding:  10px;
+        width: 260px;
+        height: 110px;
+        .s-price{
+            margin-top: 10px;
+        }
+        h4 {
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 20px;
+            color: #333;
+        }
+
+        .s-new-price {
+
+            font-size: 16px;
+            font-weight: 700;
+            color: $button-color;
+        }
+
+        .s-old-price {
+
+            font-size: 13px;
+            font-weight: 700;
+            color: #868686;
+
+        }
+
+    }
+
+
+}
+
+
+
+@media(max-width:576px) {
+    .second-pl-right {
+        .box-bottom {
+            border: none;
+        }
+    }
+}

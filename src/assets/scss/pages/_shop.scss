@@ -1,0 +1,140 @@
+@import "../abstracts/extend";
+@import "../abstracts/variables";
+
+.container-own {
+    @extend .container-extend;
+}
+
+.shop-right-side {
+    .top-side {
+        height: 230px;
+        img {
+            width: 100%;
+        }
+    }
+
+    .filter-side {
+        border: 1px solid $border-color ;
+        margin: 20px 0;
+        padding: 5px 15px;
+        width: 100%;
+
+        .result {
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+        .three-dot {
+            margin-top: 2px;
+
+            .one {
+                width: 36px;
+                height: 36px;
+                padding-bottom: 5px;
+            }
+
+            .two {
+                margin-top: 2.5px;
+                width: 26px;
+                height: 26px;
+            }
+
+            .three {
+                margin-top: 3.5px;
+                width: 24px;
+                height: 24px;
+            }
+        }
+    }
+
+
+    .count-filter {
+        span {
+            font-size: 14px;
+        }
+
+        .select-count-filter {
+            border: none;
+            font-size: 14px;
+
+        }
+    }
+
+    .name-filter {
+        span {
+            font-size: 14px;
+        }
+
+        .select-name-filter {
+            border: none;
+            font-size: 14px;
+
+        }
+    }
+
+
+}
+
+
+
+
+
+.shop-side-bar {
+    background-color: #f8f8f8f8;
+    padding: 40px 30px;
+
+    .sidebar-title {
+        display: inline-block;
+        font-size: 17px;
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
+
+    .search-form {
+        border: 1px solid $border-color;
+        width: 100%;
+        margin-bottom: 30px;
+
+        input {
+            border: none;
+            outline: none;
+            width: 65%;
+            font-size: 14px;
+            padding: 8px 10px;
+        }
+
+        button {
+            width: 30%;
+            border: none;
+            outline: none;
+            background-color: #fff;
+            font-size: 14px;
+            transition: 0.5s;
+
+            &:hover {
+
+                color: $button-color;
+                transition: 0.5s;
+
+            }
+        }
+
+    }
+
+    .sidebar-form {
+        padding: 20px 0;
+
+        .form-check {
+            padding: 0;
+
+            label {
+
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+        }
+    }
+
+    
+}

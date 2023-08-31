@@ -1,0 +1,100 @@
+@import "../abstracts/variables";
+
+.active-dot{
+    color: #3a9943;
+}
+
+.pr-box {
+    margin-bottom: 20px;
+    border: 1px solid $border-color;
+    padding: 20px;
+
+    .box-img {
+        text-align: center;
+        img {
+            width: 60%;
+            height: 240px;
+
+        }
+    }
+
+    .left-side-box{
+    
+        .pr-name{
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 24px;
+        }
+
+        .desc{
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 20px;
+            color: #666;
+            display: inline-block;
+            margin-top: 15px;
+            
+        }
+    }
+
+    .box-action{
+        text-align: center;
+        .stock-title{
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 20px;
+            color: #333;
+        }
+        .stock-status{
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 20px;
+            color: $button-color;
+        }
+
+        .box-action-price{
+                 
+            margin: 10px 0 30px 0;
+            .new-price{
+                font-size: 24px;
+                font-weight: 700;
+                line-height: 34px;
+                color: $button-color;
+            }
+            .old-price{
+                font-size: 18px;
+                font-weight: 300;
+                line-height: 25px;
+                color: #868686;
+                margin-left: 15px;
+            }
+
+        }
+
+        .cart-btn{
+            line-height: 38px;
+            width: 100%;
+            margin-top: 34px;
+            padding: 10px 30px;
+            color: #333;
+            border-radius: 5px;
+            background: #f0f0f0;
+            font-weight: 500;
+            transition: 0.5s;
+
+            &:hover{
+                background-color: $button-color;
+                color: #fff;
+                transition: 0.5s;
+            }
+
+        }
+
+        .box-action-icons{
+            margin-top: 15px;
+         .card-icon{
+            @extend .card-icon
+         }
+        }
+    }
+}

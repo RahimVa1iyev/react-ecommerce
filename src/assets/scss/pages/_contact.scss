@@ -1,0 +1,126 @@
+@import "../abstracts/extend";
+@import "../abstracts/variables";
+
+
+
+.container-own {
+    @extend .container-extend;
+}
+
+.contact-us{
+    padding: 50px 0;
+}
+.contact-info {
+    h2 {
+        font-size: 32px;
+        font-weight: 500;
+        line-height: 32px;
+        margin-bottom: 25px;
+        color: #333;
+    }
+
+    .form-data {
+        
+        margin-bottom: 20px;
+        label {
+            width: 100%;
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 29px;
+            display: block;
+            margin-bottom: 0;
+            color: #888;
+
+            span {
+                color: red;
+            }
+        }
+
+        .customInput {
+
+            line-height: 50px;
+            width: 100%;
+            padding-left: 20px;
+            border: 1px solid #e0e0e0;
+            outline: none;
+            background-color: #fff;
+
+
+        }
+
+        .text {
+            height: 50px;
+
+        }
+
+        .area {
+            height: 200px;
+        }
+
+
+
+    }
+
+    button {
+        
+        border-radius: 5px;
+        background-color: $button-color;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 40px;
+        padding: 0 30px;
+        -webkit-transition: .3s;
+        transition: .3s;
+        text-align: center;
+        color: #fff;
+        border: none;
+    }
+}
+
+.contact-right{
+    padding: 30px;
+    background-color: #f2f2f2;
+
+    .contact-right-head{
+        margin-bottom: 25px;
+        h2{
+            margin-top: 20px;
+        }
+    }
+    .info{
+        font-size: 15px;
+        line-height: 21px;
+        margin-bottom: 0;
+        color: #333;
+        font-weight: 400;
+    }
+    .head{
+        border-bottom: 1px solid $border-color2;
+        margin-bottom: 25px;
+        padding-bottom: 20px;
+    }
+    .title{
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 15px;
+        span{
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 27px;
+            color: #222;
+        }
+        .contact-icon-phone{
+            width: 26px;
+            height: 20px;
+        }
+        .contact-icon-adres{
+            width: 26px;
+            height: 20px;
+        }
+        .contact-icon-email{
+            width: 26px;
+            height: 22px;
+        }
+    }
+}

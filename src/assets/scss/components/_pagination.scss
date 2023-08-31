@@ -1,0 +1,50 @@
+@import "../abstracts/variables";
+.shop-pagination{
+    display: flex;
+    align-items: center;
+    .shop-page-link{
+        border-radius: 5px;
+        border: none;
+        font-size: 14px;
+        font-weight: 400;
+        padding: 5px 14px;
+        text-align: center;
+        background-color: #fff;
+        cursor: pointer;
+
+        &:hover{
+            background-color: $button-color;
+            color: #fff;
+        }
+
+    }
+     
+    .active{
+        border-radius: 5px;
+        border: none;
+        font-size: 14px;
+        font-weight: 400;
+        padding: 5px 14px;
+        text-align: center;
+        background-color: $button-color;
+        color: #fff;
+        cursor: pointer;
+
+    }
+   
+}
+
+.pagination-side{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid $border-color ;
+    margin: 20px 0;
+    padding: 8px 15px ;
+    width: 100%;
+    
+    span{
+        font-size: 14px;
+    }
+
+}

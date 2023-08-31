@@ -1,0 +1,65 @@
+@import "../abstracts/extend";
+@import "../abstracts/variables";
+
+.conatiner-own{
+    @extend .container-extend;
+}
+
+#Offer{
+  padding: 60px 0;
+}
+
+.offer-box-left{
+  span{
+      font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    color: $button-color;
+    
+  }
+  h3{
+    font-size: 35px;
+    font-weight: 400;
+    line-height: 35px;
+    color: #333;
+    margin-top: 10px;
+  }
+  h1{
+    font-size: 60px;
+    font-weight: 500;
+    line-height: 60px;
+    color: #333;
+  }
+  p{
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 20px;
+    margin-bottom: 40px;
+    color: #333;
+  }
+  a{
+    padding: 13px 20px;
+    color: #f9706a;
+    border: 1px solid #f9706a;
+    font-weight: 500;
+    transition: 0.4s;
+    &:hover{
+        background-color: $button-color;
+        color: #fff;
+        transition: 0.4s;
+    }
+  }
+}
+
+.offer-box-right{
+    img{
+        width: 100%;
+        transition: 0.5s;
+        &:hover{
+            opacity: 0.6;
+            transition: 0.5s;
+        }
+    }
+}
