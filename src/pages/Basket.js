@@ -11,16 +11,10 @@ const Basket = () => {
     const [dataId, setDataId] = useState();
     const [clicked, setClicked] = useState(0)
     
-
-
-
-
-
     const AddBasketHandle = async (values) =>{
- console.log("Values",values);
 
         if(token){
-            await axios.post(`https://localhost:7039/api/Shops/`, values ,{
+            await axios.post(`https://localhost:7039/api/Shops`, values ,{
                 headers: {
                     Authorization: `Bearer ${token}`
                   }
@@ -129,7 +123,7 @@ const Basket = () => {
                                         <span onClick={() => PlusHandle(index, item.product.id)} className="qt-plus">+</span>
 
                                         <h2 className="full-price">
-                                            ${item.count * (item.product.discountedPrice > 0 ? item.product.discountedPrice : item.product.salePrice)}
+                                            ${(item.count * (item.product.discountedPrice > 0 ? item.product.discountedPrice : item.product.salePrice)).toFixed(2)}
                                         </h2>
 
                                         <h2 className="price">

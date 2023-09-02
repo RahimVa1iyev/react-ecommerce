@@ -34,24 +34,6 @@ const Detail = () => {
 
   }, [id])
 
-  // const product =
-  // {
-  //   name: "Product dummy title",
-  //   rate: 5,
-  //   category: "A",
-  //   discountedPrice: 85.00,
-  //   sizes: ["X", " XL ", " L "],
-  //   costPrice: 105.00,
-  //   posterImg: pr1,
-  //   gender: "Men",
-  //   images: [pr1, pr2, pr3, pr4],
-  //   desc: "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur."
-
-  // };
-
-
-
-
 
   return (
     <>
@@ -74,7 +56,9 @@ const Detail = () => {
         </div>
         <div className="col-lg-12">
           <div className="tab-menu-side">
-            <TabPlugin desc={product && product.desc} />
+
+          {product && <TabPlugin product={product} />}
+          
           </div>
         </div>
         <div className="col-lg-12">

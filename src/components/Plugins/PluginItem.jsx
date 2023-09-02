@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { handleOpen, setSelectedProduct, setCompareProduct, handleEye, handleScale } from '../../control/modalSlice';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import { getBasketItems, setClicked } from '../../control/basketSlice';
+import { getBasketItems } from '../../control/basketSlice';
 
 
 
@@ -31,7 +31,7 @@ const PluginItem = (props) => {
     const disPatch = useDispatch();
     const { compareProduct } = useSelector((store) => store.modal)
     const { id, name, rate, discountedPrice, salePrice, images } = props.product
-
+    
 
     const HoverHandle = () => {
 
@@ -155,13 +155,11 @@ const PluginItem = (props) => {
     }
 
 
-    useEffect(() => {
-        disPatch(getBasketItems())
-    }, [dataId])
+
 
     useEffect(() => {
         disPatch(getBasketItems())
-    }, [clicked])
+    },[clicked])
 
     useEffect(() => {
         const wishlistLocal = JSON.parse(localStorage.getItem('wishlist'));

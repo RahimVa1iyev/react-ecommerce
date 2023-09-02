@@ -6,7 +6,8 @@ import axios from 'axios';
 const initialState = {
     count: 0,
     loading: false,
-    product : null
+    product : null,
+
 };
 
 const basketSlice = createSlice({

@@ -4,14 +4,16 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { FiX } from 'react-icons/fi'
 import pr1 from '../assets/image/pr1.png'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Modals from '../components/Modal/Modals'
 import { getBasketItems, handleOpen, handleView } from '../control/modalSlice'
+import { getOrders } from '../control/fetchSlice'
+import { store } from '../store'
+
 
 
 const Profile = () => {
 
-    const [orders, setOrders] = useState();
     const [token, setToken] = useState(localStorage.getItem('authToken'));
     const [user, setUser] = useState();
     const [wishlistItems, setWishlistItems] = useState();
@@ -19,6 +21,9 @@ const Profile = () => {
     const [toggle,setToggle] = useState(1)
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    const {orders} = useSelector((store)=>store.fetch)
+    console.log("order",orders);
 
     console.log(wishlistItems);
     const initialValues = {
@@ -31,16 +36,6 @@ const Profile = () => {
         currentPassword: '',
         newPassword: '',
         confirmPassword: ''
-    }
-
-    const getOrders = async () => {
-        await axios.get(`https://localhost:7039/api/Orders/all`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        })
-            .then(res => setOrders(res.data))
-
     }
 
     function formatDateTime(dateTimeString) {
@@ -126,14 +121,14 @@ const Profile = () => {
     const getOrderItems = (id) =>{
         dispatch(handleView())
         dispatch(handleOpen())
-        dispatch(getBasketItems(id))
+        dispatch(getOrderItems(id))
     }
 
 
 
     useEffect(() => {
         getUser()
-        getOrders();
+        dispatch(getOrders());
     }, [])
 
     useEffect(() =>{

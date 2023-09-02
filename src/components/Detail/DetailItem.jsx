@@ -1,13 +1,74 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { TiStarFullOutline } from 'react-icons/ti';
 import { TiStarOutline } from 'react-icons/ti';
+import { useDispatch, useSelector } from 'react-redux';
+import {Link, useNavigate} from 'react-router-dom'
+
+import axios from 'axios';
+import { getBasketItems, setCount } from '../../control/basketSlice';
 
 
 const DetailItem = (props) => {
-   const { name, rate, category, discountedPrice, brand, colors, sizes, salePrice, gender, desc } = props.product;
+   const {id, name, rate, category, discountedPrice, brand, colors, sizes, salePrice, gender, desc } = props.product;
+   const [clicked, setClicked] = useState(0)
+   const [token, setToken] = useState(localStorage.getItem('authToken'));
+   const {product} = useSelector(store => store.basket)
+   const navigate = useNavigate();
+
+
    const getStart = (i,index) => {
       return rate >= i ? <TiStarFullOutline key={index} className='full' /> : <TiStarOutline key={index} className='outer' />
    }
+
+   const dispatch = useDispatch();
+
+   const AddBasketHandle = async (values) =>{
+
+      if(token){
+          await axios.post(`https://localhost:7039/api/Shops/`, values ,{
+              headers: {
+                  Authorization: `Bearer ${token}`
+                }
+          })
+          .then(res=> {
+              setClicked(clicked + 1)
+              dispatch(setCount(res.data.count))
+
+          } )
+          .catch(err=>{
+           err.response &&   console.log(err.response.data);
+          })
+      }
+      else{
+          alert("Xeta bas verdi")
+      }
+  } 
+
+  const changeInput = (e) => {
+    const values = {count : e.target.value,id:id}
+    AddBasketHandle(values);
+  }
+
+  const addBasket = () => {
+   const value = document.querySelector("#qty").value
+   const data = {count:value , id:id}
+   AddBasketHandle(data)
+  }
+
+  const addCheckOut = () => {
+   const value = document.querySelector("#qty").value
+   const data = {count:value , id:id}
+   AddBasketHandle(data)
+   navigate('/checkout')
+  }
+
+
+ 
+
+  useEffect(() => {
+   dispatch(getBasketItems())
+}, [clicked])
+
    return (
       <>
 
@@ -66,14 +127,14 @@ const DetailItem = (props) => {
 
          <hr />
 
-         <div className="basket-side d-flex align-items-center gap-3">
+         <div className="basket-side d-flex align-items-baseline gap-3">
             <span>Qty</span>
-            <input type="number" value={1} />
-            <a href="#" className='add-btn'>Add to cart</a>
+            <input onChange={changeInput} id='qty' defaultValue={1} type="number"  />
+            <button  onClick={addBasket}  className='add-btn'>Add to cart</button>
          </div>
 
          <div className="check-out">
-            <a href="#" >Buy it now</a>
+            <button onClick ={addCheckOut}  >Buy it now</button>
          </div>
 
 

@@ -14,7 +14,9 @@ const BottomHeader = () => {
     const [toggle, setToggle] = useState("side-bar-off");
     const { count , product } = useSelector((store) => store.basket)
     const [dropdown , setDropdown] = useState(false)
+    const [toggleNavlink , setToggleNavlink] = useState(1);
     const [token,setToken] = useState(localStorage.getItem('authToken'));
+
 
 const dispatch = useDispatch();
     
@@ -35,13 +37,17 @@ const dispatch = useDispatch();
 
     const DropdownHandle = () =>{
       setDropdown(dropdown ? false : true )
-      console.log(dropdown);
     }
  
 
 
     const SidebarHandler = () => {
         setToggle(toggle === "side-bar-off" ? "side-bar-on" : "side-bar-off")
+    }
+
+    const toggleNav = (id) =>{
+        console.log(id);
+        setToggleNavlink(id)
     }
 
     
@@ -56,12 +62,10 @@ const dispatch = useDispatch();
                     </div>
 
                     <div id='navbar-media' className="col-lg-6">
-                        <div className="navbar-bottom d-flex align-items-center justify-content-between">
-                            <a href="#">Home</a>
-                            <a href="#">Shop</a>
-                            <a href="#">Contact</a>
-                            <a href="#">Blog</a>
-                            <a href="">About Us</a>
+                        <div className="navbar-bottom d-flex align-items-center justify-content-around">
+                            <Link className={toggleNavlink ===1? "nav-active" : "nav-deactive"} onClick={()=> toggleNav(1)} to="/">Home</Link>
+                            <Link className={toggleNavlink ===2? "nav-active" : "nav-deactive"} onClick={()=> toggleNav(2)}  to="/shop" >Shop</Link>
+                            <Link className={toggleNavlink ===3? "nav-active" : "nav-deactive"} onClick={()=> toggleNav(3)} to="/contact" >Contact</Link>
                         </div>
 
                     </div>
@@ -84,14 +88,14 @@ const dispatch = useDispatch();
                                         }
                                     </div>
                                     <div className="basket-info">
-                                        <div className="pr-name d-flex align-items-center justify-content-between">
-                                            <p>{item.product.name}</p>
+                                        <div className="pr-name d-flex justify-content-between">
+                                            <p>{item.product.name.substring(0,40)}...</p>
                                             <FiX onClick={()=> DeletePrHandle(item.product.id)} className='delete-basket' />
                                         </div>
                                         <div className="basket-item-price d-flex align-items-center gap-1">
                                             <span className='drop-x' >{item.count }</span>
                                             <span className='drop-x'  >x</span>
-                                            <span className='new-price' >{item.count * (item.product.discountedPrice>0? item.product.discountedPrice : item.product.salePrice)}</span>
+                                            <span className='new-price' >{(item.count * (item.product.discountedPrice>0? item.product.discountedPrice : item.product.salePrice)).toFixed(2)}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -106,8 +110,9 @@ const dispatch = useDispatch();
                                         <span className='total' >{product && product.totalAmount}</span>
                                     </div>
                                     <div className="link-button">
-                                        <Link to='' className='go-link' >View Cart</Link>
-                                        <Link to='' className='go-link' >Checkout</Link>
+      
+                                        <Link onClick={()=> setDropdown(false)} to='/basket' className='go-link' >View Cart</Link>
+                                        <Link onClick={()=> setDropdown(false)} to='/checkout' className='go-link' >Checkout</Link>
                                     </div>
                                 </div>
 

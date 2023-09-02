@@ -22,6 +22,7 @@ const SliderPostForm = (props) => {
     const onSubmit = (values) => {
     
         const postSlider = async () => {
+            
             const formData = new FormData();
 
             formData.append("title", values.title)

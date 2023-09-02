@@ -24,7 +24,7 @@
     width: 400px !important ;
     height: 500px;
     margin: 0 auto;
-    padding: 0 5px;
+    padding: 45px;
    }
 }
 
@@ -32,7 +32,7 @@
     .altImg{
         width: 150px;
         height: 160px;
-        padding: 5px;
+        padding: 35px;
     }
 }
 
@@ -115,4 +115,92 @@
 .botom-side{
     padding-top: 40px;
 }
+
+.review-side{
+    margin-top: 20px;
+    border: 1px solid grey;
+    padding: 15px 20px;
+
+    .top-review-side{
+        border-bottom: 1px solid $border-color;
+        padding-bottom: 40px;
+        .left-side-review{
+            h2{
+                font-size: 22px;
+                color: #333;
+                font-weight: 600;
+            }
+            .full{
+                font-size: 20px;
+            }
+            .outer{
+                font-size: 20px;
+            }
+            .review{
+                font-size: 14px;
+            }
+        }
+    }
+
+    .bottom-review-side{
+        padding: 20px 0;
+        .joa-cancelo{
+            margin-bottom: 20px;
+            .time,
+            .fullname{
+                color: 11px;
+                color: #333;
+                font-weight: 600;
+            }
+            .on{
+                text-transform: lowercase;
+            }
+          
+        }
+    }
+}
+
+
+.star-box {
+    display: flex;
+    justify-content: start;
+    flex-direction: row-reverse; // reverse!
+    font-family: 'Hi Melody', cursive;
+    // label
+    .star {
+      display: inline-block;
+      color: #a9a9a9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.2s;
+      cursor: pointer;
+      &:before {
+        content: '\2605';
+        
+        font-size: 25px;
+        padding: 0 6px;
+      
+        text-shadow: 3px 3px 5px #b1a8a8;
+      }
+    }
+    // label hover
+    &:hover .star:hover {
+      color: #ffcc33;
+       &~.star {
+        color: #ffcc33;
+      }
+    }
+    // input
+    input {
+      display: none;
+    }
+    // input checked
+    [type=radio]:checked + .star {
+      color: #ffcc33;
+      &~.star {
+        color: #ffcc33;
+      }
+    }
+  }
 

@@ -32,6 +32,7 @@ import Colour from './dashboards/Colour/Colour';
 import ColourPost from './dashboards/Colour/ColourPost';
 import ColourPut from './dashboards/Colour/ColourPut';
 import Profile from './pages/Profile';
+import Order from './dashboards/Order/Order';
 
 
 
@@ -52,7 +53,7 @@ function App() {
             <Route path='/contact-us' element={<Contact />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
-            <Route path='/checkout' element={<CheckOut />} />   
+            <Route path='/checkout' element={<CheckOut />} />  
             <Route path='/profile' element ={<Profile/>} />       
           </Route>
             <Route path='*' element ={<NotFound />} />
@@ -81,6 +82,8 @@ function App() {
             <Route path='/dashboard/sliders' element ={<Slider/>} />
             <Route path='/dashboard/sliders/create' element={<SliderPost/>} />
             <Route path='/dashboard/sliders/:id' element={<SliderPut />} />
+
+            <Route path='/dashboard/orders' element={<Order />} /> 
                  
         </Routes>
 

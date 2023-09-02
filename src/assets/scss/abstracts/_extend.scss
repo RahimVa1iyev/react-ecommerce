@@ -94,10 +94,11 @@
 
     .add-btn{
         line-height: 41px;
-        padding: 0 70px;
         border-radius: 5px;
         font-size: 16px;
         font-weight: 700;
+        border: none;
+        width: 320px;
         color: #fff;
         background-color: $button-color;
         transition: 0.5s;
@@ -110,7 +111,7 @@
 
 .check-out{
     width: 100%;
-    a{
+    button{
         display: block;
         height: 40px;
         line-height: 40px;
@@ -118,6 +119,7 @@
         font-weight: 700;
         font-size: 16px;
         margin-top: 20px;
+        border: none;
         color: #fff;
         background-color: $button-color;
         width: 100%;

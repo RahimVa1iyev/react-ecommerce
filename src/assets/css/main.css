@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .container-extend, .containe-own, .conatiner-own, .container-own {
   max-width: 1185px;
   width: 100%;
@@ -125,10 +126,11 @@
 }
 .basket-side .add-btn, .modal-title .add-btn, .detail-top-side .product-detail-side .add-btn {
   line-height: 41px;
-  padding: 0 70px;
   border-radius: 5px;
   font-size: 16px;
   font-weight: 700;
+  border: none;
+  width: 320px;
   color: #fff;
   background-color: #f9706a;
   transition: 0.5s;
@@ -141,7 +143,7 @@
 .check-out, .modal-title, .detail-top-side .product-detail-side {
   width: 100%;
 }
-.check-out a, .modal-title a, .detail-top-side .product-detail-side a {
+.check-out button, .modal-title button, .detail-top-side .product-detail-side button {
   display: block;
   height: 40px;
   line-height: 40px;
@@ -149,6 +151,7 @@
   font-weight: 700;
   font-size: 16px;
   margin-top: 20px;
+  border: none;
   color: #fff;
   background-color: #f9706a;
   width: 100%;
@@ -156,7 +159,7 @@
   border-radius: 5px;
   transition: 0.5s;
 }
-.check-out a:hover, .modal-title a:hover, .detail-top-side .product-detail-side a:hover {
+.check-out button:hover, .modal-title button:hover, .detail-top-side .product-detail-side button:hover {
   background-color: #333;
   transition: 0.5s;
 }
@@ -265,14 +268,20 @@
 #bottom-header .navbar-bottom {
   padding: 5px 0 0 0;
 }
-#bottom-header .navbar-bottom a {
+#bottom-header .navbar-bottom .nav-deactive {
   color: #333333;
   font-size: 15px;
   font-weight: 500;
   text-decoration: none;
 }
-#bottom-header .navbar-bottom a:hover {
+#bottom-header .navbar-bottom .nav-deactive:hover {
   color: #f9706a;
+}
+#bottom-header .navbar-bottom .nav-active {
+  color: #f9706a;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
 }
 #bottom-header .basket {
   position: relative;
@@ -330,12 +339,12 @@
   width: 70%;
 }
 #bottom-header .basket-dropdown .dropdown-box .top-side-dropdown .basket-info .pr-name p, #bottom-header .basket-dropdown .dropdown-box .top-side-dropdown .basket-info .modal-title p, #bottom-header .basket-dropdown .dropdown-box .top-side-dropdown .basket-info .detail-top-side .product-detail-side p, .detail-top-side #bottom-header .basket-dropdown .dropdown-box .top-side-dropdown .basket-info .product-detail-side p {
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 300;
   line-height: 20px;
 }
 #bottom-header .basket-dropdown .dropdown-box .top-side-dropdown .basket-info .pr-name .delete-basket, #bottom-header .basket-dropdown .dropdown-box .top-side-dropdown .basket-info .modal-title .delete-basket, #bottom-header .basket-dropdown .dropdown-box .top-side-dropdown .basket-info .detail-top-side .product-detail-side .delete-basket, .detail-top-side #bottom-header .basket-dropdown .dropdown-box .top-side-dropdown .basket-info .product-detail-side .delete-basket {
-  width: 18px;
+  width: 30px;
 }
 #bottom-header .basket-dropdown .dropdown-box .top-side-dropdown .basket-info .basket-item-price .drop-x {
   font-size: 13px;
@@ -620,10 +629,11 @@ p {
 }
 .basket-side .add-btn, .modal-title .add-btn, .detail-top-side .product-detail-side .add-btn {
   line-height: 41px;
-  padding: 0 70px;
   border-radius: 5px;
   font-size: 16px;
   font-weight: 700;
+  border: none;
+  width: 320px;
   color: #fff;
   background-color: #f9706a;
   transition: 0.5s;
@@ -636,7 +646,7 @@ p {
 .check-out, .modal-title, .detail-top-side .product-detail-side {
   width: 100%;
 }
-.check-out a, .modal-title a, .detail-top-side .product-detail-side a {
+.check-out button, .modal-title button, .detail-top-side .product-detail-side button {
   display: block;
   height: 40px;
   line-height: 40px;
@@ -644,6 +654,7 @@ p {
   font-weight: 700;
   font-size: 16px;
   margin-top: 20px;
+  border: none;
   color: #fff;
   background-color: #f9706a;
   width: 100%;
@@ -651,7 +662,7 @@ p {
   border-radius: 5px;
   transition: 0.5s;
 }
-.check-out a:hover, .modal-title a:hover, .detail-top-side .product-detail-side a:hover {
+.check-out button:hover, .modal-title button:hover, .detail-top-side .product-detail-side button:hover {
   background-color: #333;
   transition: 0.5s;
 }
@@ -905,10 +916,11 @@ p {
 }
 .basket-side .add-btn, .modal-title .add-btn, .detail-top-side .product-detail-side .add-btn {
   line-height: 41px;
-  padding: 0 70px;
   border-radius: 5px;
   font-size: 16px;
   font-weight: 700;
+  border: none;
+  width: 320px;
   color: #fff;
   background-color: #f9706a;
   transition: 0.5s;
@@ -921,7 +933,7 @@ p {
 .check-out, .modal-title, .detail-top-side .product-detail-side {
   width: 100%;
 }
-.check-out a, .modal-title a, .detail-top-side .product-detail-side a {
+.check-out button, .modal-title button, .detail-top-side .product-detail-side button {
   display: block;
   height: 40px;
   line-height: 40px;
@@ -929,6 +941,7 @@ p {
   font-weight: 700;
   font-size: 16px;
   margin-top: 20px;
+  border: none;
   color: #fff;
   background-color: #f9706a;
   width: 100%;
@@ -936,7 +949,7 @@ p {
   border-radius: 5px;
   transition: 0.5s;
 }
-.check-out a:hover, .modal-title a:hover, .detail-top-side .product-detail-side a:hover {
+.check-out button:hover, .modal-title button:hover, .detail-top-side .product-detail-side button:hover {
   background-color: #333;
   transition: 0.5s;
 }
@@ -1124,10 +1137,11 @@ p {
 }
 .basket-side .add-btn, .modal-title .add-btn, .detail-top-side .product-detail-side .add-btn {
   line-height: 41px;
-  padding: 0 70px;
   border-radius: 5px;
   font-size: 16px;
   font-weight: 700;
+  border: none;
+  width: 320px;
   color: #fff;
   background-color: #f9706a;
   transition: 0.5s;
@@ -1140,7 +1154,7 @@ p {
 .check-out, .modal-title, .detail-top-side .product-detail-side {
   width: 100%;
 }
-.check-out a, .modal-title a, .detail-top-side .product-detail-side a {
+.check-out button, .modal-title button, .detail-top-side .product-detail-side button {
   display: block;
   height: 40px;
   line-height: 40px;
@@ -1148,6 +1162,7 @@ p {
   font-weight: 700;
   font-size: 16px;
   margin-top: 20px;
+  border: none;
   color: #fff;
   background-color: #f9706a;
   width: 100%;
@@ -1155,7 +1170,7 @@ p {
   border-radius: 5px;
   transition: 0.5s;
 }
-.check-out a:hover, .modal-title a:hover, .detail-top-side .product-detail-side a:hover {
+.check-out button:hover, .modal-title button:hover, .detail-top-side .product-detail-side button:hover {
   background-color: #333;
   transition: 0.5s;
 }
@@ -1554,10 +1569,11 @@ p {
 }
 .basket-side .add-btn, .modal-title .add-btn, .detail-top-side .product-detail-side .add-btn {
   line-height: 41px;
-  padding: 0 70px;
   border-radius: 5px;
   font-size: 16px;
   font-weight: 700;
+  border: none;
+  width: 320px;
   color: #fff;
   background-color: #f9706a;
   transition: 0.5s;
@@ -1570,7 +1586,7 @@ p {
 .check-out, .modal-title, .detail-top-side .product-detail-side {
   width: 100%;
 }
-.check-out a, .modal-title a, .detail-top-side .product-detail-side a {
+.check-out button, .modal-title button, .detail-top-side .product-detail-side button {
   display: block;
   height: 40px;
   line-height: 40px;
@@ -1578,6 +1594,7 @@ p {
   font-weight: 700;
   font-size: 16px;
   margin-top: 20px;
+  border: none;
   color: #fff;
   background-color: #f9706a;
   width: 100%;
@@ -1585,7 +1602,7 @@ p {
   border-radius: 5px;
   transition: 0.5s;
 }
-.check-out a:hover, .modal-title a:hover, .detail-top-side .product-detail-side a:hover {
+.check-out button:hover, .modal-title button:hover, .detail-top-side .product-detail-side button:hover {
   background-color: #333;
   transition: 0.5s;
 }
@@ -1792,10 +1809,11 @@ p {
 }
 .basket-side .add-btn, .modal-title .add-btn, .detail-top-side .product-detail-side .add-btn {
   line-height: 41px;
-  padding: 0 70px;
   border-radius: 5px;
   font-size: 16px;
   font-weight: 700;
+  border: none;
+  width: 320px;
   color: #fff;
   background-color: #f9706a;
   transition: 0.5s;
@@ -1808,7 +1826,7 @@ p {
 .check-out, .modal-title, .detail-top-side .product-detail-side {
   width: 100%;
 }
-.check-out a, .modal-title a, .detail-top-side .product-detail-side a {
+.check-out button, .modal-title button, .detail-top-side .product-detail-side button {
   display: block;
   height: 40px;
   line-height: 40px;
@@ -1816,6 +1834,7 @@ p {
   font-weight: 700;
   font-size: 16px;
   margin-top: 20px;
+  border: none;
   color: #fff;
   background-color: #f9706a;
   width: 100%;
@@ -1823,7 +1842,7 @@ p {
   border-radius: 5px;
   transition: 0.5s;
 }
-.check-out a:hover, .modal-title a:hover, .detail-top-side .product-detail-side a:hover {
+.check-out button:hover, .modal-title button:hover, .detail-top-side .product-detail-side button:hover {
   background-color: #333;
   transition: 0.5s;
 }
@@ -1989,10 +2008,11 @@ p {
 }
 .basket-side .add-btn, .modal-title .add-btn, .detail-top-side .product-detail-side .add-btn {
   line-height: 41px;
-  padding: 0 70px;
   border-radius: 5px;
   font-size: 16px;
   font-weight: 700;
+  border: none;
+  width: 320px;
   color: #fff;
   background-color: #f9706a;
   transition: 0.5s;
@@ -2005,7 +2025,7 @@ p {
 .check-out, .modal-title, .detail-top-side .product-detail-side {
   width: 100%;
 }
-.check-out a, .modal-title a, .detail-top-side .product-detail-side a {
+.check-out button, .modal-title button, .detail-top-side .product-detail-side button {
   display: block;
   height: 40px;
   line-height: 40px;
@@ -2013,6 +2033,7 @@ p {
   font-weight: 700;
   font-size: 16px;
   margin-top: 20px;
+  border: none;
   color: #fff;
   background-color: #f9706a;
   width: 100%;
@@ -2020,7 +2041,7 @@ p {
   border-radius: 5px;
   transition: 0.5s;
 }
-.check-out a:hover, .modal-title a:hover, .detail-top-side .product-detail-side a:hover {
+.check-out button:hover, .modal-title button:hover, .detail-top-side .product-detail-side button:hover {
   background-color: #333;
   transition: 0.5s;
 }
@@ -2216,10 +2237,11 @@ p {
 }
 .basket-side .add-btn, .modal-title .add-btn, .detail-top-side .product-detail-side .add-btn {
   line-height: 41px;
-  padding: 0 70px;
   border-radius: 5px;
   font-size: 16px;
   font-weight: 700;
+  border: none;
+  width: 320px;
   color: #fff;
   background-color: #f9706a;
   transition: 0.5s;
@@ -2232,7 +2254,7 @@ p {
 .check-out, .modal-title, .detail-top-side .product-detail-side {
   width: 100%;
 }
-.check-out a, .modal-title a, .detail-top-side .product-detail-side a {
+.check-out button, .modal-title button, .detail-top-side .product-detail-side button {
   display: block;
   height: 40px;
   line-height: 40px;
@@ -2240,6 +2262,7 @@ p {
   font-weight: 700;
   font-size: 16px;
   margin-top: 20px;
+  border: none;
   color: #fff;
   background-color: #f9706a;
   width: 100%;
@@ -2247,7 +2270,7 @@ p {
   border-radius: 5px;
   transition: 0.5s;
 }
-.check-out a:hover, .modal-title a:hover, .detail-top-side .product-detail-side a:hover {
+.check-out button:hover, .modal-title button:hover, .detail-top-side .product-detail-side button:hover {
   background-color: #333;
   transition: 0.5s;
 }
@@ -2473,10 +2496,11 @@ p {
 }
 .basket-side .add-btn, .modal-title .add-btn, .detail-top-side .product-detail-side .add-btn {
   line-height: 41px;
-  padding: 0 70px;
   border-radius: 5px;
   font-size: 16px;
   font-weight: 700;
+  border: none;
+  width: 320px;
   color: #fff;
   background-color: #f9706a;
   transition: 0.5s;
@@ -2489,7 +2513,7 @@ p {
 .check-out, .modal-title, .detail-top-side .product-detail-side {
   width: 100%;
 }
-.check-out a, .modal-title a, .detail-top-side .product-detail-side a {
+.check-out button, .modal-title button, .detail-top-side .product-detail-side button {
   display: block;
   height: 40px;
   line-height: 40px;
@@ -2497,6 +2521,7 @@ p {
   font-weight: 700;
   font-size: 16px;
   margin-top: 20px;
+  border: none;
   color: #fff;
   background-color: #f9706a;
   width: 100%;
@@ -2504,7 +2529,7 @@ p {
   border-radius: 5px;
   transition: 0.5s;
 }
-.check-out a:hover, .modal-title a:hover, .detail-top-side .product-detail-side a:hover {
+.check-out button:hover, .modal-title button:hover, .detail-top-side .product-detail-side button:hover {
   background-color: #333;
   transition: 0.5s;
 }
@@ -2874,10 +2899,11 @@ p {
 }
 .basket-side .add-btn, .modal-title .add-btn, .detail-top-side .product-detail-side .add-btn {
   line-height: 41px;
-  padding: 0 70px;
   border-radius: 5px;
   font-size: 16px;
   font-weight: 700;
+  border: none;
+  width: 320px;
   color: #fff;
   background-color: #f9706a;
   transition: 0.5s;
@@ -2890,7 +2916,7 @@ p {
 .check-out, .modal-title, .detail-top-side .product-detail-side {
   width: 100%;
 }
-.check-out a, .modal-title a, .detail-top-side .product-detail-side a {
+.check-out button, .modal-title button, .detail-top-side .product-detail-side button {
   display: block;
   height: 40px;
   line-height: 40px;
@@ -2898,6 +2924,7 @@ p {
   font-weight: 700;
   font-size: 16px;
   margin-top: 20px;
+  border: none;
   color: #fff;
   background-color: #f9706a;
   width: 100%;
@@ -2905,7 +2932,7 @@ p {
   border-radius: 5px;
   transition: 0.5s;
 }
-.check-out a:hover, .modal-title a:hover, .detail-top-side .product-detail-side a:hover {
+.check-out button:hover, .modal-title button:hover, .detail-top-side .product-detail-side button:hover {
   background-color: #333;
   transition: 0.5s;
 }
@@ -2951,13 +2978,13 @@ p {
   width: 400px !important;
   height: 500px;
   margin: 0 auto;
-  padding: 0 5px;
+  padding: 45px;
 }
 
 .alt-img .altImg {
   width: 150px;
   height: 160px;
-  padding: 5px;
+  padding: 35px;
 }
 
 .detail-top-side .product-detail-side {
@@ -3005,6 +3032,82 @@ p {
 
 .botom-side {
   padding-top: 40px;
+}
+
+.review-side {
+  margin-top: 20px;
+  border: 1px solid grey;
+  padding: 15px 20px;
+}
+.review-side .top-review-side {
+  border-bottom: 1px solid #ededed;
+  padding-bottom: 40px;
+}
+.review-side .top-review-side .left-side-review h2 {
+  font-size: 22px;
+  color: #333;
+  font-weight: 600;
+}
+.review-side .top-review-side .left-side-review .full {
+  font-size: 20px;
+}
+.review-side .top-review-side .left-side-review .outer {
+  font-size: 20px;
+}
+.review-side .top-review-side .left-side-review .review, .review-side .top-review-side .left-side-review .modal-title, .review-side .top-review-side .left-side-review .detail-top-side .product-detail-side, .detail-top-side .review-side .top-review-side .left-side-review .product-detail-side {
+  font-size: 14px;
+}
+.review-side .bottom-review-side {
+  padding: 20px 0;
+}
+.review-side .bottom-review-side .joa-cancelo {
+  margin-bottom: 20px;
+}
+.review-side .bottom-review-side .joa-cancelo .time,
+.review-side .bottom-review-side .joa-cancelo .fullname {
+  color: 11px;
+  color: #333;
+  font-weight: 600;
+}
+.review-side .bottom-review-side .joa-cancelo .on {
+  text-transform: lowercase;
+}
+
+.star-box {
+  display: flex;
+  justify-content: start;
+  flex-direction: row-reverse;
+  font-family: "Hi Melody", cursive;
+}
+.star-box .star {
+  display: inline-block;
+  color: #a9a9a9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.star-box .star:before {
+  content: "★";
+  font-size: 25px;
+  padding: 0 6px;
+  text-shadow: 3px 3px 5px #b1a8a8;
+}
+.star-box:hover .star:hover {
+  color: #ffcc33;
+}
+.star-box:hover .star:hover ~ .star {
+  color: #ffcc33;
+}
+.star-box input {
+  display: none;
+}
+.star-box [type=radio]:checked + .star {
+  color: #ffcc33;
+}
+.star-box [type=radio]:checked + .star ~ .star {
+  color: #ffcc33;
 }
 
 .modal-img {
@@ -3143,13 +3246,14 @@ p {
   border: 1px solid #eee;
   margin: 20px 0;
   width: 96%;
-  height: 280px;
+  height: 200px;
   position: relative;
   transition: margin 0.2s linear, opacity 0.2s linear;
 }
 .basket .product img {
   width: 100%;
   height: 100%;
+  padding: 25px;
 }
 .basket .product header, .basket .product .content {
   background-color: #fff;
@@ -3158,28 +3262,28 @@ p {
   float: left;
 }
 .basket .product header {
-  background: #000;
+  background: #fff;
   margin: 0 1% 20px 0;
   overflow: hidden;
   padding: 0;
   position: relative;
-  width: 24%;
-  height: 280px;
+  width: 15%;
+  height: 200px;
 }
 .basket .product header:hover img {
   opacity: 0.7;
 }
 .basket .product header:hover h3 {
-  bottom: 106px;
+  bottom: 75px;
 }
 .basket .product header h3 {
   background: #f9706a;
   color: #fff;
-  font-size: 22px;
-  font-weight: 300;
-  line-height: 49px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 40px;
   margin: 0;
-  padding: 0 30px;
+  padding: 0px 22px;
   position: absolute;
   bottom: -50px;
   right: 0;
@@ -3192,9 +3296,9 @@ p {
 .basket .product .content {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
-  height: 224px;
+  height: 144px;
   padding: 0 20px;
-  width: 75%;
+  width: 84%;
 }
 .basket .product h1 {
   color: #f9706a;
@@ -3550,10 +3654,11 @@ p {
 }
 .basket-side .add-btn, .detail-top-side .product-detail-side .add-btn, .modal-title .add-btn {
   line-height: 41px;
-  padding: 0 70px;
   border-radius: 5px;
   font-size: 16px;
   font-weight: 700;
+  border: none;
+  width: 320px;
   color: #fff;
   background-color: #f9706a;
   transition: 0.5s;
@@ -3566,7 +3671,7 @@ p {
 .check-out, .detail-top-side .product-detail-side, .modal-title {
   width: 100%;
 }
-.check-out a, .detail-top-side .product-detail-side a, .modal-title a {
+.check-out button, .detail-top-side .product-detail-side button, .modal-title button {
   display: block;
   height: 40px;
   line-height: 40px;
@@ -3574,6 +3679,7 @@ p {
   font-weight: 700;
   font-size: 16px;
   margin-top: 20px;
+  border: none;
   color: #fff;
   background-color: #f9706a;
   width: 100%;
@@ -3581,7 +3687,7 @@ p {
   border-radius: 5px;
   transition: 0.5s;
 }
-.check-out a:hover, .detail-top-side .product-detail-side a:hover, .modal-title a:hover {
+.check-out button:hover, .detail-top-side .product-detail-side button:hover, .modal-title button:hover {
   background-color: #333;
   transition: 0.5s;
 }
@@ -3834,10 +3940,11 @@ p {
 }
 .basket-side .add-btn, .detail-top-side .product-detail-side .add-btn, .modal-title .add-btn {
   line-height: 41px;
-  padding: 0 70px;
   border-radius: 5px;
   font-size: 16px;
   font-weight: 700;
+  border: none;
+  width: 320px;
   color: #fff;
   background-color: #f9706a;
   transition: 0.5s;
@@ -3850,7 +3957,7 @@ p {
 .check-out, .detail-top-side .product-detail-side, .modal-title {
   width: 100%;
 }
-.check-out a, .detail-top-side .product-detail-side a, .modal-title a {
+.check-out button, .detail-top-side .product-detail-side button, .modal-title button {
   display: block;
   height: 40px;
   line-height: 40px;
@@ -3858,6 +3965,7 @@ p {
   font-weight: 700;
   font-size: 16px;
   margin-top: 20px;
+  border: none;
   color: #fff;
   background-color: #f9706a;
   width: 100%;
@@ -3865,7 +3973,7 @@ p {
   border-radius: 5px;
   transition: 0.5s;
 }
-.check-out a:hover, .detail-top-side .product-detail-side a:hover, .modal-title a:hover {
+.check-out button:hover, .detail-top-side .product-detail-side button:hover, .modal-title button:hover {
   background-color: #333;
   transition: 0.5s;
 }
@@ -4115,10 +4223,11 @@ p {
 }
 .basket-side .add-btn, .detail-top-side .product-detail-side .add-btn, .modal-title .add-btn {
   line-height: 41px;
-  padding: 0 70px;
   border-radius: 5px;
   font-size: 16px;
   font-weight: 700;
+  border: none;
+  width: 320px;
   color: #fff;
   background-color: #f9706a;
   transition: 0.5s;
@@ -4131,7 +4240,7 @@ p {
 .check-out, .detail-top-side .product-detail-side, .modal-title {
   width: 100%;
 }
-.check-out a, .detail-top-side .product-detail-side a, .modal-title a {
+.check-out button, .detail-top-side .product-detail-side button, .modal-title button {
   display: block;
   height: 40px;
   line-height: 40px;
@@ -4139,6 +4248,7 @@ p {
   font-weight: 700;
   font-size: 16px;
   margin-top: 20px;
+  border: none;
   color: #fff;
   background-color: #f9706a;
   width: 100%;
@@ -4146,7 +4256,7 @@ p {
   border-radius: 5px;
   transition: 0.5s;
 }
-.check-out a:hover, .detail-top-side .product-detail-side a:hover, .modal-title a:hover {
+.check-out button:hover, .detail-top-side .product-detail-side button:hover, .modal-title button:hover {
   background-color: #333;
   transition: 0.5s;
 }
@@ -4387,10 +4497,11 @@ p {
 }
 .basket-side .add-btn, .detail-top-side .product-detail-side .add-btn, .modal-title .add-btn {
   line-height: 41px;
-  padding: 0 70px;
   border-radius: 5px;
   font-size: 16px;
   font-weight: 700;
+  border: none;
+  width: 320px;
   color: #fff;
   background-color: #f9706a;
   transition: 0.5s;
@@ -4403,7 +4514,7 @@ p {
 .check-out, .detail-top-side .product-detail-side, .modal-title {
   width: 100%;
 }
-.check-out a, .detail-top-side .product-detail-side a, .modal-title a {
+.check-out button, .detail-top-side .product-detail-side button, .modal-title button {
   display: block;
   height: 40px;
   line-height: 40px;
@@ -4411,6 +4522,7 @@ p {
   font-weight: 700;
   font-size: 16px;
   margin-top: 20px;
+  border: none;
   color: #fff;
   background-color: #f9706a;
   width: 100%;
@@ -4418,7 +4530,7 @@ p {
   border-radius: 5px;
   transition: 0.5s;
 }
-.check-out a:hover, .detail-top-side .product-detail-side a:hover, .modal-title a:hover {
+.check-out button:hover, .detail-top-side .product-detail-side button:hover, .modal-title button:hover {
   background-color: #333;
   transition: 0.5s;
 }
@@ -4649,6 +4761,9 @@ p {
 .dash-side-bar-body .dropdown-table ul li .slider-logo {
   color: blueviolet;
 }
+.dash-side-bar-body .dropdown-table ul li .order-logo {
+  color: blue;
+}
 .dash-side-bar-body .dropdown-table ul li .nonactive::after {
   height: 1.5px;
 }
@@ -4747,9 +4862,9 @@ p {
 .prtable .table-body table tbody tr td {
   text-align: center;
   padding: 0.75rem 0;
-  font-size: 15px;
+  font-size: 14px;
   color: #344767;
-  font-weight: 400;
+  font-weight: 500;
   border: 1px solid #eee9e9;
   padding: 8px;
 }
@@ -4784,6 +4899,11 @@ td:first-child {
 th:last-child,
 td:last-child {
   border-right: none;
+}
+
+.accept-btn {
+  font-weight: 500;
+  font-size: 16px;
 }
 
 .container-form {
@@ -5032,10 +5152,11 @@ td:last-child {
 }
 .basket-side .add-btn, .detail-top-side .product-detail-side .add-btn, .modal-title .add-btn {
   line-height: 41px;
-  padding: 0 70px;
   border-radius: 5px;
   font-size: 16px;
   font-weight: 700;
+  border: none;
+  width: 320px;
   color: #fff;
   background-color: #f9706a;
   transition: 0.5s;
@@ -5048,7 +5169,7 @@ td:last-child {
 .check-out, .detail-top-side .product-detail-side, .modal-title {
   width: 100%;
 }
-.check-out a, .detail-top-side .product-detail-side a, .modal-title a {
+.check-out button, .detail-top-side .product-detail-side button, .modal-title button {
   display: block;
   height: 40px;
   line-height: 40px;
@@ -5056,6 +5177,7 @@ td:last-child {
   font-weight: 700;
   font-size: 16px;
   margin-top: 20px;
+  border: none;
   color: #fff;
   background-color: #f9706a;
   width: 100%;
@@ -5063,7 +5185,7 @@ td:last-child {
   border-radius: 5px;
   transition: 0.5s;
 }
-.check-out a:hover, .detail-top-side .product-detail-side a:hover, .modal-title a:hover {
+.check-out button:hover, .detail-top-side .product-detail-side button:hover, .modal-title button:hover {
   background-color: #333;
   transition: 0.5s;
 }

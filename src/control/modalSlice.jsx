@@ -53,7 +53,7 @@ const modalSlice = createSlice({
 })
 
 
-export const getBasketItems = (id) => async (dispatch) => {
+export const getOrderItems = (id) => async (dispatch) => {
     console.log("id",id);
     try {
         const token = localStorage.getItem('authToken')
