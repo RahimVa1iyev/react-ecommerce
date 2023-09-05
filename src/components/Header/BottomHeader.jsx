@@ -65,7 +65,7 @@ const dispatch = useDispatch();
                         <div className="navbar-bottom d-flex align-items-center justify-content-around">
                             <Link className={toggleNavlink ===1? "nav-active" : "nav-deactive"} onClick={()=> toggleNav(1)} to="/">Home</Link>
                             <Link className={toggleNavlink ===2? "nav-active" : "nav-deactive"} onClick={()=> toggleNav(2)}  to="/shop" >Shop</Link>
-                            <Link className={toggleNavlink ===3? "nav-active" : "nav-deactive"} onClick={()=> toggleNav(3)} to="/contact" >Contact</Link>
+                            <Link className={toggleNavlink ===3? "nav-active" : "nav-deactive"} onClick={()=> toggleNav(3)} to="/contact-us" >Contact</Link>
                         </div>
 
                     </div>

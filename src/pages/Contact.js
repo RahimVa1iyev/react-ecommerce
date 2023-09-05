@@ -1,21 +1,71 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Formik, Form, Field } from 'formik';
 import { FaAddressCard } from 'react-icons/fa';
 import { HiPhone } from 'react-icons/hi';
 import { HiOutlineMail } from 'react-icons/hi';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-const initialValues = {
-  name: '',
-  email: '',
-  subject: '',
-  note: ''
-}
 
-const onSubmit = (values) => {
-  console.log(values);
-}
 
 const Contact = () => {
+
+  const [token, setToken] = useState(localStorage.getItem('authToken'))
+  const [error, setError] = useState();
+  const [user, setUser] = useState();
+  const navigate = useNavigate();
+
+
+  const initialValues = {
+    fullName: user && user.firstName + " " + user.lastName,
+    email: user && user.email,
+    phoneNumber: user && user.phoneNumber,
+    subject: '',
+    text: ''
+  }
+  const onSubmit = async (values , {resetForm}) => {
+    console.log(values);
+    await axios.post(`https://localhost:7039/api/Contacts`, values, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+      .then(res => { console.log("Message send succesfully"); resetForm(); })
+      .catch(error => {
+        if (error.response.status === 400)
+          error.response.data.errors.forEach(err => setError(err.errorMessage));
+        else if (error.response.status === 404)
+          navigate("*")
+        else {
+          console.log("An unexpected error occurred ");
+        }
+      })
+  }
+
+  const getUser = async () => {
+
+    if (token) {
+      await axios.get('https://localhost:7039/api/Users', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+        .then(response => {
+          setUser(response.data)
+        })
+        .catch(error => {
+          console.log(error.response.data);
+          console.error('An error occurred', error);
+        });
+    } else {
+      console.log('Token has not found');
+    }
+  }
+
+useEffect(()=>{
+ getUser();
+},[])
+
   return (
     <>
       <div className="container-own">
@@ -25,17 +75,21 @@ const Contact = () => {
               <div className="contact-info">
                 <h2>Tell Us Your Message</h2>
 
-                <Formik initialValues={initialValues} onSubmit={onSubmit} >
+                <Formik enableReinitialize initialValues={initialValues} onSubmit={onSubmit} >
                   <Form>
 
                     <div className="contact-form">
                       <div className="form-data">
-                        <label >Your Name <span>*</span></label>
-                        <Field className="customInput text" type="text" id="name" name="name" placeholder="Full Name" />
+                        <label >Your Fullname <span>*</span></label>
+                        <Field disabled={!!token} className="customInput text" type="text" id="fullName" name="fullName" placeholder="Full Name" />
                       </div>
                       <div className="form-data">
                         <label >Your Email <span>*</span></label>
-                        <Field className="customInput text" type="email" id="email" name="email" placeholder="Email Address" />
+                        <Field disabled={!!token} className="customInput text" type="email" id="email" name="email" placeholder="Email Address" />
+                      </div>
+                      <div className="form-data">
+                        <label >Phone Number <span>*</span></label>
+                        <Field disabled={!!token} className="customInput text" type="text" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" />
                       </div>
                       <div className="form-data">
                         <label >Subject</label>
@@ -43,10 +97,13 @@ const Contact = () => {
                       </div>
                       <div className="form-data">
                         <label >Your Message</label>
-                        <Field className="customInput area " as="textarea" id="note" name="note" placeholder="Message" />
+                        <Field className="customInput area " as="textarea" id="text" name="text" placeholder="Message" />
                       </div>
 
                     </div>
+
+                    {error && <div className="error-message">{error}</div>}
+
                     <button type="submit">Send Message</button>
                   </Form>
                 </Formik>
