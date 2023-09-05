@@ -34,6 +34,8 @@ import ColourPut from './dashboards/Colour/ColourPut';
 import Profile from './pages/Profile';
 import Order from './dashboards/Order/Order';
 import AdminLogin from './dashboards/Login/AdminLogin';
+import Admin from './dashboards/Admin/Admin';
+import AdminPost from './dashboards/Admin/AdminPost';
 
 
 
@@ -60,7 +62,7 @@ function App() {
             <Route path='*' element ={<NotFound />} />
              
             <Route path='/dashboard/index' element ={<Index />} />
-            
+
             <Route path='/dashboard/products' element ={<Product />} />
             <Route path='/dashboard/products/create' element = {<ProductPost />} />
             <Route path='/dashboard/products/:id' element = {<ProductPut />} />
@@ -88,6 +90,9 @@ function App() {
             <Route path='/dashboard/orders' element={<Order />} /> 
 
             <Route  path='dashboard/login' element ={<AdminLogin />}/>
+
+            <Route  path='/dashboard/admins' element={<Admin/>} />
+            <Route  path='/dashboard/admins/create' element={<AdminPost/>}/>
                  
         </Routes>
 

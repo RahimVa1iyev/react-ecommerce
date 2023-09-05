@@ -48,6 +48,8 @@ const AdminLogin = () => {
                         <label >Password</label>
                         <Field type='password' id='password' name='password' placeholder='Password' />
 
+                        {error && <div className="error-message">{error}</div>}
+
                         <button type='submit' >Log In</button>
 
                     </Form>

@@ -1,8 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import SideBar from '../../layouts/Dashboard/SideBar'
 import DashNavbar from '../../layouts/Dashboard/DashNavbar'
+import AdminTable from '../../components/Tables/AdminTable'
+import { useSelector } from 'react-redux'
+import axios from 'axios'
 
 const Admin = () => {
+
+    const [admins, setAdmins] = useState();
+
+    const {Id} = useSelector((store) => store.table)
+  
+    const getAdmins = async () => {
+      const response = await axios.get("https://localhost:7039/api/Accounts/all")
+      console.log(response.data);
+      setAdmins(response.data)
+    }
+  
+  
+    useEffect(() => {
+      getAdmins()
+    }, [Id])
   return (
     <>
  <div className="top-side">
@@ -17,7 +35,7 @@ const Admin = () => {
               <div className="dashboard-index">
                 <DashNavbar />
               </div>
-              <FrTable route="/dashboard/brands/create" link = "brands" tableName="Brand" datas={brands} />
+              <AdminTable route="/dashboard/Admins/create" link = "admins" tableName="Admin" datas={admins} />
             </div>
           </div>
         </div>
