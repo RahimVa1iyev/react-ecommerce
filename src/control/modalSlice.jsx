@@ -3,6 +3,8 @@ import axios from 'axios';
 
 const initialState ={
     modalOpen : false,
+    confirmModalOpen : false,
+    userId :'',
     selectedProduct:0,
     compareProduct : [],
     activeIcon:"",
@@ -21,11 +23,20 @@ const modalSlice = createSlice({
         handleClose :(state)=>{
             state.modalOpen = false;
         },
+        handleConfirmModalOpen : (state)=>{
+            state.confirmModalOpen =true;
+        },
+
+        handleConfirmModalClose :(state)=>{
+            state.confirmModalOpen = false;
+        },
 
         setSelectedProduct : (state,action)=>{
             state.selectedProduct = action.payload;
         },
-
+        setUserId : (state,action)=>{
+            state.userId = action.payload;
+        },
         removeFromCompareProduct: (state, action) => {
             state.compareProduct = state.compareProduct.filter(item => item.id !== action.payload);
           },
@@ -69,6 +80,19 @@ export const getOrderItems = (id) => async (dispatch) => {
 };
 }
 
+export const createUser = (values) => async (dispatch) => {
+    console.log("id",values);
+    try {
+        await axios.post(`https://localhost:7039/api/Users/register`, values)
+        .then(res => {console.log("User created succesfully") 
+         dispatch(handleConfirmModalOpen())
+        dispatch(setUserId(res.data.id.id)) } )
+    } catch (error){
+        console.log(error.response.data);
+    }   
+};
 
-export const { handleOpen, handleClose , setSelectedProduct , setCompareProduct ,handleEye,handleView,handleScale,removeFromCompareProduct,setOrderItem } = modalSlice.actions;
+
+
+export const { handleOpen, handleClose, setUserId ,handleConfirmModalClose,handleConfirmModalOpen, setSelectedProduct , setCompareProduct ,handleEye,handleView,handleScale,removeFromCompareProduct,setOrderItem } = modalSlice.actions;
 export default modalSlice.reducer

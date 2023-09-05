@@ -1,10 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const initialState = {
     orders: [],
+    login : false,
+    token :localStorage.getItem('authToken')
 };
 
 
@@ -15,12 +18,15 @@ const fetchSlice = createSlice({
         setOrder: (state, action) => {
             state.orders = action.payload;
         },
+        setLogin: (state) =>{
+            state.login = true
+        },
+        setToken : (state,action)=>{
+            state.token = action.payload
+        }
        
     },
 });
-
-
-
 
 
 export const getOrders = () => async (dispatch) => {
@@ -39,5 +45,7 @@ export const getOrders = () => async (dispatch) => {
 
 
 
-export const { setOrder  } = fetchSlice.actions
+
+
+export const { setOrder ,setLogin,setToken  } = fetchSlice.actions
 export default fetchSlice.reducer

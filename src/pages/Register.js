@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Formik, Form, Field } from 'formik';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-
+import ConfirmModal from '../components/Modal/ConfirmModal';
+import { useDispatch } from 'react-redux';
+import { createUser } from '../control/modalSlice';
 const Register = () => {
     const [error, setError] = useState();
-    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
 
     const initialValues = {
@@ -20,21 +20,9 @@ const Register = () => {
 
     const onSubmit = async (values) => {
         console.log(values);
-        await axios.post(`https://localhost:7039/api/Users/register`, values)
-            .then(res => console.log("User created succesfully"))
-
-
-            .catch(error => {
-                if (error.response.status === 400)
-                    error.response.data.errors.forEach(err => setError(err.errorMessage));
-                else if (error.response.status === 404)
-                    navigate("*")
-                else {
-                    console.log("An unexpected error occurred ");
-                }
-            })
-
+       dispatch(createUser(values))
     }
+
     return (
         <>
 
@@ -83,6 +71,8 @@ const Register = () => {
                     </div>
                 </div>
             </div>
+
+            <ConfirmModal />
 
         </>
     )

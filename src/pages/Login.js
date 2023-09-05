@@ -2,11 +2,14 @@ import React, { useState } from 'react'
 import { Formik, Form, Field } from 'formik';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setLogin, setToken } from '../control/fetchSlice';
 
 const Login = () => {
 
   const [error, setError] = useState();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const initialValues = {
     userName: '',
@@ -17,7 +20,7 @@ const Login = () => {
 
     //
     await axios.post(`https://localhost:7039/api/Users/login`, values)
-      .then(res =>  { localStorage.setItem('authToken', res.data.token.token); navigate('/') })
+      .then(res =>  {  localStorage.setItem('authToken', res.data.token); dispatch(setToken(res.data.token)); navigate('/') })
 
       .catch(error => {
         if (error.response.status === 400)

@@ -11,6 +11,7 @@ import {RiFontSize2} from 'react-icons/ri';
 import {TfiLayoutSlider} from 'react-icons/tfi';     
 import { Link } from 'react-router-dom';
 import {MdOutlineBorderColor} from 'react-icons/md'
+import {RiAdminLine} from 'react-icons/ri';    
 
 const SideBar = (props) => {
     const [open , setOpen] = useState(props.openTab )
@@ -61,6 +62,7 @@ const toggleHandle = (e) =>{
                             <li><RiFontSize2 className='size-logo' />  <Link onClick={toggleHandle} className={props.active === 'size' ? 'size-active' : 'size-no-active'} to='/dashboard/sizes' >Sizes</Link></li>
                             <li><TfiLayoutSlider className='slider-logo' />  <Link onClick={toggleHandle} className={props.active === 'slider' ? 'active' : 'nonactive'} to='/dashboard/sliders' >Sliders</Link></li>
                             <li><MdOutlineBorderColor className='order-logo' />  <Link onClick={toggleHandle} className={props.active === 'order' ? 'active' : 'nonactive'} to='/dashboard/orders' >Orders</Link></li>
+                            <li><RiAdminLine className='admin-logo' />  <Link onClick={toggleHandle} className={props.active === 'admin' ? 'active' : 'nonactive'} to='/dashboard/admins' >Admins</Link></li>
 
                          </ul>
                     </div>

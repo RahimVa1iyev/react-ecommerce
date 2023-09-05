@@ -3036,12 +3036,16 @@ p {
 
 .review-side {
   margin-top: 20px;
-  border: 1px solid grey;
+  border: 1px solid rgb(223, 211, 211);
+  border-radius: 2px;
   padding: 15px 20px;
 }
 .review-side .top-review-side {
   border-bottom: 1px solid #ededed;
   padding-bottom: 40px;
+}
+.review-side .top-review-side p {
+  cursor: pointer;
 }
 .review-side .top-review-side .left-side-review h2 {
   font-size: 22px;
@@ -3061,16 +3065,29 @@ p {
   padding: 20px 0;
 }
 .review-side .bottom-review-side .joa-cancelo {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
-.review-side .bottom-review-side .joa-cancelo .time,
-.review-side .bottom-review-side .joa-cancelo .fullname {
+.review-side .bottom-review-side .joa-felix .time,
+.review-side .bottom-review-side .joa-felix .fullname {
   color: 11px;
   color: #333;
   font-weight: 600;
 }
-.review-side .bottom-review-side .joa-cancelo .on {
+.review-side .bottom-review-side .joa-felix .on {
   text-transform: lowercase;
+}
+.review-side .bottom-review-side .review-btn {
+  margin-top: 10px;
+}
+.review-side .bottom-review-side .review-btn button {
+  background-color: #f9706a;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  padding: 8px 14px;
+  border: none;
+  font-weight: 500;
+  border-radius: 2px;
 }
 
 .star-box {
@@ -3090,8 +3107,8 @@ p {
 }
 .star-box .star:before {
   content: "★";
-  font-size: 25px;
-  padding: 0 6px;
+  font-size: 22px;
+  padding: 0 1px;
   text-shadow: 3px 3px 5px #b1a8a8;
 }
 .star-box:hover .star:hover {
@@ -3108,6 +3125,49 @@ p {
 }
 .star-box [type=radio]:checked + .star ~ .star {
   color: #ffcc33;
+}
+
+.user-review-form .wr-review {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+}
+.user-review-form .star-side {
+  margin-bottom: 10px;
+}
+.user-review-form .star-side .review-form-title {
+  font-size: 13px;
+  line-height: 15px;
+}
+
+.text-side textarea {
+  padding: 15px;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 10px;
+  border: 1px solid #dee2eb;
+}
+
+.joa-cancelo {
+  margin-bottom: 10px;
+}
+
+.joa-felix .time,
+.joa-felix .fullname {
+  color: 11px;
+  color: #333;
+  font-weight: 600;
+}
+.joa-felix .on {
+  text-transform: lowercase;
+}
+
+.comment {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 2px;
+  border: 1px solid rgb(233, 229, 229);
 }
 
 .modal-img {
@@ -4094,6 +4154,21 @@ p {
 .register-page .form-side .btn-side button:hover {
   background-color: #f9706a;
   transition: 0.4s;
+}
+
+.confirmInput {
+  padding: 8px 14px;
+  border-radius: 2px;
+  border: 1px solid rgb(223, 217, 217);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.confirm-btn {
+  background-color: #f9706a;
+  border: none;
+  font-weight: 500;
+  padding: 4px 10px;
 }
 
 .container-extend, .containe-own, .container-own, .conatiner-own {
@@ -5575,4 +5650,118 @@ a.list-group-item, .list-group-item-action {
 }
 .my-wishlist-side .add-to-card button:hover {
   background-color: #212529;
+}
+
+.admin-login {
+  width: 100%;
+  height: 100vh;
+  background-color: #080710;
+}
+.admin-login .background {
+  width: 430px;
+  height: 520px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+}
+.admin-login .background .shape {
+  height: 200px;
+  width: 200px;
+  position: absolute;
+  border-radius: 50%;
+}
+.admin-login .shape:first-child {
+  background: linear-gradient(#1845ad, #23a2f6);
+  left: -80px;
+  top: -80px;
+}
+.admin-login .shape:last-child {
+  background: linear-gradient(to right, #ff512f, #f09819);
+  right: -30px;
+  bottom: -80px;
+}
+.admin-login form {
+  height: 520px;
+  width: 400px;
+  background-color: rgba(255, 255, 255, 0.13);
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  border-radius: 10px;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+  padding: 50px 35px;
+}
+.admin-login form * {
+  font-family: "Poppins", sans-serif;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  outline: none;
+  border: none;
+}
+.admin-login form h3 {
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 42px;
+  text-align: center;
+}
+.admin-login label {
+  display: block;
+  margin-top: 30px;
+  font-size: 16px;
+  font-weight: 500;
+}
+.admin-login input {
+  display: block;
+  height: 50px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.07);
+  border-radius: 3px;
+  padding: 0 10px;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 300;
+}
+.admin-login ::-moz-placeholder {
+  color: #e5e5e5;
+}
+.admin-login ::placeholder {
+  color: #e5e5e5;
+}
+.admin-login button {
+  margin-top: 50px;
+  width: 100%;
+  background-color: #ffffff;
+  color: #080710;
+  padding: 15px 0;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.admin-login .social {
+  margin-top: 30px;
+  display: flex;
+}
+.admin-login .social div {
+  background: red;
+  width: 150px;
+  border-radius: 3px;
+  padding: 5px 10px 10px 5px;
+  background-color: rgba(255, 255, 255, 0.27);
+  color: #eaf0fb;
+  text-align: center;
+}
+.admin-login .social div:hover {
+  background-color: rgba(255, 255, 255, 0.47);
+}
+.admin-login .social .fb {
+  margin-left: 25px;
+}
+.admin-login .social i {
+  margin-right: 4px;
 }/*# sourceMappingURL=main.css.map */

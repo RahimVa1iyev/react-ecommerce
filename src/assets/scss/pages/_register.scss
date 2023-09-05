@@ -1,0 +1,15 @@
+@import '../abstracts/variables';
+.confirmInput{
+    padding: 8px 14px;
+    border-radius: 2px;
+    border:  1px solid rgb(223, 217, 217);
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.confirm-btn{
+    background-color: $button-color ;
+    border: none;
+    font-weight: 500;
+    padding: 4px 10px;
+}

@@ -118,12 +118,16 @@
 
 .review-side{
     margin-top: 20px;
-    border: 1px solid grey;
+    border: 1px solid rgb(223, 211, 211);
+    border-radius: 2px;
     padding: 15px 20px;
 
     .top-review-side{
         border-bottom: 1px solid $border-color;
         padding-bottom: 40px;
+        p{
+            cursor: pointer;
+        }
         .left-side-review{
             h2{
                 font-size: 22px;
@@ -141,11 +145,16 @@
             }
         }
     }
+    
 
     .bottom-review-side{
         padding: 20px 0;
         .joa-cancelo{
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+           
+          
+        }
+        .joa-felix{
             .time,
             .fullname{
                 color: 11px;
@@ -155,7 +164,19 @@
             .on{
                 text-transform: lowercase;
             }
-          
+        }
+        .review-btn{
+            margin-top: 10px;
+          button{
+            background-color: $button-color;
+            color: #fff;
+            font-size: 14px;
+            text-align: center;
+            padding: 8px 14px;
+            border: none;
+            font-weight: 500;
+            border-radius: 2px;
+          }
         }
     }
 }
@@ -178,8 +199,8 @@
       &:before {
         content: '\2605';
         
-        font-size: 25px;
-        padding: 0 6px;
+        font-size: 22px;
+        padding: 0 1px;
       
         text-shadow: 3px 3px 5px #b1a8a8;
       }
@@ -204,3 +225,55 @@
     }
   }
 
+  .user-review-form{
+        .wr-review{
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .star-side{
+            margin-bottom: 10px;
+            .review-form-title{
+                font-size: 13px;
+                line-height: 15px;
+            }
+        }
+      
+      
+    
+  }
+
+  .text-side{
+    textarea{
+        padding: 15px;
+        font-size: 16px;
+        font-weight: 500;
+        margin-top: 10px;
+        border: 1px solid $border-color2;
+    }
+}
+
+.joa-cancelo{
+    margin-bottom: 10px;
+   
+  
+}
+.joa-felix{
+    .time,
+    .fullname{
+        color: 11px;
+        color: #333;
+        font-weight: 600;
+    }
+    .on{
+        text-transform: lowercase;
+    }
+}
+ 
+.comment{
+    margin: 10px 0;
+    padding: 10px ;
+    border-radius: 2px; 
+    border: 1px solid rgb(233, 229, 229);
+}
