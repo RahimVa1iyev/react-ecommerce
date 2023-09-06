@@ -5,9 +5,12 @@ import { useNavigate } from 'react-router-dom';
 
 
 const initialState = {
+    token :localStorage.getItem('authToken'),
     orders: [],
     login : false,
-    token :localStorage.getItem('authToken')
+    messages : [],
+    message: '',
+    errors : []
 };
 
 
@@ -23,8 +26,16 @@ const fetchSlice = createSlice({
         },
         setToken : (state,action)=>{
             state.token = action.payload
-        }
-       
+        },
+        setMessages : (state,action)=>{
+            state.messages = action.payload
+        },
+        setMessage : (state,action)=>{
+            state.message = action.payload
+        },
+        setErrors : (state,action)=>{
+            state.errors = action.payload
+        },
     },
 });
 
@@ -43,9 +54,32 @@ export const getOrders = () => async (dispatch) => {
     catch (error) { }
 }
 
+export const getMessages = () => async (dispatch) => {
+    try {
+     const response =   await axios.get(`https://localhost:7039/api/Contacts/all`)
+        dispatch(setMessages(response.data))
+    }
+    catch (error) { console.log(error.response.data)}
+}
+
+export const getMessage = (id) => async (dispatch) => {
+    try {
+     const response =   await axios.get(`https://localhost:7039/api/Contacts/${id}`)
+        dispatch(setMessage(response.data))
+    }
+    catch (error) { console.log(error.response.data)}
+}
+
+export const responseMessage = (data) => async (dispatch) => {
+    try {
+      await axios.post(`https://localhost:7039/api/Contacts/response`,data)
+                .then(res=> {console.log("Message send succesfuly") ; } )    
+    }
+    catch (error) { console.log(error.response.data)}
+}
 
 
 
 
-export const { setOrder ,setLogin,setToken  } = fetchSlice.actions
+export const { setOrder ,setLogin,setToken ,setMessages,setMessage ,setErrors} = fetchSlice.actions
 export default fetchSlice.reducer

@@ -4,10 +4,9 @@ import { Link } from 'react-router-dom'
 
 const MessageTable = (props) => {
     let count =1;
-
-    const responseHandle = (id) => {
-
-    }
+   
+    console.log(props.datas);
+  
 
     return (
         <>
@@ -44,7 +43,7 @@ const MessageTable = (props) => {
                                         <td className='d-flex align-items-center justify-content-center' >
 
 
-                                            <Link onClick={() => responseHandle(data.id)} id='response-btn' className='btn btn-primary' >
+                                            <Link to={`/dashboard/response/${data.id}`} id='response-btn' className='btn btn-primary' >
                                                 <LuEdit sName='table-icon' /> Response 
                                             </Link>
 

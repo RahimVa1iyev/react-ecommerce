@@ -5003,8 +5003,7 @@ td:last-child {
 }
 
 .container-form {
-  height: 38%;
-  min-height: 270px;
+  padding: 20px 0;
 }
 .container-form .form-content {
   width: 25%;
@@ -5029,10 +5028,6 @@ td:last-child {
 
 .slider-form {
   height: 85%;
-}
-
-.product-form {
-  height: 93%;
 }
 
 .slider-form .form-content,
@@ -5060,7 +5055,7 @@ td:last-child {
   background-color: #fff;
   border-radius: 15px;
   margin-top: 40px;
-  padding: 20px;
+  padding: 40px 20px;
   box-shadow: 1px 7px 25px -1px rgba(92, 90, 92, 0.76);
 }
 .slider-form h6,
@@ -5091,7 +5086,7 @@ td:last-child {
 .slider-form .form-content .form-body,
 .product-form .form-content .form-body,
 .container-form .form-content .form-body {
-  margin-top: 40px;
+  margin-top: 20px;
 }
 .slider-form .form-content .form-body .dash-input,
 .product-form .form-content .form-body .dash-input,

@@ -37,6 +37,7 @@ import AdminLogin from './dashboards/Login/AdminLogin';
 import Admin from './dashboards/Admin/Admin';
 import AdminPost from './dashboards/Admin/AdminPost';
 import ContactUs from './dashboards/ContactUs/ContactUs';
+import Response from './dashboards/ContactUs/Response';
 
 
 
@@ -96,6 +97,7 @@ function App() {
             <Route  path='/dashboard/admins/create' element={<AdminPost/>}/>
 
             <Route  path='/dashboard/contacts' element = {<ContactUs />} /> 
+            <Route path='/dashboard/response/:id' element = {<Response />} />
                  
         </Routes>
 

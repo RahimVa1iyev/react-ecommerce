@@ -1,6 +1,5 @@
 .container-form {
-    height: 38%;
-    min-height: 270px;
+  padding: 20px 0;
 
     .form-content {
         width: 25%;
@@ -32,10 +31,7 @@
     height: 85%;
 }
 
-.product-form{
-    height: 93%;
 
-}
 .slider-form,
 .product-form {
 
@@ -64,7 +60,7 @@
     background-color: #fff;
     border-radius: 15px;
     margin-top: 40px;
-    padding: 20px;
+    padding: 40px 20px;
     box-shadow: 1px 7px 25px -1px rgba(92, 90, 92, 0.76);
     h6 {
         color: #344767;
@@ -87,7 +83,7 @@
         }
 
         .form-body {
-            margin-top: 40px;
+            margin-top: 20px;
          
 
             .dash-input {

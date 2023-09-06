@@ -3,18 +3,16 @@ import SideBar from '../../layouts/Dashboard/SideBar'
 import DashNavbar from '../../layouts/Dashboard/DashNavbar'
 import MessageTable from '../../components/Tables/MessageTable'
 import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux'
+import { getMessages } from '../../control/fetchSlice'
 
 const ContactUs = () => {
-    const [messages , setMessages] = useState();
-
-    const getMessages = async () =>{
-        await axios.get(`https://localhost:7039/api/Contacts/all`)
-                   .then(res=> setMessages(res.data))
-                   .catch(err=>console.log(err.response.data))
-    }
+    const {messages} = useSelector(store => store.fetch);
+    const dispatch = useDispatch();
+ 
 
     useEffect(()=>{
-       getMessages();
+       dispatch(getMessages())
     },[])
   return (
     <>
@@ -23,14 +21,14 @@ const ContactUs = () => {
           <div className="row  ">
             <div className="col-lg-2-5">
               <div className="dash-side-bar">
-                <SideBar openTab = {true} active = 'admin' />
+                <SideBar openTab = {true} active = 'contact' />
               </div>
             </div>
             <div className="col-lg-9-5">
               <div className="dashboard-index">
                 <DashNavbar />
               </div>
-              <MessageTable route="/dashboard/Admins/create" link = "admins" tableName="Admin" datas={messages} />
+              <MessageTable  datas={messages && messages} />
             </div>
           </div>
         </div>
