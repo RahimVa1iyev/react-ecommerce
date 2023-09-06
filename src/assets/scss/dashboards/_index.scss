@@ -20,6 +20,16 @@
     .dashboard-index {
         padding-top: 20px;
 
+        .charts{
+           margin-top: 100px;
+              
+           .bar-chart{
+            width: 85%;
+            margin-left: 20px;
+           }
+
+        }
+
         .route-page {
             .f-span {
                 font-size: 0.875rem;

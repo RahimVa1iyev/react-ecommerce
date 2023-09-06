@@ -4652,6 +4652,13 @@ p {
 .top-side .dashboard-index {
   padding-top: 20px;
 }
+.top-side .dashboard-index .charts {
+  margin-top: 100px;
+}
+.top-side .dashboard-index .charts .bar-chart {
+  width: 85%;
+  margin-left: 20px;
+}
 .top-side .dashboard-index .route-page .f-span {
   font-size: 0.875rem;
   color: #fff;
