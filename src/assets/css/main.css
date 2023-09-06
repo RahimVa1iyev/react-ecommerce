@@ -1881,6 +1881,12 @@ p {
   opacity: 0.7;
 }
 
+.empty-div {
+  width: 100%;
+  height: 15vh;
+  background-color: #fff;
+}
+
 .container-extend, .containe-own, .container-own, .conatiner-own {
   max-width: 1185px;
   width: 100%;
@@ -4747,6 +4753,8 @@ p {
   height: 90vh;
   box-shadow: 7px 16px 22px -1px rgba(0, 0, 0, 0.37);
   margin-top: 25px;
+  position: sticky;
+  top: 10px;
 }
 .dash-side-bar .dash-side-bar-top {
   text-align: center;
@@ -4838,6 +4846,9 @@ p {
 }
 .dash-side-bar-body .dropdown-table ul li .order-logo {
   color: blue;
+}
+.dash-side-bar-body .dropdown-table ul li .contact-logo {
+  color: rgb(98, 149, 48);
 }
 .dash-side-bar-body .dropdown-table ul li .nonactive::after {
   height: 1.5px;
@@ -4959,6 +4970,16 @@ p {
   font-weight: 500;
   color: #fff;
   width: 100px;
+}
+
+#response-btn {
+  font-weight: 500;
+  color: #fff;
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 .table-icon {

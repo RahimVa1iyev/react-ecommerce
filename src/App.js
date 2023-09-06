@@ -36,6 +36,7 @@ import Order from './dashboards/Order/Order';
 import AdminLogin from './dashboards/Login/AdminLogin';
 import Admin from './dashboards/Admin/Admin';
 import AdminPost from './dashboards/Admin/AdminPost';
+import ContactUs from './dashboards/ContactUs/ContactUs';
 
 
 
@@ -93,6 +94,8 @@ function App() {
 
             <Route  path='/dashboard/admins' element={<Admin/>} />
             <Route  path='/dashboard/admins/create' element={<AdminPost/>}/>
+
+            <Route  path='/dashboard/contacts' element = {<ContactUs />} /> 
                  
         </Routes>
 

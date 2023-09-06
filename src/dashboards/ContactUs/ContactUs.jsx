@@ -1,29 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import SideBar from '../../layouts/Dashboard/SideBar'
 import DashNavbar from '../../layouts/Dashboard/DashNavbar'
-import AdminTable from '../../components/Tables/AdminTable'
-import { useSelector } from 'react-redux'
+import MessageTable from '../../components/Tables/MessageTable'
 import axios from 'axios'
 
-const Admin = () => {
+const ContactUs = () => {
+    const [messages , setMessages] = useState();
 
-    const [admins, setAdmins] = useState();
-
-    const {Id} = useSelector((store) => store.table)
-  
-    const getAdmins = async () => {
-      const response = await axios.get("https://localhost:7039/api/Accounts/all")
-      console.log(response.data);
-      setAdmins(response.data)
+    const getMessages = async () =>{
+        await axios.get(`https://localhost:7039/api/Contacts/all`)
+                   .then(res=> setMessages(res.data))
+                   .catch(err=>console.log(err.response.data))
     }
-  
-  
-    useEffect(() => {
-      getAdmins()
-    }, [Id])
+
+    useEffect(()=>{
+       getMessages();
+    },[])
   return (
     <>
- <div className="top-side">
+            <div className="top-side">
         <div className="container-fluid">
           <div className="row  ">
             <div className="col-lg-2-5">
@@ -35,7 +30,7 @@ const Admin = () => {
               <div className="dashboard-index">
                 <DashNavbar />
               </div>
-              <AdminTable route="/dashboard/Admins/create" link = "admins" tableName="Admin" datas={admins} />
+              <MessageTable route="/dashboard/Admins/create" link = "admins" tableName="Admin" datas={messages} />
             </div>
           </div>
         </div>
@@ -44,4 +39,4 @@ const Admin = () => {
   )
 }
 
-export default Admin
+export default ContactUs

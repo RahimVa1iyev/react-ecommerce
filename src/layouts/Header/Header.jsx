@@ -5,10 +5,12 @@ import BottomHeader from '../../components/Header/BottomHeader'
 const Header = () => {
   return (
     <>
-         <div className="container-own">
-            <TopHeader/>
-            <BottomHeader/>
-         </div>
+      <div className="container-own">
+        <div className="header-side">
+          <TopHeader />
+          <BottomHeader />
+        </div>
+      </div>
 
     </>
   )
