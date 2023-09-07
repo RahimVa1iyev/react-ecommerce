@@ -38,6 +38,8 @@ import Admin from './dashboards/Admin/Admin';
 import AdminPost from './dashboards/Admin/AdminPost';
 import ContactUs from './dashboards/ContactUs/ContactUs';
 import Response from './dashboards/ContactUs/Response';
+import Forgot from './components/ForgotPassword/Forgot';
+import Reset from './components/ForgotPassword/Reset';
 
 
 
@@ -57,6 +59,8 @@ function App() {
             <Route path='/wishlist' element={<Wishlist />} />
             <Route path='/contact-us' element={<Contact />} />
             <Route path='/login' element={<Login />} />
+            <Route path='/forgot-password' element={<Forgot/>}/>
+            <Route path='/reset-password' element={<Reset/>}/>
             <Route path='/register' element={<Register />} />
             <Route path='/checkout' element={<CheckOut />} />  
             <Route path='/profile' element ={<Profile/>} />       

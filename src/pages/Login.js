@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Formik, Form, Field } from 'formik';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setLogin, setToken } from '../control/fetchSlice';
 
@@ -54,7 +54,7 @@ const Login = () => {
                 {error && <div className="error-message">{error}</div>}
                 <div className="btn-side">
                   <button type='submit' >Sign In</button>
-                  <span>Forgot your password?</span>
+                  <Link to='/forgot-password' >Forgot your password?</Link>
                 </div>
 
 

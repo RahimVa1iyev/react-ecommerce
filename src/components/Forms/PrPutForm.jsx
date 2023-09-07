@@ -3,9 +3,7 @@ import { Formik, Form, Field, ErrorMessage, useFormikContext } from 'formik'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Select from 'react-select';
-import { productSchema } from '../../schemas/index';
-import SingleSelect from '../Select/SingleSelect';
-import MultiSelect from '../Select/MultiSelect';
+
 
 
 const PrPutForm = (props) => {
@@ -13,7 +11,7 @@ const PrPutForm = (props) => {
     const [isClearable, setIsClearable] = useState(true);
     const [isSearchable, setIsSearchable] = useState(true);
 
-    const [reaminingIds,setRemainingIds] = useState([42,45,46])
+    const [reaminingIds, setRemainingIds] = useState([])
     const [hoverImgFile, setHoverImgFile] = useState();
     const [posterImgFile, setPosterImgFile] = useState();
     const [imageFile, setImageFile] = useState([]);
@@ -22,6 +20,9 @@ const PrPutForm = (props) => {
     const [selectedGender, setSelectedGender] = useState({});
     const [selectedColors, setSelectedColors] = useState([]);
     const [selectedSizes, setSelectedSizes] = useState([]);
+
+
+
     const [watch, setWatch] = useState({
         brands: [],
         categories: [],
@@ -29,6 +30,9 @@ const PrPutForm = (props) => {
         sizes: [],
         genderStatus: []
     })
+
+
+    const [product, setProduct] = useState();
 
 
     const [initialValues, setInitialValues] = useState({
@@ -47,12 +51,14 @@ const PrPutForm = (props) => {
         imageFiles: [],
         sizeIds: [],
         colorIds: [],
-        imageIds :[]
+        imageIds: []
     })
 
 
     const onSubmit = (values) => {
-        const imageFilesArray = Array.from(values.imageFiles);
+
+        console.log("Values",values);
+
         const formData = new FormData();
 
         formData.append("brandId", values.brandId);
@@ -65,40 +71,49 @@ const PrPutForm = (props) => {
         formData.append("discountedPrice", values.discountedPrice);
         formData.append("isNew", values.isNew);
         formData.append("isFeatured", values.isFeatured);
-        formData.append("sizeIds", values.sizeIds);
-        formData.append("colorIds", values.colorIds);
-        formData.append("imageIds", reaminingIds);   
+
         formData.append("posterFile", values.posterFile);
         formData.append("hoverFile", values.hoverFile);
-       
-        reaminingIds.forEach(imageId => formData.append("imageIds", imageId));
+
+        values.imageFiles.forEach((file, index) => {
+            formData.append(`imageFiles`, file);
+        });
 
         
-    
+            formData.append("sizeIds", [...values.sizeIds]);
+        
 
-      
-      
-        const putProduct = async ()=>{
-            await axios.put(`https://localhost:7039/api/Products/${props.id}`,formData,{
+        // values.colorIds.forEach(colorId => {
+        //     formData.append("colorIds", colorId);
+        // });
+
+       
+
+        const putProduct = async () => {
+            await axios.put(`https://localhost:7039/api/Products/${props.id}`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 }
             })
-            .then(res => {
-                console.log("Product succesfully update")
-                navigate("/dashboard/products")
-            })
-            .catch(error=>{
-                if(error.response.status===400)
-                  error.response.data.errors.forEach(err => setError(err.errorMessage));
-                else if (error.response.status === 404)
-                   navigate("*")
-                else{
-                    console.log("An unexpected error occurred ");
-                }
-            })
+                .then(res => {
+                    console.log("Product succesfully update")
+                    navigate("/dashboard/products")
+                })
+                .catch(error => {
+                    console.log(error.response.data);
+                    if (error.response.status === 400) {
+                        error.response.data.errors.forEach(err => setError(err.errorMessage));
+                        console.log(error.response.data);
+                    }
+                    else if (error.response.status === 404)
+                        console.log(error.response);
 
-        } 
+                    else {
+                        console.log("An unexpected error occurred ");
+                    }
+                })
+
+        }
         putProduct();
     }
 
@@ -112,23 +127,20 @@ const PrPutForm = (props) => {
 
         const getProducts = async () => {
             var response = await axios.get(`https://localhost:7039/api/Products/${props.id}`)
+
+            console.log("response", response.data);
+
             const productData = response.data;
 
-            var data = productData.images.filter((img)=>(
-                img.imageStatus===null && img.imageName
-            ))
-            const imageName = data.map((img)=>(
-               {
-                id:img.id,
-                value:img.imageName
-               }
+            var data = productData.images.filter((img) => (
+                img.imageStatus === null && img.imageName
             ))
 
-
-            const imageIds = data.map((img)=>(
+            const imageIds = data.map((img) => (
                 img.id
             ))
 
+            
             setRemainingIds(imageIds)
 
             const newInitialValues = {
@@ -144,28 +156,46 @@ const PrPutForm = (props) => {
                 isFeatured: productData.isFeatured,
                 sizeIds: productData.sizes,
                 colorIds: productData.colors,
-                imageIds : imageIds
+                imageIds: imageIds
             }
+
             setInitialValues(newInitialValues);
 
             setSelectedBrand({ value: productData.brand.id, label: productData.brand.name })
             setSelectedCategory({ value: productData.category.id, label: productData.category.name })
             setSelectedGender({ value: productData.gender.id, label: productData.gender.name })
-            productData.colors.map((prc) => (
-                setSelectedColors({ value: prc.colorId, label: prc.name })
-            ))
-            productData.sizes.map((prc) => (
-                setSelectedSizes({ value: prc.sizeId, label: prc.name })
-            ))
+
+            const newColors = productData.colors.map((prc) => ({
+                value: prc.colorId,
+                label: prc.name
+            }))
+
+            setSelectedColors(newColors)
+
+            const newSizes = productData.sizes.map((prc) => ({
+                value: prc.sizeId,
+                label: prc.name,
+            }));
+
+
+            setSelectedSizes(newSizes);
+
+
+
             const filteredPImages = productData.images.filter((posterF) => (posterF.imageStatus === true));
             filteredPImages.map((posterF) => setPosterImgFile(posterF.imageName))
 
             const filteredHImages = productData.images.filter((hoverF) => (hoverF.imageStatus === false));
             filteredHImages.map((hoverF) => setHoverImgFile(hoverF.imageName))
-           
-            setImageFile(imageName)
-            
 
+            const imageName = data.map((img) => (
+                {
+                    id: img.id,
+                    value: img.imageName
+                }
+            ))
+
+            setImageFile(imageName)
 
 
 
@@ -209,7 +239,8 @@ const PrPutForm = (props) => {
         getGenders();
     }, [props.id])
 
-  
+
+    console.log("selectedSize", selectedSizes);
 
     return (
         <>
@@ -218,7 +249,7 @@ const PrPutForm = (props) => {
                     <h6>{props.tableName}</h6>
                 </div>
 
-                <Formik enableReinitialize initialValues={initialValues} validationSchema={productSchema} onSubmit={onSubmit} >
+                <Formik enableReinitialize initialValues={initialValues} onSubmit={onSubmit} >
                     {({ values, setFieldValue }) => (
                         <Form>
 
@@ -295,7 +326,7 @@ const PrPutForm = (props) => {
                                                 setFieldValue("colorIds", selectedOptions.map(option => option.value));
                                             } else {
                                                 setSelectedColors(null);
-                                                setFieldValue("colorIds", null);
+                                                setFieldValue("colorIds", selectedColors);
                                             }
 
                                         }}
@@ -409,15 +440,16 @@ const PrPutForm = (props) => {
                                     <label >Product Images <span>*</span></label>
 
                                     <input type="file" multiple className="dash-input" id="imageFiles" name="imageFiles" onChange={(event) => {
-                                        if(event !=null ){
+                                        if (event != null) {
                                             const selectedFiles = event.target.files;
-                                            setFieldValue("imageFiles",selectedFiles)
+                                            setFieldValue("imageFiles", [...selectedFiles])
+
                                         }
-                                        else{
-                                            setFieldValue("imageFiles",null)
+                                        else {
+                                            setFieldValue("imageFiles", null)
                                         }
-                                        
-                    
+
+
 
                                     }} />
                                     <ErrorMessage name="imageFiles" component="div" className="error-message" />
@@ -427,21 +459,24 @@ const PrPutForm = (props) => {
                                 </div>
                                 <div className="preview-img">
                                     <div className="row align-items-center justify-content-center g-1">
-                                      {imageFile && imageFile.map((file)=>(
-                                        <div  className="col-lg-4">
-                                            <span id={file.id} onClick={(e)=>{
-                                                 e.target.closest('.col-lg-4').remove();
-                                                 const clickidId =parseInt(e.target.id);
-                                                var newIds = reaminingIds.filter((imgId)=> imgId !==clickidId)
-                                                     
-                                                      setRemainingIds(newIds)
-                                                                                                                                                                              
-                                        
-                                            }} >x</span>
-                                            <img width={150} src={file.value} alt='my image' />  
-                                            <input type="hidden" name="imageIds" value={file.id}  />
-                                        </div>
-                                      ))}
+                                        {imageFile && imageFile.map((file) => (
+                                            <div className="col-lg-4">
+                                                <span id={file.id} onClick={(e) => {
+                                                    e.target.closest('.col-lg-4').remove();
+                                                    const clickidId = parseInt(e.target.id);
+
+                                                    var newIds = reaminingIds.filter((imgId) => imgId !== clickidId)
+
+                                                    console.log();
+                                                      setFieldValue("imageIds", newIds)
+                                                   
+
+
+                                                }} >x</span>
+                                                <img width={150} src={file.value} alt='my image' />
+                                                <input type="hidden" name="imageIds" value={file.id} />
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
 

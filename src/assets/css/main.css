@@ -4152,14 +4152,27 @@ p {
   line-height: 24px;
   margin-bottom: 0;
   padding: 8px 25px;
-  border-radius: 0;
+  border-radius: 2px;
   text-align: center;
   transition: 0.4s;
+  border: none;
 }
 .login-page .form-side .btn-side button:hover,
 .register-page .form-side .btn-side button:hover {
   background-color: #f9706a;
+  border: none;
   transition: 0.4s;
+}
+.login-page .email-label,
+.register-page .email-label {
+  font-size: 14px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.login-page .return,
+.register-page .return {
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .confirmInput {
@@ -4174,7 +4187,9 @@ p {
   background-color: #f9706a;
   border: none;
   font-weight: 500;
-  padding: 4px 10px;
+  padding: 7px 10px;
+  color: #fff;
+  border-radius: 2px;
 }
 
 .container-extend, .containe-own, .container-own, .conatiner-own {

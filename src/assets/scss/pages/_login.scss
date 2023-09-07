@@ -87,11 +87,14 @@
                 line-height: 24px;
                 margin-bottom: 0;
                 padding: 8px 25px;
-                border-radius: 0;
+                border-radius: 2px;
                 text-align:center;
                 transition: 0.4s;
+                border: none;
+                
                 &:hover{
                     background-color: $button-color;
+                    border: none;
                     transition: 0.4s;
                 }
             }
@@ -99,4 +102,13 @@
     }
 
 
+    .email-label{
+        font-size: 14px;
+        margin-bottom: 10px;
+        font-weight: 500;
+    }
+    .return{
+        font-size: 14px;
+        font-weight: 500;
+    }
 }

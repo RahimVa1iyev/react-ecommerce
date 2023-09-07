@@ -72,7 +72,7 @@ const Register = () => {
                 </div>
             </div>
 
-            <ConfirmModal />
+            <ConfirmModal data = {1} />
 
         </>
     )

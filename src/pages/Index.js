@@ -13,6 +13,12 @@ const Index = () => {
 
   const [months , setMonths] = useState();
   const [price ,setPrice] = useState();
+  const [orderCount,setOrderCount] =useState()
+  const [income,setIncome] =useState({
+    daily : {},
+    monthly : {},
+    yearly : {}
+  })
 
 const getMonthlySale = async () =>{
     await axios.get(`https://localhost:7039/api/Charts/montlysales`)
@@ -20,6 +26,19 @@ const getMonthlySale = async () =>{
                                     setMonths(res.data.months.reverse());
                                     setPrice(res.data.prices.reverse())
                                 })
+}
+
+const getOrderStatusCount = async () =>{
+    await axios.get(`https://localhost:7039/api/Charts/count`)
+                .then(res=>setOrderCount(res.data))
+}
+
+const getIncome = async () => {
+  var response = await axios.get(`https://localhost:7039/api/Charts/income`)
+  console.log(response.data);
+  setIncome(previousState => {return {...previousState,daily : response.data.daily}})
+  setIncome(previousState => {return {...previousState,monthly : response.data.monthly}})
+  setIncome(previousState => {return {...previousState,yearly : response.data.yearly}})
 }
 
 
@@ -53,13 +72,13 @@ const getMonthlySale = async () =>{
     ],
   };
 
-  const labels2 = ['Red', 'Blue', 'Yellow'];
+  const labels2 = ['Accepted', 'Rejected', 'Pending'];
   const data2 = {
     labels: labels2,
     datasets: [
       {
-        label: 'My Second Dataset',
-        data: [300, 50, 100],
+        label: 'Count',
+        data: [orderCount && orderCount.acceptedCount,orderCount && orderCount.rejectedCount, orderCount && orderCount.pendingCount ],
         backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
         hoverOffset: 4,
       },
@@ -79,7 +98,7 @@ const getMonthlySale = async () =>{
           scales: {
             y: {
               beginAtZero: true,
-              max : 2000
+              max : 3000
             },
           },
         },
@@ -103,6 +122,8 @@ const getMonthlySale = async () =>{
 
   useEffect(()=>{
      getMonthlySale();
+     getOrderStatusCount();
+     getIncome();
 
   },[])
 
@@ -126,9 +147,10 @@ const getMonthlySale = async () =>{
                                         <div className="col-lg-3">
                                             <div className="stat-box d-flex align-items-baseline">
                                                 <div className="stat-box-left">
-                                                    <h6>TODAY'S MONEY</h6>
-                                                    <p className='money'>$53,000</p>
-                                                    <p ><span className='percent'>+55%</span> <span className='text'>since yesterday</span>  </p>
+                                                    <h6>Daily Revenue</h6>
+                                                    <p className='money'>${income.daily && income.daily.income}</p>
+                                                    <p className='d-flex align-items-baseline gap-2' >{income.daily && income.daily.interestRate > 0 ? <span className='percent'>+{ income.daily.interestRate}%</span> : <span className='percent text-danger'>{ income && income.daily.interestRate}%</span>}
+                                                     <span className='text'>since yesterday</span>  </p>
                                                 </div>
 
                                                 <div className="stat-box-right ">
@@ -139,9 +161,10 @@ const getMonthlySale = async () =>{
                                         <div className="col-lg-3">
                                             <div className="stat-box d-flex align-items-baseline">
                                                 <div className="stat-box-left">
-                                                    <h6>TODAY'S MONEY</h6>
-                                                    <p className='money'>$53,000</p>
-                                                    <p ><span className='percent'>+55%</span> <span className='text'>since yesterday</span>  </p>
+                                                    <h6>Monthly Revenue</h6>
+                                                    <p className='money'>${income && income.monthly.income}</p>
+                                                    <p className='d-flex align-items-baseline gap-2' >{income && income.monthly.interestRate > 0 ? <span className='percent'>+{income.monthly.interestRate}%</span> : <span className='percent text-danger'>{income.monthly.interestRate}%</span>}
+                                                     <span className='text'>since yesterday</span>  </p>
                                                 </div>
 
                                                 <div className="stat-box-right ">
@@ -152,9 +175,10 @@ const getMonthlySale = async () =>{
                                         <div className="col-lg-3">
                                             <div className="stat-box d-flex align-items-baseline">
                                                 <div className="stat-box-left">
-                                                    <h6>TODAY'S MONEY</h6>
-                                                    <p className='money'>$53,000</p>
-                                                    <p ><span className='percent'>+55%</span> <span className='text'>since yesterday</span>  </p>
+                                                    <h6>Yearly Revenue</h6>
+                                                    <p className='money'>${income && income.yearly.income}</p>
+                                                    <p className='d-flex align-items-baseline gap-2' >{income && income.yearly.interestRate > 0 ? <span className='percent'>+{income.yearly.interestRate}%</span> : <span className='percent text-danger'>{income.yearly.interestRate}%</span>}
+                                                     <span className='text'>since yesterday</span>  </p>
                                                 </div>
 
                                                 <div className="stat-box-right ">
