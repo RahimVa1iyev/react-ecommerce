@@ -6,7 +6,7 @@ import { BiHeart } from 'react-icons/bi';
 import { PiScales } from 'react-icons/pi';
 import { AiOutlineEye } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
-import { handleOpen, setSelectedProduct, setCompareProduct, handleEye, handleScale } from '../../control/modalSlice';
+import { handleOpen, setSelectedProduct, setCompareProduct, handleEye, handleScale, setCompareCount } from '../../control/modalSlice';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { getBasketItems } from '../../control/basketSlice';
@@ -25,11 +25,10 @@ const PluginItem = (props) => {
     const [dataId, setDataId] = useState();
     const [clicked, setClicked] = useState(0)
     const [heart ,setHeart] = useState(false)
-    const [itemId , setItemId] = useState([])
 
     const navigate = useNavigate();
     const disPatch = useDispatch();
-    const { compareProduct } = useSelector((store) => store.modal)
+    const { compareProduct,compareCount } = useSelector((store) => store.modal)
     const { id, name, rate, discountedPrice, salePrice, images } = props.product
     
 
@@ -67,14 +66,16 @@ const PluginItem = (props) => {
         disPatch(handleOpen());
         disPatch(handleEye());
     };
+
     const CompareHandle = async () => {
 
-        if (!ids.includes(props.product.id)) {
+        if (!ids.includes(props.product.id) && compareCount < 5 ) {
 
             await axios.get(`https://localhost:7039/api/Products/compare/${props.product.id}`)
                 .then(res => {
                     disPatch(setCompareProduct([...compareProduct, res.data]))
-                    setCount(4);
+                    console.log("salam");
+                    disPatch(setCompareCount(1))
 
 
                 })
@@ -87,14 +88,14 @@ const PluginItem = (props) => {
                 })
 
         }
-        else if (count >= 5) {
+        else if (compareCount >= 5) {
             alert("Maximum 5 product elave ede bilersiz")
         }
         else {
             alert("Artix datani elave etmisiz")
         }
 
-        await setIds([...ids, props.product.id])
+         setIds([...ids, props.product.id])
 
         disPatch(handleOpen());
         disPatch(handleScale())

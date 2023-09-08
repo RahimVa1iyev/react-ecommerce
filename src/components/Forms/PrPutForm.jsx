@@ -75,18 +75,23 @@ const PrPutForm = (props) => {
         formData.append("posterFile", values.posterFile);
         formData.append("hoverFile", values.hoverFile);
 
-        values.imageFiles.forEach((file, index) => {
+       values.imageFiles && values.imageFiles.forEach((file, index) => {
             formData.append(`imageFiles`, file);
         });
 
         
-            formData.append("sizeIds", [...values.sizeIds]);
-        
+        values.sizeIds.forEach(sizeId=>{
+             console.log("Size" ,sizeId);
+            formData.append("sizeIds",sizeId.sizeId)
+        })
 
-        // values.colorIds.forEach(colorId => {
-        //     formData.append("colorIds", colorId);
-        // });
+        values.colorIds.forEach(colorId => {
+            formData.append("colorIds", colorId.colorId);
+        });
 
+        values.imageIds.forEach(imgId => {
+            formData.append("imageIds", imgId);
+        });
        
 
         const putProduct = async () => {
@@ -128,7 +133,6 @@ const PrPutForm = (props) => {
         const getProducts = async () => {
             var response = await axios.get(`https://localhost:7039/api/Products/${props.id}`)
 
-            console.log("response", response.data);
 
             const productData = response.data;
 
@@ -240,7 +244,6 @@ const PrPutForm = (props) => {
     }, [props.id])
 
 
-    console.log("selectedSize", selectedSizes);
 
     return (
         <>
@@ -325,7 +328,7 @@ const PrPutForm = (props) => {
                                                 setSelectedColors(selectedOptions);
                                                 setFieldValue("colorIds", selectedOptions.map(option => option.value));
                                             } else {
-                                                setSelectedColors(null);
+                                               
                                                 setFieldValue("colorIds", selectedColors);
                                             }
 
@@ -345,8 +348,8 @@ const PrPutForm = (props) => {
                                                 setSelectedSizes(selectedOptions);
                                                 setFieldValue("sizeIds", selectedOptions.map(option => option.value));
                                             } else {
-                                                setSelectedSizes(null);
-                                                setFieldValue("size Ids", null);
+                                               
+                                                setFieldValue("size Ids", selectedSizes);
                                             }
                                         }}
                                     />
@@ -446,7 +449,7 @@ const PrPutForm = (props) => {
 
                                         }
                                         else {
-                                            setFieldValue("imageFiles", null)
+                                            setFieldValue("imageFiles", [])
                                         }
 
 
@@ -467,7 +470,6 @@ const PrPutForm = (props) => {
 
                                                     var newIds = reaminingIds.filter((imgId) => imgId !== clickidId)
 
-                                                    console.log();
                                                       setFieldValue("imageIds", newIds)
                                                    
 

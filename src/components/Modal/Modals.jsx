@@ -32,20 +32,22 @@ const Modals = () => {
   const handleOpenModal = () => {
     disPatch(handleOpen());
   };
-  console.log("orderitems",orderItems);
 
   const handleCloseModal = () => {
     disPatch(handleClose());
   };
 
   const handleDeletePr = (id) =>{
-    
-    var removablePr = document.querySelectorAll(`[data-product-id="${id}"]`);
-    removablePr.forEach((pr)=>{
-      const parent = pr.parentNode;
-      
-      parent.removeChild(pr)
-    })
+    console.log("id",id);
+    // var removablePr = document.querySelectorAll(`[data-product-id="${id}"]`);
+    // removablePr.forEach((pr)=>{
+    //   const parent = pr.parentNode;
+    //   parent.removeChild(pr)
+    // })
+     
+    let filteredData = compareProduct.filter((item => item.id !== id))
+    disPatch(setCompareProduct(filteredData))
+
   }
 
   return (
@@ -82,6 +84,7 @@ const Modals = () => {
               </div>
             </div>:
             activeIcon === "scale"?
+
             <div className='compare-table'>
                
                <div className="compare-modal-header">

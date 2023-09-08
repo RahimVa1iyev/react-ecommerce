@@ -9,7 +9,8 @@ const initialState ={
     compareProduct : [],
     activeIcon:"",
     orderItems:[],
-    email:''
+    email:'',
+    compareCount : 0,
 }
 console.log("slice",initialState.email);
 
@@ -44,6 +45,7 @@ const modalSlice = createSlice({
         setCompareProduct : (state,action)=>{
             state.compareProduct = action.payload;
         },
+        
 
         handleEye :(state)=>{
             state.activeIcon ="eye";
@@ -61,7 +63,11 @@ const modalSlice = createSlice({
         },
         setEmail: (state,action)=>{
             state.email = action.payload
-        } 
+        } ,
+        setCompareCount : (state,action) =>{
+            state.compareCount += action.payload
+        },
+
 
     },
 
@@ -98,5 +104,5 @@ export const createUser = (values) => async (dispatch) => {
 
 
 
-export const { handleOpen, handleClose, setUserId ,handleConfirmModalClose,handleConfirmModalOpen, setSelectedProduct , setCompareProduct ,handleEye,handleView,handleScale,removeFromCompareProduct,setOrderItem,setEmail } = modalSlice.actions;
+export const { handleOpen, handleClose, setUserId ,handleConfirmModalClose,handleConfirmModalOpen, setSelectedProduct , setCompareProduct ,handleEye,handleView,handleScale,removeFromCompareProduct,setOrderItem,setEmail,setCompareCount } = modalSlice.actions;
 export default modalSlice.reducer
