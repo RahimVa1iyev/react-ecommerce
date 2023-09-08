@@ -208,7 +208,7 @@ const Shop = () => {
         <>
             <div className="container-own">
                 <div className="row">
-                    <div className="col-lg-3">
+                    <div className="col-lg-3 col-12 ">
 
                         <div className="shop-side-bar">
                             <span className='sidebar-title' >Search</span>
@@ -317,7 +317,7 @@ const Shop = () => {
 
 
                     </div>
-                    <div className="col-lg-9">
+                    <div className="col-lg-9 col-12">
                         <div className="shop-right-side">
                             <div className="top-side">
                                 <img src={img1} alt="my img" />

@@ -15,7 +15,8 @@ const Home = () => {
     relatedProducts : [],
     newProducts : [],
     featuredProducts : [],
-    mowstViewProducts : []
+    mowstViewProducts : [],
+    bestSellerProducts : [],
 
    })
 
@@ -44,6 +45,12 @@ const Home = () => {
                .then(res=> setProducts(previousState => {return {...previousState , mowstViewProducts : res.data}}) )
                .catch(err => console.log("An unexpected error occured"))
    }
+
+   const getBestSellerPr = async () => {
+    await axios.get(`https://localhost:7039/api/Products/best-seller`)
+               .then(res=> setProducts(previousState => {return {...previousState , bestSellerProducts : res.data}}) )
+
+   }
   
   
 
@@ -54,6 +61,7 @@ const Home = () => {
          getNewestPr();
          getFeaturedPr();
          getMostViewPr();
+         getBestSellerPr();
     },[])
 
   return (
@@ -73,7 +81,7 @@ const Home = () => {
             <SliderPlugin title="Most View Products" slideshow={1} responsiveRow={1} row={3} perrow={3} plugin="second" products = {products.mowstViewProducts  } visible="d-none" />
           </div>
           <div className="col-lg-4 col-12 mt-3 ">
-            <SliderPlugin title="Bestseller Products" slideshow={1} responsiveRow={1} row={3} perrow={3} plugin="second" visible="d-none" />
+            <SliderPlugin title="Bestseller Products" slideshow={1} responsiveRow={1} row={3} perrow={3} plugin="second" visible="d-none" products={products.bestSellerProducts} />
           </div>
         </div>
       </div>

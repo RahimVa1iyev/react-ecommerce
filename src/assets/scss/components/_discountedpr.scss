@@ -150,6 +150,7 @@
             width: 180px;
             height: 280px;
             margin: 20px auto;
+            padding: 20px;
         }
 
         .hover-img-off {
@@ -174,6 +175,7 @@
             bottom: 0;
             left: 58px;
             right: 0;
+            padding: 20px;
         }
     }
 
@@ -257,17 +259,38 @@
         justify-content: space-between;
     }
 
+    
+
     .custom-arrow {
         display: none;
     }
 
     .dis-pr-box {
-        width: 98% !important;
-        height: 450px !important;
+        width: 100% !important;
+        height: 505px !important;
         position: relative;
         cursor: pointer;
         margin: 4 auto;
         padding-bottom: 5px !important;
+
+        .box-top{
+            width: 100%;
+            text-align: center;
+             .hover-img-off,
+            .hover-img-on{
+                position: absolute;
+                width: 180px;
+                height: 280px;
+                top: 38px;
+                bottom: 0;
+                left: 102px;
+                right: 0;
+                padding: 8px;
+            }
+        }
+        .box-bottom{
+            width: 100%;
+        }
 
     }
 

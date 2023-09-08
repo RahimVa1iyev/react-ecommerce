@@ -12,7 +12,7 @@ const SecondPluginItem = (props) => {
         <>
 
             <div key={props.key} className="container-own">
-                <div className="second-plugin-box d-flex align-items-center gap-2 p-1 ">
+                <div className="second-plugin-box d-flex align-items-center  gap-2 p-1 ">
 
                     <div className="second-pl-left">
 
