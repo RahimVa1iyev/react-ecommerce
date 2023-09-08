@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import img1 from '../assets/image/shop-img.png';
 import { TbGridDots } from 'react-icons/tb';
-import { RxDragHandleDots2 } from 'react-icons/rx';
 import { HiOutlineBars3 } from 'react-icons/hi2';
 
 import ShopItem from '../components/ShopItem/ShopItem';
@@ -193,9 +192,6 @@ const Shop = () => {
         setItemsPerPage(perPage)
     }
 
-    const ColHandler = (e) => {
-        setCols(e.target.id)
-    }
     const ColHandler2 = (e) => {
         setCols(e.target.id)
     }
@@ -307,7 +303,7 @@ const Shop = () => {
                                             </div>
                                         </div>
 
-                                        <button type="submit">Submit</button>
+                                        <button className='filter-btn' type="submit">Filter</button>
                                     </Form>
                                 )}
                             </Formik>
@@ -327,7 +323,6 @@ const Shop = () => {
                                 <div className="col-lg-6">
                                     <div className="d-flex align-items-center gap-4">
                                         <div className="three-dot d-flex align-item-center gap-3 ">
-                                            <RxDragHandleDots2 onClick={ColHandler} id='2' className={cols === '2' ? "two active-dot" : "two"} />
                                             <TbGridDots onClick={ColHandler2} id='3' className={cols === '3' ? "three active-dot" : "three"} />
                                             <HiOutlineBars3 onClick={ColHandler3} id='1' className={cols === '1' ? "one active-dot" : "one"} />
                                         </div>

@@ -1,8 +1,10 @@
 @import "../abstracts/variables";
-.shop-pagination{
+
+.shop-pagination {
     display: flex;
     align-items: center;
-    .shop-page-link{
+
+    .shop-page-link {
         border-radius: 5px;
         border: none;
         font-size: 14px;
@@ -12,14 +14,14 @@
         background-color: #fff;
         cursor: pointer;
 
-        &:hover{
+        &:hover {
             background-color: $button-color;
             color: #fff;
         }
 
     }
-     
-    .active{
+
+    .active {
         border-radius: 5px;
         border: none;
         font-size: 14px;
@@ -31,20 +33,29 @@
         cursor: pointer;
 
     }
-   
+
 }
 
-.pagination-side{
+.pagination-side {
     display: flex;
     align-items: center;
     justify-content: space-between;
     border: 1px solid $border-color ;
     margin: 20px 0;
-    padding: 8px 15px ;
+    padding: 8px 15px;
     width: 100%;
-    
-    span{
+
+    span {
         font-size: 14px;
     }
 
+}
+
+@media(max-width:576px) {
+
+    .pagination-side {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
 }

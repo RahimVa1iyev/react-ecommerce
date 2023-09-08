@@ -1,27 +1,33 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
-  // Görünen sayfa düğmeleri sayısı
-
   const handlePageChange = (page) => {
     onPageChange(page);
   };
 
   const getPageNumbers = () => {
     const pageNumbers = [];
+    const maxVisiblePages = 5; // Number of visible page numbers
+    const halfVisiblePages = Math.floor(maxVisiblePages / 2);
     let startPage;
     let endPage;
-    const middlePage =parseInt(Math.ceil(totalPages / 2));
 
-    if (currentPage <= middlePage) {
+    if (totalPages <= maxVisiblePages) {
+      // If total pages are less than or equal to maxVisiblePages, show all pages
       startPage = 1;
       endPage = totalPages;
-    } else if (currentPage + middlePage - 1 >= totalPages) {
-      startPage = totalPages - totalPages + 1;
+    } else if (currentPage <= halfVisiblePages) {
+      // If current page is near the beginning, show the first maxVisiblePages pages
+      startPage = 1;
+      endPage = maxVisiblePages;
+    } else if (currentPage >= totalPages - halfVisiblePages) {
+      // If current page is near the end, show the last maxVisiblePages pages
+      startPage = totalPages - maxVisiblePages + 1;
       endPage = totalPages;
     } else {
-      startPage = currentPage - middlePage + 1;
-      endPage = currentPage + middlePage - 1;
+      // Otherwise, center the current page and show halfVisiblePages on each side
+      startPage = currentPage - halfVisiblePages;
+      endPage = currentPage + halfVisiblePages;
     }
 
     for (let i = startPage; i <= endPage; i++) {
@@ -43,8 +49,8 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
             Prev
           </button>
         </li>
-        {getPageNumbers().map((number,index) => (
-          <li key={index} className="page-item">
+        {getPageNumbers().map((number) => (
+          <li key={number} className="page-item">
             <button
               onClick={() => handlePageChange(number)}
               className={`shop-page-link ${number === currentPage ? 'active' : ''}`}
