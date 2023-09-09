@@ -3517,291 +3517,67 @@ p {
   cursor: pointer;
 }
 
-.basket {
-  padding: 20px 0;
-}
-.basket .clearfix {
-  content: "";
-  display: table;
-  clear: both;
-}
-.basket #site-header, .basket #site-footer {
-  background: #fff;
-}
-.basket #site-header {
-  margin: 0 0 30px 0;
-}
-.basket #site-header h1 {
-  font-size: 31px;
-  font-weight: 300;
-  padding: 40px 0;
-  position: relative;
-  margin: 0;
-}
-.basket a {
-  color: #000;
-  text-decoration: none;
-  transition: color 0.2s linear;
-}
-.basket a:hover {
-  color: #f9706a;
-}
-.basket #site-header h1 span {
-  color: #f9706a;
-}
-.basket #site-header h1 span.last-span {
-  background: #fff;
-  padding-right: 150px;
-  position: absolute;
-  left: 217px;
-  transition: all 0.2s linear;
-}
-.basket #site-header h1:hover span.last-span, .basket #site-header h1 span.is-open {
-  left: 363px;
-}
-.basket #site-header h1 em {
-  font-size: 16px;
-  font-style: normal;
-  vertical-align: middle;
-}
-.basket .container {
-  font-family: "Open Sans", sans-serif;
-  margin: 0 auto;
-  width: 980px;
-}
-.basket #cart {
-  width: 100%;
-}
-.basket #cart h1 {
-  font-weight: 300;
-}
-.basket #cart a {
-  color: #f9706a;
-  text-decoration: none;
-  transition: color 0.2s linear;
-}
-.basket #cart a:hover {
-  color: #000;
-}
-.basket .product.removed {
-  margin-left: 980px !important;
-  opacity: 0;
-}
-.basket .product {
-  border: 1px solid #eee;
-  margin: 20px 0;
-  width: 96%;
-  height: 200px;
-  position: relative;
-  transition: margin 0.2s linear, opacity 0.2s linear;
-}
-.basket .product img {
-  width: 100%;
-  height: 100%;
-  padding: 25px;
-}
-.basket .product header, .basket .product .content {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-style: none none solid none;
-  float: left;
-}
-.basket .product header {
-  background: #fff;
-  margin: 0 1% 20px 0;
-  overflow: hidden;
-  padding: 0;
-  position: relative;
-  width: 15%;
-  height: 200px;
-}
-.basket .product header:hover img {
-  opacity: 0.7;
-}
-.basket .product header:hover h3 {
-  bottom: 75px;
-}
-.basket .product header h3 {
-  background: #f9706a;
+.shopping-cart-del-btn {
+  background-color: #0d6efd;
   color: #fff;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 40px;
-  margin: 0;
-  padding: 0px 22px;
-  position: absolute;
-  bottom: -50px;
-  right: 0;
-  left: 0;
-  transition: bottom 0.2s linear;
-}
-.basket .remove {
-  cursor: pointer;
-}
-.basket .product .content {
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  height: 144px;
-  padding: 0 20px;
-  width: 84%;
-}
-.basket .product h1 {
-  color: #f9706a;
-  font-size: 25px;
-  font-weight: 300;
-  margin: 17px 0 20px 0;
-}
-.basket .product footer.content {
-  height: 50px;
-  margin: 6px 0 0 0;
-  padding: 0;
-}
-.basket .product footer .price, .basket .product footer .detail-top-side .product-detail-side, .detail-top-side .basket .product footer .product-detail-side, .basket .product footer .modal-title {
-  background: #fcfcfc;
-  color: #000;
-  float: right;
-  font-size: 15px;
-  font-weight: 300;
-  line-height: 49px;
-  margin: 0;
-  padding: 0 30px;
-}
-.basket .product footer .full-price {
-  background: #f9706a;
-  color: #fff;
-  float: right;
-  font-size: 22px;
-  font-weight: 300;
-  line-height: 49px;
-  margin: 0;
-  padding: 0 30px;
-  transition: margin 0.15s linear;
-}
-.basket .qt, .basket .qt-plus, .basket .qt-minus {
-  display: block;
-  float: left;
-}
-.basket .qt {
-  font-size: 19px;
-  line-height: 50px;
-  width: 70px;
-  text-align: center;
-}
-.basket .qt-plus, .basket .qt-minus {
-  background: #fcfcfc;
+  padding: 4px 10px;
+  border-radius: 3px;
   border: none;
-  font-size: 30px;
-  font-weight: 300;
-  height: 100%;
-  padding: 0 20px;
-  transition: background 0.2s linear;
-}
-.basket .qt-plus:hover, .basket .qt-minus:hover {
-  background: #f9706a;
-  color: #fff;
-  cursor: pointer;
-}
-.basket .qt-plus {
-  line-height: 50px;
-}
-.basket .qt-minus {
-  line-height: 47px;
-}
-.basket #site-footer {
-  margin: 30px 0 0 0;
-}
-.basket #site-footer {
-  padding: 40px;
-}
-.basket #site-footer h1 {
-  background: #fcfcfc;
-  border: 1px solid #ccc;
-  border-style: none none solid none;
-  font-size: 24px;
-  font-weight: 300;
-  margin: 0 0 7px 0;
-  padding: 14px 40px;
   text-align: center;
 }
-.basket #site-footer h2 {
-  font-size: 24px;
-  font-weight: 300;
-  margin: 10px 0 0 0;
-}
-.basket #site-footer h3 {
-  font-size: 19px;
-  font-weight: 300;
-  margin: 15px 0;
-}
-.basket .left {
-  float: left;
-}
-.basket .right {
-  float: right;
-}
-.basket .btn {
-  background: #f9706a;
-  border: 1px solid #999;
-  border-style: none none solid none;
-  cursor: pointer;
-  display: block;
+
+.shopping-cart-heart-btn {
+  background-color: #dc3545;
   color: #fff;
-  font-size: 20px;
-  font-weight: 300;
-  padding: 16px 0;
-  width: 290px;
-  text-align: center;
-  transition: all 0.2s linear;
+  padding: 4px 10px;
+  border-radius: 3px;
+  border: none;
 }
-.basket .btn:hover {
-  color: #fff;
-  background: #429188;
-}
-.basket .type {
-  background: #fcfcfc;
-  font-size: 13px;
-  padding: 10px 16px;
-  left: 100%;
-}
-.basket .type, .basket .color, .basket .modal-title {
-  border: 1px solid #ccc;
-  border-style: none none solid none;
-  position: absolute;
-}
-.basket .color, .basket .modal-title {
-  width: 40px;
+
+.input-btn {
+  padding: 2px;
   height: 40px;
-  right: -40px;
+  width: 50px;
+  background-color: #f9706a;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
 }
-.basket .Red {
-  background: #f9706a;
+
+.form-outline {
+  width: 50%;
+  text-align: center;
 }
-.basket .Blue {
-  background: #3598dc;
+.form-outline .qt {
+  border: 1px solid rgb(230, 220, 220);
+  padding: 8px 40px;
 }
-.basket .Gold {
-  background-color: gold;
+
+.shopping-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
-.basket .Black {
-  background-color: #000;
+
+.shoping-cart-img {
+  text-align: center;
 }
-.basket .White {
-  background-color: #eee;
+.shoping-cart-img img {
+  padding: 10px 5px;
 }
-.basket .Silver {
-  background-color: silver;
+
+.go-to-checkout-btn {
+  background-color: #333;
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 2px;
 }
-.basket .Brown {
-  background-color: brown;
-}
-.basket .Green {
-  background-color: green;
-}
-.basket .minused {
-  margin: 0 50px 0 0 !important;
-}
-.basket .added {
-  margin: 0 -50px 0 0 !important;
+.go-to-checkout-btn:hover {
+  background-color: #f9706a;
+  color: #fff;
 }
 
 .wishlist {
