@@ -114,10 +114,10 @@ const TabPlugin = (props) => {
       <div className="tab-header">
         <div className="row align-items-center justify-content-center ">
 
-          <div className="col-lg-4  text-center">
+          <div className="col-lg-4 col-5  text-center">
             <span className={toggle === 1 ? "active-tab" : "deactive"} onClick={() => ToggleHandle(1)} >Review</span>
           </div>
-          <div className="col-lg-4 text-center">
+          <div className="col-lg-4 col-5 text-center">
             <span className={toggle === 2 ? "active-tab" : "deactive"} onClick={() => ToggleHandle(2)} > Comment ({reviews && reviews.length}) </span>
           </div>
         </div>
@@ -128,7 +128,7 @@ const TabPlugin = (props) => {
         <div className={toggle === 1 ? "review" : "review d-none"}>
 
           <div className="review-side">
-            <div className="top-review-side d-flex align-items-end justify-content-between">
+            <div className="top-review-side d-flex align-items-center justify-content-between">
               <div className="left-side-review">
                 <h2>Customer Reviews</h2>
                 <div className="rate d-flex align-items-center">{
@@ -195,7 +195,7 @@ const TabPlugin = (props) => {
                   </p>
 
 
-                  <textarea onChange={areaHandle} placeholder='Text Area' rows="5" cols="120">
+                  <textarea onChange={areaHandle} placeholder='Text Area' className='review-text'>
                   </textarea>
                 </div>
 
@@ -228,7 +228,7 @@ const TabPlugin = (props) => {
                   <span className='on'>on</span>
                   <span className='time' >{formatDateTime(item.createdAt)}</span>
                 </div>
-                <p>{item.text}</p>
+                <textarea disabled={true} className='comment-text' >{item.text}</textarea>
               </div>
 
             </div>

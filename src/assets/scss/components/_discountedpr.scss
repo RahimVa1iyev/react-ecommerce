@@ -147,10 +147,15 @@
 
         .poster-img-off,
         .poster-img-on {
+            position: absolute;
             width: 180px;
             height: 280px;
-            margin: 20px auto;
+            top: 37px;
+            bottom: 0;
+            left: 55%;
+            right: 0;
             padding: 35px 20px;
+            transform: translate(-50%);
         }
 
         .hover-img-off {
@@ -173,9 +178,10 @@
             height: 280px;
             top: 37px;
             bottom: 0;
-            left: 58px;
+            left: 55%;
             right: 0;
             padding: 35px 20px;
+            transform: translate(-50%);
         }
     }
 
@@ -265,6 +271,19 @@
         display: none;
     }
 
+    
+    .box-icons-off,
+    .box-icons-on {
+        position: absolute;
+        bottom: 174px;
+        right: 40px !important;
+        width: 46px;
+        height: 118px;
+        background-color: #fff;
+        padding: 8px;
+
+    }
+    .shop-items,
     .dis-pr-box {
         width: 100% !important;
         height: 505px !important;
@@ -273,21 +292,38 @@
         margin: 4 auto;
         padding-bottom: 5px !important;
 
+        
+        .poster-img-off,
+        .poster-img-on {
+            position: absolute;
+            width: 180px;
+            height: 280px;
+            top: 38px;
+            bottom: 0;
+            left: 50%;
+            right: 0;
+            padding: 35px 20px;
+            transform: translate(-50%);
+        }
+
+
         .box-top{
             width: 100%;
             text-align: center;
-             .hover-img-off,
+            .hover-img-off,
             .hover-img-on{
                 position: absolute;
                 width: 180px;
                 height: 280px;
                 top: 38px;
                 bottom: 0;
-                left: 102px;
+                left: 50%;
                 right: 0;
-                padding: 8px;
+                padding: 35px 20px;
+                transform: translate(-50%);
             }
         }
+
         .box-bottom{
             width: 100%;
         }

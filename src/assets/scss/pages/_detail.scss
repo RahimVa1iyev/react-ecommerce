@@ -1,46 +1,47 @@
 @import "../abstracts/extend";
 @import "../abstracts/variables";
 
-.container-own{
+.container-own {
     @extend .container-extend;
 }
 
 .slick-next,
-.slick-prev
-{
+.slick-prev {
     color: #333 !important;
     background-color: #9e9e9e !important;
     border-radius: 50px !important;
-    &:hover{
+
+    &:hover {
         color: #333 !important;
-    background-color: #9e9e9e;
-    border-radius: 50px;
+        background-color: #9e9e9e;
+        border-radius: 50px;
     }
 }
 
-.detail-poster-img{
+.detail-poster-img {
     margin-bottom: 40px;
-   img{
-    width: 400px !important ;
-    height: 500px;
-    margin: 0 auto;
-    padding: 45px;
-   }
+
+    img {
+        width: 400px !important;
+        height: 500px;
+        margin: 0 auto;
+        padding: 45px;
+    }
 }
 
-.alt-img{
-    .altImg{
+.alt-img {
+    .altImg {
         width: 150px;
         height: 160px;
         padding: 35px;
     }
 }
 
-.detail-top-side{
+.detail-top-side {
 
 
 
-    .product-detail-side{
+    .product-detail-side {
         border: 1px solid $border-color;
         padding: 25px;
 
@@ -49,47 +50,48 @@
         @extend .review;
 
         @extend .price;
-       
+
         @extend .category;
 
         @extend .gender;
 
         @extend .desc;
-        
+
         @extend .basket-side;
-     
+
 
         @extend .check-out;
 
     }
-    
-   
+
+
 }
 
 
-.tab-menu-side{
-    margin: 50px 0  ;
+.tab-menu-side {
+    margin: 50px 0;
 }
 
 
-.tab-header{
+.tab-header {
     border-bottom: 1px solid $border-color2;
     padding-bottom: 15px;
-    .deactive{
+
+    .deactive {
         font-size: 20px;
         font-weight: 600;
         line-height: 30px;
         color: #a9a9a9;
         transition: 0.5s;
         cursor: pointer;
-        
 
-        &:hover{
+
+        &:hover {
             color: #333;
         }
     }
 
-    .active-tab{
+    .active-tab {
         font-size: 20px;
         font-weight: 600;
         line-height: 30px;
@@ -98,7 +100,7 @@
         transition: 0.5s;
         cursor: pointer;
 
-        &::after{
+        &::after {
             content: "";
             position: absolute;
             width: 100%;
@@ -112,71 +114,82 @@
     }
 }
 
-.botom-side{
+.botom-side {
     padding-top: 40px;
 }
 
-.review-side{
+.review-side {
     margin-top: 20px;
     border: 1px solid rgb(223, 211, 211);
     border-radius: 2px;
     padding: 15px 20px;
 
-    .top-review-side{
+    .top-review-side {
         border-bottom: 1px solid $border-color;
         padding-bottom: 40px;
-        p{
+
+        p {
             cursor: pointer;
         }
-        .left-side-review{
-            h2{
+
+        .left-side-review {
+            h2 {
                 font-size: 22px;
                 color: #333;
                 font-weight: 600;
             }
-            .full{
+
+            .full {
                 font-size: 20px;
             }
-            .outer{
+
+            .outer {
                 font-size: 20px;
             }
-            .review{
+
+            .review {
                 font-size: 14px;
             }
         }
     }
-    
 
-    .bottom-review-side{
+
+    .bottom-review-side {
         padding: 20px 0;
-        .joa-cancelo{
+
+        .joa-cancelo {
             margin-bottom: 10px;
-           
-          
+
+
         }
-        .joa-felix{
+
+        .joa-felix {
+
             .time,
-            .fullname{
+            .fullname {
                 color: 11px;
                 color: #333;
                 font-weight: 600;
             }
-            .on{
+
+            .on {
                 text-transform: lowercase;
             }
         }
-        .review-btn{
+
+        .review-btn {
             margin-top: 10px;
-          button{
-            background-color: $button-color;
-            color: #fff;
-            font-size: 14px;
-            text-align: center;
-            padding: 8px 14px;
-            border: none;
-            font-weight: 500;
-            border-radius: 2px;
-          }
+
+            button {
+                background-color: $button-color;
+                color: #fff;
+                font-size: 14px;
+                text-align: center;
+                padding: 8px 14px;
+                border: none;
+                font-weight: 500;
+                border-radius: 2px;
+            }
         }
     }
 }
@@ -187,65 +200,74 @@
     justify-content: start;
     flex-direction: row-reverse; // reverse!
     font-family: 'Hi Melody', cursive;
+
     // label
     .star {
-      display: inline-block;
-      color: #a9a9a9;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: all 0.2s;
-      cursor: pointer;
-      &:before {
-        content: '\2605';
-        
-        font-size: 22px;
-        padding: 0 1px;
-      
-        text-shadow: 3px 3px 5px #b1a8a8;
-      }
+        display: inline-block;
+        color: #a9a9a9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.2s;
+        cursor: pointer;
+
+        &:before {
+            content: '\2605';
+
+            font-size: 22px;
+            padding: 0 1px;
+
+            text-shadow: 3px 3px 5px #b1a8a8;
+        }
     }
+
     // label hover
     &:hover .star:hover {
-      color: #ffcc33;
-       &~.star {
         color: #ffcc33;
-      }
+
+        &~.star {
+            color: #ffcc33;
+        }
     }
+
     // input
     input {
-      display: none;
+        display: none;
     }
+
     // input checked
-    [type=radio]:checked + .star {
-      color: #ffcc33;
-      &~.star {
+    [type=radio]:checked+.star {
         color: #ffcc33;
-      }
+
+        &~.star {
+            color: #ffcc33;
+        }
     }
-  }
+}
 
-  .user-review-form{
-        .wr-review{
-            font-size: 16px;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 20px;
-        }
-        .star-side{
-            margin-bottom: 10px;
-            .review-form-title{
-                font-size: 13px;
-                line-height: 15px;
-            }
-        }
-      
-      
-    
-  }
+.user-review-form {
+    .wr-review {
+        font-size: 16px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 20px;
+    }
 
-  .text-side{
-    textarea{
+    .star-side {
+        margin-bottom: 10px;
+
+        .review-form-title {
+            font-size: 13px;
+            line-height: 15px;
+        }
+    }
+
+
+
+}
+
+.text-side {
+    textarea {
         padding: 15px;
         font-size: 16px;
         font-weight: 500;
@@ -254,26 +276,120 @@
     }
 }
 
-.joa-cancelo{
+.joa-cancelo {
     margin-bottom: 10px;
-   
-  
+
+
 }
-.joa-felix{
+
+.joa-felix {
+
     .time,
-    .fullname{
+    .fullname {
         color: 11px;
         color: #333;
         font-weight: 600;
     }
-    .on{
+
+    .on {
         text-transform: lowercase;
     }
 }
- 
-.comment{
+
+.comment {
     margin: 10px 0;
-    padding: 10px ;
-    border-radius: 2px; 
+    padding: 10px;
+    border-radius: 2px;
     border: 1px solid rgb(233, 229, 229);
+}
+
+.comment-text{
+    width: 100%;
+    border: none;
+}
+
+.review-text{
+    width: 100%;
+}
+
+
+@media(max-width:576px) {
+
+    .slick-next,
+    .slick-prev{
+        display: none !important;
+    }
+
+    .review-text{
+        width: 100%;
+
+    }
+
+    .joa-felix {
+
+        .time,
+        .fullname {
+            font-size: 14px;
+            color: 11px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .on {
+            text-transform: lowercase;
+            font-size: 13px;
+        }
+    }
+
+    .detail-poster-img {
+        margin-bottom: 40px;
+    
+        img {
+            width: 300px !important;
+            height: 400px;
+            margin: 0 auto;
+            padding: 45px;
+        }
+    }
+    
+    .alt-img {
+        .altImg {
+            width: 150px;
+            height: 160px;
+            padding: 35px;
+        }
+    }
+
+    .left-side-review {
+        h2 {
+            font-size: 18px !important;
+            color: #333;
+            font-weight: 600;
+        }
+    }
+
+    .comment-text{
+        font-size: 14px;
+        width: 100%;
+    }
+    .active-tab {
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 30px;
+        color: #333;
+        position: relative;
+        transition: 0.5s;
+        cursor: pointer;
+
+        &::after {
+            content: "";
+            position: absolute;
+            width: 100%;    
+            height: 2px !important;
+            background-color: $button-color;
+            bottom: -18px !important;
+            left: 0;
+
+        }
+    }
 }

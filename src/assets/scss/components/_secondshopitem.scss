@@ -99,3 +99,22 @@
         }
     }
 }
+
+
+@media(max-width:576px) {
+    .pr-box {
+        margin-bottom: 20px;
+        border: 1px solid $border-color;
+        padding: 20px;
+    
+        .box-img {
+            text-align: center;
+            img {
+                padding: 35px 20px;
+                width: 60%;
+                height: 240px;
+    
+            }
+        }
+    }
+}

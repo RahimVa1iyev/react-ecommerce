@@ -10,6 +10,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom'
 import { getBasketItems, setClicked } from '../../control/basketSlice';
 import { AiOutlineHeart } from 'react-icons/ai'
+import { setId } from '../../control/fetchSlice';
 
 const BottomHeader = () => {
     const [toggle, setToggle] = useState("side-bar-off");
@@ -18,7 +19,8 @@ const BottomHeader = () => {
     const [toggleNavlink, setToggleNavlink] = useState(1);
     const [token, setToken] = useState(localStorage.getItem('authToken'));
 
-
+   const {navId} = useSelector(store =>store.fetch)
+   
     const dispatch = useDispatch();
 
     const DeletePrHandle = async (id) => {
@@ -47,9 +49,12 @@ const BottomHeader = () => {
     }
 
     const toggleNav = (id) => {
-        console.log(id);
+    
         setToggleNavlink(id)
+       
     }
+
+  
 
 
 

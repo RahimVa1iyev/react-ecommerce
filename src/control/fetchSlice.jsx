@@ -10,7 +10,8 @@ const initialState = {
     login : false,
     messages : [],
     message: '',
-    errors : []
+    errors : [],
+    navId:1
 };
 
 
@@ -36,6 +37,9 @@ const fetchSlice = createSlice({
         setErrors : (state,action)=>{
             state.errors = action.payload
         },
+        setId : (state,action)=>{
+            state.navId = action.payload
+        }
     },
 });
 
@@ -81,5 +85,5 @@ export const responseMessage = (data) => async (dispatch) => {
 
 
 
-export const { setOrder ,setLogin,setToken ,setMessages,setMessage ,setErrors} = fetchSlice.actions
+export const { setOrder ,setLogin,setToken ,setMessages,setId,setMessage ,setErrors} = fetchSlice.actions
 export default fetchSlice.reducer

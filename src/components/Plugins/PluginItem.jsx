@@ -10,6 +10,7 @@ import { handleOpen, setSelectedProduct, setCompareProduct, handleEye, handleSca
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { getBasketItems } from '../../control/basketSlice';
+import { setId } from '../../control/fetchSlice';
 
 
 
@@ -24,13 +25,13 @@ const PluginItem = (props) => {
     const [token, setToken] = useState(localStorage.getItem('authToken'));
     const [dataId, setDataId] = useState();
     const [clicked, setClicked] = useState(0)
-    const [heart ,setHeart] = useState(false)
+    const [heart, setHeart] = useState(false)
 
     const navigate = useNavigate();
     const disPatch = useDispatch();
-    const { compareProduct,compareCount } = useSelector((store) => store.modal)
+    const { compareProduct, compareCount } = useSelector((store) => store.modal)
     const { id, name, rate, discountedPrice, salePrice, images } = props.product
-    
+
 
     const HoverHandle = () => {
 
@@ -69,7 +70,7 @@ const PluginItem = (props) => {
 
     const CompareHandle = async () => {
 
-        if (!ids.includes(props.product.id) && compareCount < 5 ) {
+        if (!ids.includes(props.product.id) && compareCount < 5) {
 
             await axios.get(`https://localhost:7039/api/Products/compare/${props.product.id}`)
                 .then(res => {
@@ -95,7 +96,7 @@ const PluginItem = (props) => {
             alert("Artix datani elave etmisiz")
         }
 
-         setIds([...ids, props.product.id])
+        setIds([...ids, props.product.id])
 
         disPatch(handleOpen());
         disPatch(handleScale())
@@ -142,7 +143,7 @@ const PluginItem = (props) => {
         }
     }
 
-    const DeleteHandler = (id) =>{
+    const DeleteHandler = (id) => {
         setHeart(false)
         let wishlists = JSON.parse(localStorage.getItem("wishlist"));
         const index = wishlists.indexOf(wishlists.find(c => c.id === id));
@@ -160,7 +161,7 @@ const PluginItem = (props) => {
 
     useEffect(() => {
         disPatch(getBasketItems())
-    },[clicked])
+    }, [clicked])
 
     useEffect(() => {
         const wishlistLocal = JSON.parse(localStorage.getItem('wishlist'));
@@ -168,7 +169,10 @@ const PluginItem = (props) => {
             setHeart(true);
         }
     }, [id]);
-  
+
+    const resetNavHandle = (id) => {
+        disPatch(setId(id))
+    }
 
 
 
@@ -181,7 +185,7 @@ const PluginItem = (props) => {
 
 
             <div key={props.key} className="dis-pr-box ">
-                <div onMouseEnter={HoverHandle} onMouseLeave={PosterHandle} className="box-top">
+                <div onMouseEnter={HoverHandle} onMouseLeave={PosterHandle} onClick={() => resetNavHandle(0)} className="box-top">
                     <Link to={`/detail/${id}`} >
                         {
                             images && images.map((img, index) => (
@@ -201,7 +205,7 @@ const PluginItem = (props) => {
                 <div onMouseEnter={HoverHandle} onMouseLeave={PosterHandle} className={icon}>
 
                     <AiOutlineEye className='card-icon' onClick={EyeIconHandle} />
-                    <BiHeart className={heart ===false ? 'card-icon' : "wishlist-icon"} onClick={heart ===false ? AddWhishlistHandle : ()=> DeleteHandler(id)} />
+                    <BiHeart className={heart === false ? 'card-icon' : "wishlist-icon"} onClick={heart === false ? AddWhishlistHandle : () => DeleteHandler(id)} />
                     <PiScales onClick={CompareHandle} className='card-icon' />
 
                 </div>

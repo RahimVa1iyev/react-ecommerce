@@ -25,7 +25,6 @@ const Detail = () => {
       )
       .catch(err => console.log("An unexpected error occured"))
   }
-  console.log(relatedProducts &&  relatedProducts);
 
 
   useEffect(() => {
