@@ -15,6 +15,16 @@ const Basket = () => {
     const [dataId, setDataId] = useState();
     const [clicked, setClicked] = useState(0)
 
+
+    let total = 0;
+
+    product && product.items.forEach((item, index) => {
+        const price = item.product.discountedPrice > 0 ? item.product.discountedPrice : item.product.salePrice;
+
+        total += item.count * price;
+    });
+
+
     const AddBasketHandle = async (values) => {
 
         if (token) {
@@ -74,87 +84,30 @@ const Basket = () => {
 
     const dispathc = useDispatch()
     useEffect(() => {
+
         dispathc(getBasketItems())
     }, [clicked])
     return (
         <>
-
-            <div classNameName="container-own">
-
-                {/* <div classNameName="basket">
-                    <section id="cart">
-                        {
-                            product && product.items.map((item, index) => (
-                                <article key={index} classNameName="product">
-                                    <header>
-                                        <a classNameName="remove">
-                                            {
-                                                item.product.images.map((img, index) => (
-                                                    <img key={index} src={`https://localhost:7039/uploads/products/${img.imageName}`} alt="Gamming Mouse" />
-                                                ))
-                                            }
-
-                                            <h3 onClick={() => DeletePrHandle(item.product.id)} >Remove product</h3>
-                                        </a>
-                                    </header>
-
-                                    <div classNameName="content">
-
-                                        <h1>{item.product.name}</h1>
-
-                                        {item.product.desc.substring(0, 250)}...
-
-                                        {
-                                            item.product.productColors.map((color) => (
-                                                <div title="You have selected this product to be shipped in the color yellow." style={{ top: 0 }} classNameName={`color ${color.color.name}`}></div>))}
-                                        <div style={{ top: 43 }} classNameName="type small">
-                                            {
-                                                item.product.productSizes.map((size, index) => (
-                                                    <span key={index}>
-                                                        {index > 0 && ", "}
-                                                        {size.size.name}
-                                                    </span>
-                                                ))
-                                            }
-                                        </div>
-                                    </div>
-
-                                    <footer classNameName="content">
-                                        <span onClick={() => MinusHandle(index, item.product.id)} classNameName="qt-minus">-</span>
-                                        <span id={`count-${index}`} classNameName="qt">
-                                            {item.count}
-                                        </span>
-                                        <span onClick={() => PlusHandle(index, item.product.id)} classNameName="qt-plus">+</span>
-
-                                        <h2 classNameName="full-price">
-                                            ${(item.count * (item.product.discountedPrice > 0 ? item.product.discountedPrice : item.product.salePrice)).toFixed(2)}
-                                        </h2>
-
-                                        <h2 classNameName="price">
-                                            ${item.product.discountedPrice > 0 ? item.product.discountedPrice : item.product.salePrice}
-                                        </h2>
-                                    </footer>
-                                </article>
-
-                            ))
-                        }
+            <section className="bass h-100 gradient-custom">
+                <div className="container-own">
 
 
-                    </section>
-                </div> */}
-
-                <section className="h-100 gradient-custom">
-                    <div className="container py-5">
-                        <div className="row d-flex justify-content-center my-4">
-                            <div className="col-md-8">
-                                <div className="card mb-4">
-                                    <div className="card-header py-3">
-                                        <h5 className="mb-0">Cart - 2 items</h5>
-                                    </div>
-                                    <div className="card-body">
 
 
-                                        {
+
+                    <div className="row d-flex justify-content-center my-4">
+                        <div className="col-md-8">
+                            <div className="card mb-4">
+                                <div className="card-header py-3">
+                                    <h5 className="mb-0">Cart - {product && product.items.length} items</h5>
+                                </div>
+                                <div className="card-body">
+
+
+                                    {
+                                        product && product.items.length === 0 ?
+                                            <div className='text-center font-weight-bold' >Your cart is empty</div> :
                                             product && product.items.map((item, index) => (
 
                                                 <>
@@ -171,7 +124,7 @@ const Basket = () => {
                                                             </div>
                                                         </div>
 
-                                                        <div className="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                                                        <div className="col-lg-5 col-md-6 mb-4 mb-lg-0 text-center text-sm-start">
                                                             <p><strong>{item.product.name}</strong></p>
                                                             <p className='mt-2 mb-2' >  {
                                                                 item.product.productColors.map((color, index) => (
@@ -189,14 +142,13 @@ const Basket = () => {
                                                                     </span>
                                                                 ))
                                                             }</p>
-                                                            <button type="button" className="shopping-cart-del-btn me-1 mb-2" data-mdb-toggle="tooltip"
-                                                                title="Remove item">
-                                                                <BiSolidTrashAlt onClick={() => DeletePrHandle(item.product.id)} />
-                                                            </button>
-                                                            <button type="button" className="shopping-cart-heart-btn mb-2" data-mdb-toggle="tooltip"
-                                                                title="Move to the wish list">
-                                                                <AiFillHeart />
-                                                            </button>
+                                                         
+                                                                <button type="button" className="shopping-cart-del-btn me-1 mb-2 " data-mdb-toggle="tooltip"
+                                                                    title="Remove item">
+                                                                    <BiSolidTrashAlt onClick={() => DeletePrHandle(item.product.id)} />
+                                                                </button>
+                                                           
+
                                                         </div>
 
                                                         <div className="col-lg-4 col-md-6 mb-4 mb-lg-0">
@@ -217,7 +169,7 @@ const Basket = () => {
                                                                 </button>
                                                             </div>
 
-                                                            <p className="text-start text-md-center">
+                                                            <p className="text-center ">
                                                                 <strong>${item.product.discountedPrice > 0 ? item.product.discountedPrice : item.product.salePrice}</strong>
                                                             </p>
                                                         </div>
@@ -229,58 +181,55 @@ const Basket = () => {
 
                                             )
                                             )
-                                        }
+                                    }
 
 
 
 
 
 
-                                    </div>
                                 </div>
-                              
-                               
                             </div>
-                            <div className="col-md-4">
-                                <div className="card mb-4">
-                                    <div className="card-header py-3">
-                                        <h5 className="mb-0">Summary</h5>
-                                    </div>
-                                    <div className="card-body">
-                                        <ul className="list-group list-group-flush">
 
-                                            <li className="list-group-item d-flex justify-content-between align-items-center px-0">
-                                                Shipping
-                                                <span>Gratis</span>
-                                            </li>
-                                            <li
-                                                className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
-                                                <div>
-                                                    <strong>Total amount</strong>
 
-                                                </div>
-                                                <span><strong>
+                        </div>
+                        <div className="col-md-4">
+                            <div className="card mb-4">
+                                <div className="card-header py-3">
+                                    <h5 className="mb-0">Summary</h5>
+                                </div>
+                                <div className="card-body">
+                                    <ul className="list-group list-group-flush">
 
-                                                    ${product && product.items.map((item, index) => (
+                                        <li className="list-group-item d-flex justify-content-between align-items-center px-0">
+                                            Shipping
+                                            <span>Gratis</span>
+                                        </li>
+                                        <li
+                                            className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                                            <div>
+                                                <strong>Total amount</strong>
 
-                                            (item.count * (item.product.discountedPrice > 0 ? item.product.discountedPrice : item.product.salePrice)).toFixed(2)
-                                                        
+                                            </div>
+                                            <span><strong>
 
-                                                    ))}
-                                                </strong></span>
-                                            </li>
-                                        </ul>
+                                                ${total.toFixed(2)}
+                                            </strong></span>
+                                        </li>
+                                    </ul>
 
-                                        <Link to='/checkout' type="button" className="go-to-checkout-btn">
-                                            Go to checkout
-                                        </Link>
-                                    </div>
+                                    <Link to='/checkout' type="button" className="go-to-checkout-btn">
+                                        Go to checkout
+                                    </Link>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
-            </div>
+
+
+
+                </div>
+            </section>
 
         </>
     )

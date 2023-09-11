@@ -1,3 +1,4 @@
+@import "../abstracts/extend";
 .shopping-cart-del-btn{
 	background-color: #0d6efd;
 	color: #fff;
@@ -14,6 +15,10 @@
 	border: none;
 }
 
+.container-own {
+    @extend .container-extend;
+}
+
 .input-btn{
 	padding: 2px;
 	height: 40px;
@@ -28,6 +33,8 @@
 	width: 50%;
 	text-align: center;
 	.qt{
+	border-radius: 2px;
+
 		border: 1px solid rgb(230, 220, 220);
 		padding: 8px 40px;
 	}
@@ -60,4 +67,15 @@
 	background-color: #f9706a;
 	color: #fff;
  }
+}
+
+@media(max-width:576px){
+	.form-outline{
+		width: 50%;
+		text-align: center;
+		.qt{
+			border: 1px solid rgb(230, 220, 220);
+			padding: 8px 70px;
+		}
+	}
 }

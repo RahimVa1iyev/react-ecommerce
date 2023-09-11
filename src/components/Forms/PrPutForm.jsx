@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage, useFormikContext } from 'formik'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Select from 'react-select';
+import { toast } from 'react-toastify';
 
 
 
@@ -101,8 +102,18 @@ const PrPutForm = (props) => {
                 }
             })
                 .then(res => {
-                    console.log("Product succesfully update")
+                   
                     navigate("/dashboard/products")
+                    toast.success('Product updated successfully', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        });
                 })
                 .catch(error => {
                     console.log(error.response.data);

@@ -7,13 +7,13 @@ import { TiSocialYoutube } from 'react-icons/ti';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-import jwt_decode from 'jwt-decode';
-import jwtDecode from 'jwt-decode';
+import { Link } from 'react-router-dom';
 
 const TopHeader = () => {
 
     const [show, setShow] = useState("visible")
     const [user, setUser] = useState();
+    const [log ,setLog] = useState(0)
 
     const DropdownHandler = () => {
         setShow(show === "visible" ? "" : "visible")
@@ -22,7 +22,13 @@ const TopHeader = () => {
 
     let count = 0
 
+   const logOutHandle = (e)=>{
 
+    e.preventDefault();
+    
+    localStorage.removeItem('authToken')
+    setUser(undefined)
+   }
 
     const getData = async () => {
         count++
@@ -48,7 +54,7 @@ const TopHeader = () => {
     useEffect(() => {
     
         getData();
-    }, [show]);
+    }, [show,log]);
     // useEffect(() => {
     //     var ddd = localStorage.getItem('authToken');
     //     if (token && token.length > 0) {
@@ -91,14 +97,14 @@ const TopHeader = () => {
                             <div className={show === "visible" ? "dropdown-account visible" : "dropdown-account"}>
                                 {
                                     user === undefined ? <div className="row g-3" >
-                                        <a href="#" className='login'> Log in </a>
+                                        <Link to="/login" className='login'> Log in </Link>
 
-                                        <a href="#" className='createAccount'> Create account </a>
+                                        <Link to="/register" className='createAccount'> Create account </Link>
                                     </div> :
                                         <div className="row g-3" >
-                                            <a href="#" className='login'> {user && user.userName} </a>
+                                            <Link to="/profile" className='login'> {user && user.userName} </Link>
 
-                                            <a href="#" className='createAccount'> Log Out </a>
+                                            <Link to='/'  onClick={logOutHandle} className='createAccount'> Log Out </Link>
                                         </div>
                                 }
                             </div>

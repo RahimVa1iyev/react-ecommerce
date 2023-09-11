@@ -20,7 +20,7 @@ const Register = () => {
 
     const onSubmit = async (values) => {
         console.log(values);
-       dispatch(createUser(values))
+        dispatch(createUser(values))
     }
 
     return (
@@ -51,12 +51,16 @@ const Register = () => {
                                 <div className="form-data">
                                     <Field className="customInput " type="text" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" />
                                 </div>
-                                <div className="d-flex align-items-center justify-content-between">
-                                    <div className="form-data">
-                                        <Field className="customInput " type="password" id="password" name="password" placeholder="Password" />
+                                <div className="row align-items-center justify-content-between">
+                                    <div className="col-lg-6 col-12">
+                                        <div className="form-data">
+                                            <Field className="customInput " type="password" id="password" name="password" placeholder="Password" />
+                                        </div>
                                     </div>
-                                    <div className="form-data">
-                                        <Field className="customInput " type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" />
+                                    <div className="col-lg-6 col-12">
+                                        <div className="form-data">
+                                            <Field className="customInput " type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" />
+                                        </div>
                                     </div>
                                 </div>
                                 {error && <div className="error-message">{error}</div>}
@@ -72,7 +76,7 @@ const Register = () => {
                 </div>
             </div>
 
-            <ConfirmModal data = {1} />
+            <ConfirmModal data={1} />
 
         </>
     )

@@ -4,6 +4,9 @@ import DashNavbar from '../../layouts/Dashboard/DashNavbar'
 import PrTable from '../../components/Tables/PrTable'
 import ClockLoader from "react-spinners/ClockLoader";
 import axios from 'axios';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 const Product = () => {
@@ -33,6 +36,18 @@ const Product = () => {
     
     return (
         <>
+             <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+         />
             <div className="top-side">
                 <div className="container-fluid">
                     <div className="row  ">

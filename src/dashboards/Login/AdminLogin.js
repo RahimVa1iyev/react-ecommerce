@@ -2,6 +2,8 @@ import axios from 'axios'
 import { Field, Form, Formik } from 'formik'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const AdminLogin = () => {
@@ -33,6 +35,20 @@ const AdminLogin = () => {
 
     return (
         <>
+
+<ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+         />
+        
             <div className="admin-login">
                 <div className="background">
                     <div className="shape"></div>

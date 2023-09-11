@@ -5,6 +5,9 @@ import FrTable from '../../components/Tables/FrTable';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Category = () => {
 
@@ -26,6 +29,18 @@ const Category = () => {
   
     return (
       <>
+         <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+         />
         <div className="top-side">
           <div className="container-fluid">
             <div className="row  ">

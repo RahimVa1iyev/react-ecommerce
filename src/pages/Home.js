@@ -8,6 +8,9 @@ import Modals from '../components/Modal/Modals';
 import { useState } from 'react';
 import axios from 'axios';
 import { useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Home = () => {
    const [products , setProducts] =useState({
@@ -64,8 +67,23 @@ const Home = () => {
          getBestSellerPr();
     },[])
 
+
+    
+
   return (
     <>
+       <ToastContainer
+            position="bottom-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+         />
       <Carousell />
       <Features />
       <SliderPlugin title="Today's Deals" slideshow={4} row={1} responsiveRow={2} perrow={1} plugin="first" products = {products.relatedProducts}  visible="d-block" />
@@ -84,12 +102,13 @@ const Home = () => {
             <SliderPlugin title="Bestseller Products" slideshow={1} responsiveRow={1} row={3} perrow={3} plugin="second" visible="d-none" products={products.bestSellerProducts} />
           </div>
         </div>
+        
+     
       </div>
 
-        <div className="modal">
+      <div className="modal">
           <Modals />
         </div>
-
     </>
   )
 }

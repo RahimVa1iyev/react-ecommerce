@@ -3,6 +3,9 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { basicSchema } from '../../schemas/index';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const PostForm = (props) => {
   const [error, setError] = useState(null);
@@ -21,8 +24,17 @@ const PostForm = (props) => {
    const postFetch = async () =>{
     await axios.post(`https://localhost:7039/api/${props.controller}`, values)
     .then(response => {
-      console.log("Brand created successfully");
       navigate(`/dashboard/${props.route}`)
+      toast.success(`${props.label} created successfully`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
     })
     .catch(error => {
       if (error.response.status === 400) {
@@ -45,6 +57,7 @@ const PostForm = (props) => {
   }
   return (
     <>
+   
       <div className="container-form">
         <div className="form-head">
           <h6>{props.tableName}</h6>

@@ -4,6 +4,9 @@ import DashNavbar from '../../layouts/Dashboard/DashNavbar'
 import FrTable from '../../components/Tables/FrTable'
 import { useSelector } from 'react-redux'
 import axios from 'axios'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify'
+
 
 const Colour = () => {
 
@@ -22,6 +25,19 @@ const Colour = () => {
     }, [Id])
   return (
     <>
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+         />
+    
       <div className="top-side">
         <div className="container-fluid">
           <div className="row  ">

@@ -3,6 +3,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik"
 import { basicSchema } from '../../schemas'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const PutForm = (props) => {
 
@@ -43,7 +44,16 @@ const PutForm = (props) => {
     const putFetch = async () =>{
       await axios.put(`https://localhost:7039/api/${props.controller}/${props.id}`,values)
       .then(response => {
-        console.log("Brand updated successfully");
+        toast.success(`${props.label} updated successfully`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
         navigate(`/dashboard/${props.route}`)
       })
      

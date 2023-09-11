@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { TiStarFullOutline } from 'react-icons/ti';
 import { TiStarOutline } from 'react-icons/ti';
+import { toast } from 'react-toastify';
 
 const TabPlugin = (props) => {
   const [toggle, setToggle] = useState(1);
@@ -38,7 +39,17 @@ const TabPlugin = (props) => {
         Authorization: `Bearer ${token}`
       }
     })
-      .then(res => { setReviewToggle(false); setClicked(clicked + 1) })
+      .then(res => { setReviewToggle(false); setClicked(clicked + 1); 
+        toast.success('Review added successfully', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        }); })
       .catch(err => console.log(err.response.data))
   }
 

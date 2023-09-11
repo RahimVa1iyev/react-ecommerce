@@ -6,11 +6,13 @@ import { BiHeart } from 'react-icons/bi';
 import { PiScales } from 'react-icons/pi';
 import { AiOutlineEye } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
-import { handleOpen, setSelectedProduct, setCompareProduct, handleEye, handleScale, setCompareCount } from '../../control/modalSlice';
+import { handleOpen, setSelectedProduct, setCompareProduct, handleEye, handleScale, setCompareCount, setIds } from '../../control/modalSlice';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { getBasketItems } from '../../control/basketSlice';
-import { setId } from '../../control/fetchSlice';
+import { setSelectedNav, setSelectedRoute } from '../../control/navSlice';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -20,7 +22,7 @@ const PluginItem = (props) => {
     const [hover, setHover] = useState("hover-img-off");
     const [poster, setPoster] = useState("hover-img-on");
     const [icon, setIcon] = useState("box-icons-off");
-    const [ids, setIds] = useState([]);
+   
     const [count, setCount] = useState(0);
     const [token, setToken] = useState(localStorage.getItem('authToken'));
     const [dataId, setDataId] = useState();
@@ -29,8 +31,15 @@ const PluginItem = (props) => {
 
     const navigate = useNavigate();
     const disPatch = useDispatch();
-    const { compareProduct, compareCount } = useSelector((store) => store.modal)
-    const { id, name, rate, discountedPrice, salePrice, images } = props.product
+    const { compareProduct, compareCount,ids } = useSelector((store) => store.modal)
+    // if (props.size === '0') {
+    //     const { id, name, rate, discountedPrice, salePrice, images } = props.product;
+    //   } else {
+    //     const { id, name, rate, discountedPrice, salePrice, imageName } = props.product;
+    //   }
+      const {id} = props.product
+
+    
 
 
     const HoverHandle = () => {
@@ -70,14 +79,14 @@ const PluginItem = (props) => {
 
     const CompareHandle = async () => {
 
-        if (!ids.includes(props.product.id) && compareCount < 5) {
+        if (!ids.includes(props.product.id) && compareCount < 3) {
+            
 
             await axios.get(`https://localhost:7039/api/Products/compare/${props.product.id}`)
                 .then(res => {
                     disPatch(setCompareProduct([...compareProduct, res.data]))
-                    console.log("salam");
                     disPatch(setCompareCount(1))
-
+                   
 
                 })
                 .catch(err => {
@@ -89,19 +98,37 @@ const PluginItem = (props) => {
                 })
 
         }
-        else if (compareCount >= 5) {
-            alert("Maximum 5 product elave ede bilersiz")
+        else if (compareCount >=  3) {
+            toast.warning('You can add a maximum of 3 products', {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
         }
         else {
-            alert("Artix datani elave etmisiz")
+            toast.warning('You have already added the product', {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
         }
 
-        setIds([...ids, props.product.id])
-
+        disPatch(setIds([...ids, props.product.id]))
         disPatch(handleOpen());
         disPatch(handleScale())
+
     }
-    const values = { id }
+    const values = {id}
 
 
     const AddBasketHandle = async () => {
@@ -114,9 +141,20 @@ const PluginItem = (props) => {
                 }
             })
                 .then(res => {
+                    toast.success('Product added successfully', {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        });
                     setDataId(res.data.count);
                     setClicked(clicked + 1)
                     disPatch(setCount(res.data.count))
+                  
 
                 })
                 .catch(err => {
@@ -133,13 +171,33 @@ const PluginItem = (props) => {
         setHeart(true)
         let wishlistLocal = JSON.parse(localStorage.getItem('wishlist'))
         if (wishlistLocal !== null) {
-            if (wishlistLocal.find(pr => pr.id === id) === undefined) {
+            if (wishlistLocal.find(pr => pr.id === props.product.id) === undefined) {
                 wishlistLocal.push(props.product)
                 localStorage.setItem("wishlist", JSON.stringify([...wishlistLocal]));
+                toast.success('Product added successfully', {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    });
             }
         }
         else {
             localStorage.setItem("wishlist", JSON.stringify([props.product]));
+            toast.success('Product added successfully', {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
         }
     }
 
@@ -154,6 +212,17 @@ const PluginItem = (props) => {
             localStorage.setItem("wishlist", JSON.stringify(wishlists));
         }
 
+        toast.error('Product deleted successfully', {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+
     }
 
 
@@ -165,30 +234,35 @@ const PluginItem = (props) => {
 
     useEffect(() => {
         const wishlistLocal = JSON.parse(localStorage.getItem('wishlist'));
-        if (wishlistLocal && wishlistLocal.some(item => item.id === id)) {
+        if (wishlistLocal && wishlistLocal.some(item => item.id === props.product.id)) {
             setHeart(true);
         }
-    }, [id]);
+    }, [props.product.id]);
 
-    const resetNavHandle = (id) => {
-        disPatch(setId(id))
+    const navRouteHandle = () => {
+      
+        console.log("salam");
+        disPatch(setSelectedNav('Detail'))
+        disPatch(setSelectedRoute(`/detail/${props.product.id}`))
     }
 
 
 
     const getStarIcon = (i) => {
-        return i <= rate ? <TiStarFullOutline key={i} className='full' /> : <TiStarOutline key={i} className='outer' />;
+        return i <= props.product.rate ? <TiStarFullOutline key={i} className='full' /> : <TiStarOutline key={i} className='outer' />;
     };
     return (
         <>
 
 
 
-            <div key={props.key} className="dis-pr-box ">
-                <div onMouseEnter={HoverHandle} onMouseLeave={PosterHandle} onClick={() => resetNavHandle(0)} className="box-top">
-                    <Link to={`/detail/${id}`} >
+            {
+                props.size==='0'?
+                <div key={props.key} className="dis-pr-box ">
+                <div onMouseEnter={HoverHandle} onMouseLeave={PosterHandle} onClick={navRouteHandle} className="box-top text-center">
+                    <Link to={`/detail/${props.product.id}`} >
                         {
-                            images && images.map((img, index) => (
+                            props.product.images && props.product.images.map((img, index) => (
 
                                 <>
                                     {img.imageStatus === true && <img key={index} className={poster} src={img.imageName} alt='my clock' />}
@@ -205,25 +279,32 @@ const PluginItem = (props) => {
                 <div onMouseEnter={HoverHandle} onMouseLeave={PosterHandle} className={icon}>
 
                     <AiOutlineEye className='card-icon' onClick={EyeIconHandle} />
-                    <BiHeart className={heart === false ? 'card-icon' : "wishlist-icon"} onClick={heart === false ? AddWhishlistHandle : () => DeleteHandler(id)} />
+                    <BiHeart className={heart === false ? 'card-icon' : "wishlist-icon"} onClick={heart === false ? AddWhishlistHandle : () => DeleteHandler(props.product.id)} />
                     <PiScales onClick={CompareHandle} className='card-icon' />
 
                 </div>
                 <div className="box-bottom d-flex align-items-center gap-6 ">
                     <div className="left-side-box">
                         <h4>
-                            {name.substring(0, 30)}...
+                            {props.product.name.substring(0, 30)}...
                         </h4>
                         <div className="stars">
                             {[1, 2, 3, 4, 5].map((i) => (
                                 getStarIcon(i)
                             ))}
                         </div>
+                    {
+                        props.product.discountedPrice>0?
                         <div className="price d-flex align-items-center gap-3">
 
-                            <span className='new-price'>${discountedPrice}</span>
-                            <del className='old-price'>${salePrice}</del>
-                        </div>
+                        <span className='new-price'>${props.product.discountedPrice}</span>
+                        <del className='old-price'>${props.product.salePrice}</del>
+                    </div>:
+                        <div className="price d-flex align-items-center gap-3">
+
+                        <span className='new-price'>${props.product.salePrice}</span>
+                    </div>
+                    }
                     </div>
 
                     <div className="box-basket-icon">
@@ -231,7 +312,57 @@ const PluginItem = (props) => {
                     </div>
 
                 </div>
+            </div>:
+              
+              <div className={props.size==='2'? "col-lg-6 mb6" : "col-lg-4"}>
+              <div className="shop-items">
+                <div onMouseEnter={HoverHandle} onMouseLeave={PosterHandle} className="box-top text-center">
+                 
+                 <Link to={`/detail/${props.product.id}`}> <img className="poster-img-on" src={props.product.imageName} alt="" /></Link>
+             
+                </div>
+                <div onMouseEnter={HoverHandle} onMouseLeave={PosterHandle} className={icon}>
+      
+                  <AiOutlineEye className='card-icon' onClick={EyeIconHandle} />
+                  <BiHeart className={heart === false ? 'card-icon' : "wishlist-icon"} onClick={heart === false ? AddWhishlistHandle : () => DeleteHandler(props.product.id)} />
+                  <PiScales onClick={CompareHandle} className='card-icon' />
+
+      
+                </div>
+                <div className="box-bottom d-flex align-items-center gap-6 ">
+                  <div className="left-side-box">
+                    <h4>
+                      {props.product.name.substring(0,30)}...
+                    </h4>
+                    <div className="stars">
+                      {[1, 2, 3, 4, 5].map((i) => (
+                        getStarIcon(i)
+                      ))}
+                    </div>
+                   {
+                    props.product.discountedPrice>0 ?
+                    <div className="price d-flex align-items-center gap-3">
+      
+                    <span className='new-price'>${props.product.discountedPrice}</span>
+                    <del className='old-price'>${props.product.salePrice}</del>
+                  </div>:
+                   <div className="price d-flex align-items-center gap-3">
+      
+                   <span className='new-price'>${props.product.salePrice}</span>
+                 </div>
+                   }
+                  </div>
+      
+                  <div className="box-basket-icon">
+                   <LuShoppingCart onClick={AddBasketHandle} className='box-basket-i' />
+
+                  </div>
+      
+                </div>
+              </div>
             </div>
+
+            }
 
         </>
     )

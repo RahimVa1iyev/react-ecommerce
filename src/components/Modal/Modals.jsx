@@ -3,7 +3,7 @@ import Box from '@mui/material/Box'
 import Modal from '@mui/material/Modal'
 import Button from '@mui/material/Button'
 import { useDispatch, useSelector } from 'react-redux';
-import { handleOpen, removeFromCompareProduct, setCompareProduct } from '../../control/modalSlice';
+import { handleOpen, removeFromCompareProduct, setCompareProduct, setIds } from '../../control/modalSlice';
 import { handleClose } from '../../control/modalSlice';
 import DetailItem from '../Detail/DetailItem';
 import  {FiX} from "react-icons/fi"
@@ -27,7 +27,7 @@ const style = {
 };
 
 const Modals = () => {
-  const { modalOpen, selectedProduct,compareProduct,activeIcon,orderItems } = useSelector((store) => store.modal)
+  const { modalOpen, selectedProduct,compareProduct,activeIcon,orderItems,ids } = useSelector((store) => store.modal)
   const disPatch = useDispatch()
   const handleOpenModal = () => {
     disPatch(handleOpen());
@@ -39,14 +39,12 @@ const Modals = () => {
 
   const handleDeletePr = (id) =>{
     console.log("id",id);
-    // var removablePr = document.querySelectorAll(`[data-product-id="${id}"]`);
-    // removablePr.forEach((pr)=>{
-    //   const parent = pr.parentNode;
-    //   parent.removeChild(pr)
-    // })
+  
      
     let filteredData = compareProduct.filter((item => item.id !== id))
     disPatch(setCompareProduct(filteredData))
+    let filteredIds = ids.filter(item=> item !==id)
+    disPatch(setIds(filteredIds))
 
   }
 

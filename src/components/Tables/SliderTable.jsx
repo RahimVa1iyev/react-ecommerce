@@ -5,6 +5,7 @@ import { MdDeleteForever } from 'react-icons/md';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setId } from '../../control/dashboardSlice';
+import { toast } from 'react-toastify';
 
 
 const SliderTable = (props) => {
@@ -14,7 +15,18 @@ const SliderTable = (props) => {
 let count = 1;
   const deleteHandle = async (id) => {
     await axios.delete(`https://localhost:7039/api/sliders/${id}`)
-            .then(response => console.log(response))
+            .then(response => 
+              toast.error('Slider deleted successfully', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                })
+              )
             .catch(error => console.log(error))
       navigate("/dashboard/sliders")
       dishPatch(setId(id))

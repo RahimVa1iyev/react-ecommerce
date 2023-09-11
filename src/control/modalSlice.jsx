@@ -11,6 +11,7 @@ const initialState ={
     orderItems:[],
     email:'',
     compareCount : 0,
+    ids: []
 }
 console.log("slice",initialState.email);
 
@@ -24,6 +25,9 @@ const modalSlice = createSlice({
 
         handleClose :(state)=>{
             state.modalOpen = false;
+        },
+        setIds : (state,action)=>{
+            state.ids = action.payload
         },
         handleConfirmModalOpen : (state)=>{
             state.confirmModalOpen =true;
@@ -56,8 +60,9 @@ const modalSlice = createSlice({
         },
 
         handleView :(state)=>{
-            state.activeIcon = "view";
+            state.activeIcon ="view";
         },
+
         setOrderItem: (state,action) => {
             state.orderItems = action.payload;
         },
@@ -104,5 +109,5 @@ export const createUser = (values) => async (dispatch) => {
 
 
 
-export const { handleOpen, handleClose, setUserId ,handleConfirmModalClose,handleConfirmModalOpen, setSelectedProduct , setCompareProduct ,handleEye,handleView,handleScale,removeFromCompareProduct,setOrderItem,setEmail,setCompareCount } = modalSlice.actions;
+export const { handleOpen,setIds, handleClose, setUserId ,handleConfirmModalClose,handleConfirmModalOpen, setSelectedProduct , setCompareProduct ,handleEye,handleView,handleScale,removeFromCompareProduct,setOrderItem,setEmail,setCompareCount } = modalSlice.actions;
 export default modalSlice.reducer

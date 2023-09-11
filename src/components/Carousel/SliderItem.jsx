@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 
 const SliderItem = (props) => {
@@ -12,7 +13,7 @@ const SliderItem = (props) => {
                     <h4>{title}</h4>
                     <h1>{secondTitle}</h1>
                     <p>{description}</p>
-                    <a href={buttonUrl}>{buttonText}</a>
+                    <Link to={buttonUrl}>{buttonText}</Link>
                 </div>
             </div>
         

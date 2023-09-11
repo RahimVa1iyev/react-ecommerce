@@ -5,6 +5,8 @@ import { HiPhone } from 'react-icons/hi';
 import { HiOutlineMail } from 'react-icons/hi';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -30,7 +32,18 @@ const Contact = () => {
         Authorization: `Bearer ${token}`
       }
     })
-      .then(res => { console.log("Message send succesfully"); resetForm(); })
+      .then(res => { 
+         toast.success('Messge send successfully', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+         resetForm(); })
       .catch(error => {
         if (error.response.status === 400)
           error.response.data.errors.forEach(err => setError(err.errorMessage));
@@ -68,6 +81,19 @@ useEffect(()=>{
 
   return (
     <>
+
+<ToastContainer
+            position="bottom-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+         />
       <div className="container-own">
         <div className="contact-us">
           <div className="row align-items-start justify-content-between">

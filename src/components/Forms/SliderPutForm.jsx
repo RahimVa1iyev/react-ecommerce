@@ -2,6 +2,7 @@ import axios from 'axios';
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const SliderPutForm = (props) => {
 
@@ -48,8 +49,18 @@ const onSubmit = async (values)=>{
                 "Content-Type": "multipart/form-data"
             }
         });
-        console.log("Sliders successfully created", response.data);
+      
         navigate("/dashboard/sliders")
+        toast.success('Slider updated successfully', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
     } catch (error) {
         if (error.response.status === 400) {
             error.response.data.errors.forEach(err => setError(err.errorMessage));

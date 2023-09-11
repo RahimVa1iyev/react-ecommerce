@@ -4,6 +4,7 @@ import { MdDeleteForever } from 'react-icons/md'
 import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { setId } from '../../control/dashboardSlice'
+import { toast } from 'react-toastify'
 
 const AdminTable = (props) => {
 
@@ -14,7 +15,18 @@ const AdminTable = (props) => {
     const deleteHandle = async (id) => {
         console.log(id);
         await axios.delete(`https://localhost:7039/api/Accounts/${id}`)
-                .then(response => console.log(response))
+                .then(response => 
+                    toast.error('Admin deleted successfully', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        })
+            )
                 .catch(error => console.log(error))
           navigate(`/dashboard/admins`)
           disPatch(setId(id))

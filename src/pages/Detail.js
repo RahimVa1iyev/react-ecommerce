@@ -8,6 +8,8 @@ import TabPlugin from '../components/Plugins/TabPlugin';
 import SliderPlugin from '../components/Plugins/SliderPlugin';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Detail = () => {
@@ -36,6 +38,18 @@ const Detail = () => {
 
   return (
     <>
+      <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+         />
       <div className="container-own">
         <div className="col-lg-12">
           <div className="detail-top-side mt-1">

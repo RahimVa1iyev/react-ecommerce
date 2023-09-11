@@ -2,6 +2,7 @@ import { Formik ,Form,Field,ErrorMessage } from 'formik'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getMessage, getMessages, responseMessage } from '../../control/fetchSlice';
+import { ToastContainer, toast } from 'react-toastify';
 
 const MessageForm = (props) => {
 
@@ -19,9 +20,11 @@ const MessageForm = (props) => {
 
     const onSubmit = async ({resetForm}) =>{
         const data = {id : props.id , response : text}
-
+         
+      
         dispatch(responseMessage(data))
 
+     
         resetForm();
     }
 
@@ -33,6 +36,18 @@ const MessageForm = (props) => {
 
   return (
     <>
+     <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
             <div className="product-form">
         <div className="form-head">
           <h6>Response Message</h6>

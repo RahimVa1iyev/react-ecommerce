@@ -217,22 +217,7 @@
        .card-icon{
         @extend .card-icon
        }
-       .wishlist-icon{
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
-        padding: 5px;
-        cursor: pointer;
-        transition: 0.4s;
-        color: $button-color;
-    
-        &:hover {
-            background-color: $button-color;
-            color: #fff;
-            transition: 0.4s;
-    
-        }
-       }
+      
     }
 }
 
@@ -343,3 +328,20 @@
     }
 
 }
+
+.wishlist-icon{
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
+    transition: 0.4s;
+    color: $button-color;
+
+    &:hover {
+        background-color: $button-color;
+        color: #fff;
+        transition: 0.4s;
+
+    }
+   }

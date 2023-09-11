@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 
 
@@ -77,7 +78,16 @@ export const getMessage = (id) => async (dispatch) => {
 export const responseMessage = (data) => async (dispatch) => {
     try {
       await axios.post(`https://localhost:7039/api/Contacts/response`,data)
-                .then(res=> {console.log("Message send succesfuly") ; } )    
+                .then(res=>    toast.success('Message send succesfully', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    }) )    
     }
     catch (error) { console.log(error.response.data)}
 }

@@ -3,7 +3,6 @@ import img1 from '../assets/image/shop-img.png';
 import { TbGridDots } from 'react-icons/tb';
 import { HiOutlineBars3 } from 'react-icons/hi2';
 
-import ShopItem from '../components/ShopItem/ShopItem';
 import Pagination from '../components/Pagination/Pagination';
 import { useEffect } from 'react';
 import SecondShopItem from '../components/ShopItem/SecondShopItem';
@@ -11,6 +10,9 @@ import { Formik, Form, Field } from 'formik';
 import Slider from '@mui/material/Slider';
 import axios from 'axios';
 import Modals from '../components/Modal/Modals';
+import PluginItem from '../components/Plugins/PluginItem';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Shop = () => {
 
@@ -64,6 +66,8 @@ const Shop = () => {
             })
 
     }
+
+    
 
     useEffect(() => {
       
@@ -202,6 +206,18 @@ const Shop = () => {
 
     return (
         <>
+             <ToastContainer
+            position="bottom-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+         />
             <div className="container-own">
                 <div className="row">
                     <div className="col-lg-3 col-12 ">
@@ -367,7 +383,7 @@ const Shop = () => {
                             <div className="row align-items-center justify-content-center g-2">
                                 {
                                     cols !== '1' ? currentItems && currentItems.map(product => (
-                                        <ShopItem size={cols} product={product} />
+                                        <PluginItem size={cols} product={product} />
 
                                     )) :
                                         currentItems && currentItems.map(product => (

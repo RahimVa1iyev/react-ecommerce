@@ -5,6 +5,10 @@
     @extend .container-extend
 }
 
+.check-page{
+    padding: 100px 0;
+}
+
 .check-page-left {
 
     .btn-side {
@@ -28,8 +32,7 @@
             margin-bottom: 20px;
 
             .customInput {
-                line-height: 50px;
-                padding-left: 20px;
+                padding:15px 20px;
                 border: 1px solid #e0e0e0;
                 outline: none;
                 border-radius: 4px;
@@ -74,14 +77,14 @@
                 position: relative;
 
                 img {
-                    width: 50px;
-                    height: 50px;
+                    width: 80px;
+                    height: 90px;
                 }
                 .pr-count{
                     background-color: #737373;
                     position: absolute;
-                    top: -8px;
-                    right: -4px;
+                    top: -12px;
+                    right: -8px;
                     width: 20px;
                     height: 20px;
                     border-radius: 50px;
@@ -119,4 +122,10 @@
             font-weight: bold;
         }
     }
+}
+
+@media(max-width:576px){
+  .check-page-right{
+    margin-top: 20px;
+  }
 }

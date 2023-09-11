@@ -8,7 +8,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import Modals from '../components/Modal/Modals'
 import { getBasketItems, handleOpen, handleView } from '../control/modalSlice'
 import { getOrders } from '../control/fetchSlice'
-import { store } from '../store'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 
@@ -118,7 +120,9 @@ const Profile = () => {
 
         setToggle(number)
     }
+
     const getOrderItems = (id) =>{
+        
         dispatch(handleView())
         dispatch(handleOpen())
         dispatch(getOrderItems(id))
@@ -137,8 +141,21 @@ const Profile = () => {
 
     return (
         <>
+             <ToastContainer
+            position="bottom-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+         />
             <div className="container-own mb-4 ">
-                <div className="row">
+               <div className="profile-page">
+               <div className="row">
                     <div className="col-lg-4 pb-5">
 
                         <div className="author-card pb-3">
@@ -342,6 +359,7 @@ const Profile = () => {
 
                     </div>
                 </div>
+               </div>
             </div>
 
             <div className="modal">

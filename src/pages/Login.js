@@ -4,6 +4,9 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setLogin, setToken } from '../control/fetchSlice';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Login = () => {
 
@@ -35,6 +38,18 @@ const Login = () => {
   return (
     <>
 
+<ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+         />
       <div className="container-own">
         <div className="login-page">
           <div className="login-text">
@@ -54,11 +69,11 @@ const Login = () => {
                 {error && <div className="error-message">{error}</div>}
                 <div className="btn-side">
                   <button type='submit' >Sign In</button>
-                  <Link to='/forgot-password' >Forgot your password?</Link>
+                  <Link to='/forgot-password' className='link-forgot' >Forgot your password?</Link>
                 </div>
 
 
-                <p className='create-account'>Create account</p>
+                <Link to='/register' className='create-account'>Create account</Link>
               </Form>
 
             </Formik>

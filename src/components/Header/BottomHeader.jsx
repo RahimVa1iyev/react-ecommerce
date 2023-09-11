@@ -4,13 +4,13 @@ import { LuShoppingCart } from 'react-icons/lu';
 import { AiOutlineBars } from 'react-icons/ai';
 import SideBarMenu from './SideBarMenu';
 import { useDispatch, useSelector } from 'react-redux';
-import img1 from '../../assets/image/pr1.png'
 import { FiX } from 'react-icons/fi';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 import { getBasketItems, setClicked } from '../../control/basketSlice';
 import { AiOutlineHeart } from 'react-icons/ai'
-import { setId } from '../../control/fetchSlice';
+import { setSelectedNav, setSelectedRoute } from '../../control/navSlice';
+import { toast } from 'react-toastify';
 
 const BottomHeader = () => {
     const [toggle, setToggle] = useState("side-bar-off");
@@ -19,8 +19,10 @@ const BottomHeader = () => {
     const [toggleNavlink, setToggleNavlink] = useState(1);
     const [token, setToken] = useState(localStorage.getItem('authToken'));
 
-   const {navId} = useSelector(store =>store.fetch)
-   
+    const { selectedNav } = useSelector(store => store.nav)
+
+
+
     const dispatch = useDispatch();
 
     const DeletePrHandle = async (id) => {
@@ -31,8 +33,18 @@ const BottomHeader = () => {
             }
         })
             .then(res => {
-                console.log("Product deleted");
+                
                 dispatch(getBasketItems())
+                toast.error('Product deleted successfully', {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    });
 
             })
 
@@ -49,19 +61,36 @@ const BottomHeader = () => {
     }
 
     const toggleNav = (id) => {
-    
-        setToggleNavlink(id)
-       
+        console.log(id);
+        if (id === 2) {
+            dispatch(setSelectedNav('Shop'))
+            dispatch(setSelectedRoute('/shop'))
+        }
+        else if (id === 3) {
+            dispatch(setSelectedNav('Contact-Us'))
+            dispatch(setSelectedRoute('/contact'))
+        }
+        else {
+            dispatch(setSelectedNav(''))
+            dispatch(setSelectedRoute(''))
+        }
+        console.log('if',selectedNav);
+        if (selectedNav === 'Detail') {
+            setToggleNavlink(0)
+        }
+        else {
+            setToggleNavlink(id)
+        }
     }
 
-  
+
 
 
 
     window.addEventListener("scroll", () => {
         const header = document.querySelector(".bottom-header");
         const bar = document.querySelector("#bar");
-     
+
 
 
         const toggleClass = "isSticky";
@@ -71,14 +100,14 @@ const BottomHeader = () => {
         if (currentScroll > 150) {
             header.classList.add(toggleClass);
             bar.classList.add(toggleClass);
-        
+
 
 
         } else {
             header.classList.remove(toggleClass);
             bar.classList.remove(toggleClass);
             bar.classList.remove(toggleClass);
-          
+
 
         }
     });
@@ -90,7 +119,7 @@ const BottomHeader = () => {
                 <div id='bottom-header-media' className="row align-items-center justify-content-between">
 
                     <div className="col-lg-2 col-3">
-                        <a href="#" className='logo' > <img src={logo} alt="my image" /> </a>
+                        <Link to="/" className='logo' > <img src={logo} alt="my image" /> </Link>
                     </div>
 
                     <div id='navbar-media' className="col-lg-6">
@@ -103,13 +132,15 @@ const BottomHeader = () => {
                     </div>
                     <div className="col-lg-2 col-9">
                         <div className="bottom-icons ">
-                        <div className="wishlist">
-                                <AiOutlineHeart className='heart' />
+                            <div className="wishlist">
+                               <Link to='/wishlist'> <AiOutlineHeart onClick={()=>{
+                                          dispatch(setSelectedNav('Wishlist'));
+                                          dispatch(setSelectedRoute(`/wishlist`))}} className='heart' /></Link>
                             </div>
                             <div id='basket-media' className="basket d-flex align-items-center justify-content-end  gap-1 ">
                                 <LuShoppingCart onClick={DropdownHandle} className='basket-icon' /> <span className='count'>{count && count}</span>
                             </div>
-                           
+
                         </div>
                         <div className={dropdown ? "basket-dropdown" : "d-none"}>
                             <div className="dropdown-box  ">
@@ -149,8 +180,12 @@ const BottomHeader = () => {
                                     </div>
                                     <div className="link-button">
 
-                                        <Link onClick={() => setDropdown(false)} to='/basket' className='go-link' >View Cart</Link>
-                                        <Link onClick={() => setDropdown(false)} to='/checkout' className='go-link' >Checkout</Link>
+                                        <Link onClick={() => {setDropdown(false) ;
+                                          dispatch(setSelectedNav('Basket'));
+                                          dispatch(setSelectedRoute(`/basket`))} } to='/basket' className='go-link' >View Cart</Link>
+                                        <Link onClick={() => {setDropdown(false) ;
+                                          dispatch(setSelectedNav('Checkout'));
+                                          dispatch(setSelectedRoute(`/checkout`))}} to='/checkout' className='go-link' >Checkout</Link>
                                     </div>
                                 </div>
 

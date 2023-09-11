@@ -50,119 +50,6 @@ const SliderPlugin = (props) => {
 
 
 
-    // const products = [
-
-    //     {
-    //         name: "Product dummy title",
-    //         rate: 5,
-    //         discountedPrice: 85.00,
-    //         costPrice: 105.00,
-    //         posterImg: pr1,
-    //         hoverImg: pr2,
-    //         desc :"Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur."
-
-    //     },
-    //     {
-    //         name: "Product dummy title",
-    //         rate: 4,
-    //         discountedPrice: 75.00,
-    //         costPrice: 95.00,
-    //         posterImg: pr2,
-    //         hoverImg: pr3,
-    //         desc :"Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur."
-
-
-    //     },
-    //     {
-    //         name: "Product dummy title",
-    //         rate: 3,
-    //         discountedPrice: 35.00,
-    //         costPrice: 45.00,
-    //         posterImg: pr3,
-    //         hoverImg: pr1,
-    //         desc :"Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur."
-
-
-    //     },
-    //     {
-    //         name: "Product dummy title",
-    //         rate: 5,
-    //         discountedPrice: 125.00,
-    //         costPrice: 135.00,
-    //         posterImg: pr4,
-    //         hoverImg: pr1,
-    //         desc :"Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur."
-
-
-    //     },
-    //     {
-    //         name: "Product dummy title",
-    //         rate: 5,
-    //         discountedPrice: 45.00,
-    //         costPrice: 65.00,
-    //         posterImg: pr2,
-    //         hoverImg: pr1,
-    //         desc :"Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur."
-
-
-    //     },
-    //     {
-    //         name: "Product dummy title",
-    //         rate: 4,
-    //         discountedPrice: 65.00,
-    //         costPrice: 85.00,
-    //         posterImg: pr3,
-    //         hoverImg: pr2,
-    //         desc :"Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur."
-
-
-    //     },
-    //     {
-    //         name: "Product dummy title",
-    //         rate: 4,
-    //         discountedPrice: 65.00,
-    //         costPrice: 85.00,
-    //         posterImg: pr3,
-    //         hoverImg: pr2,
-    //         desc :"Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur."
-
-
-    //     },  {
-    //         name: "Product dummy title",
-    //         rate: 4,
-    //         discountedPrice: 65.00,
-    //         costPrice: 85.00,
-    //         posterImg: pr3,
-    //         hoverImg: pr2,
-    //         desc :"Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur."
-
-
-    //     },
-    //     {
-    //         name: "Product dummy title",
-    //         rate: 4,
-    //         discountedPrice: 65.00,
-    //         costPrice: 85.00,
-    //         posterImg: pr3,
-    //         hoverImg: pr2,
-    //         desc :"Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur."
-
-
-    //     },
-    //     {
-    //         name: "Product dummy title",
-    //         rate: 4,
-    //         discountedPrice: 65.00,
-    //         costPrice: 85.00,
-    //         posterImg: pr3,
-    //         hoverImg: pr2,
-    //         desc :"Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur."
-
-
-    //     },
-
-
-    // ]
 
     const settings = {
 
@@ -229,7 +116,7 @@ const SliderPlugin = (props) => {
                         <Slider {...settings}>
                             {
                                plugin==="first"? products && products.map((pr,index) => (
-                                    <PluginItem key={index} product={pr}  />
+                                    <PluginItem size={'0'} key={index} product={pr}  />
                                     
                                 )) : products && products.map((pr,index) => (
                                     <SecondPluginItem key={index} product={pr}  />

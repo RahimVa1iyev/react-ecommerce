@@ -2,6 +2,7 @@ import axios from 'axios';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const SliderPostForm = (props) => {
     const [error, setError] = useState(null);
@@ -35,13 +36,24 @@ const SliderPostForm = (props) => {
 
 
             try {
-                const response = await axios.post("https://localhost:7039/api/Sliders", formData, {
+                await axios.post("https://localhost:7039/api/Sliders", formData, {
                     headers: {
                         "Content-Type": "multipart/form-data"
                     }
                 });
-                console.log("Sliders successfully created", response.data);
+                
                 navigate("/dashboard/sliders")
+                toast.success('Sldier created successfully', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    });
+                    
             } catch (error) {
                 if (error.response.status === 400) {
                     error.response.data.errors.forEach(err => setError(err.errorMessage));

@@ -5,6 +5,7 @@ import { MdDeleteForever } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { setId } from '../../control/dashboardSlice';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const FrTable = (props) => {
 
@@ -14,7 +15,19 @@ const FrTable = (props) => {
 
   const deleteHandle = async (id) => {
       await axios.delete(`https://localhost:7039/api/${props.link}/${id}`)
-              .then(response => console.log(response))
+              .then(response =>
+                toast.error(`${props.tableName} deleted successfully`, {
+                  position: "top-right",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "light",
+                  })
+      
+                )
               .catch(error => console.log(error))
         navigate(`/dashboard/${props.link}`)
         dishPatch(setId(id))

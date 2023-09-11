@@ -7,6 +7,7 @@ import { Field, Formik, Form } from 'formik';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { store } from '../../store';
+import { toast } from 'react-toastify';
 
 function ConfirmModal(props) {
     const dispatch = useDispatch();
@@ -17,45 +18,32 @@ function ConfirmModal(props) {
 
     console.log("Confirm",email);
 
-    const initialValues = props.data === 1 ? 
+    const initialValues = 
     {
         code: '',
         userName: ''
     } 
-    :
-    {
-        code: '',
-    }
+   
 
 
     
 
     const onSubmit = async (values) => {
-        const verifyData = {
-              email : email,
-              code : parseInt(values.code)
-        }
- 
-
-       props.data ===1 ?
+      
        await axios.post(`https://localhost:7039/api/Users/EmailConfirm`, values)
-       .then(res => { console.log("Email Confirmed"); navigate('/login') }) :
+       .then(res => { navigate('/login') ;
+         toast.success('Email confirmed successfully', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        }); }) 
 
-       await axios.get(`https://localhost:7039/api/Users/verify`, verifyData)
-       .then(res => { console.log(res.data); navigate('/reset-password') })
-            .catch(error => {
-                console.log(error.response.data);
-                if (error.response.status === 400) {
-                    againConfirmCode()
-                    error.response.data.errors.forEach(err => setError(err.errorMessage));
-
-                }
-
-                else if (error.response.status === 404) {
-                    againConfirmCode()
-                    setError(error.response.data.message)
-                }
-            })
+      
     }
 
     const againConfirmCode = async () => {

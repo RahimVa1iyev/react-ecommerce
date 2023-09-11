@@ -60,12 +60,13 @@ function App() {
             <Route path='/contact-us' element={<Contact />} />
             <Route path='/login' element={<Login />} />
             <Route path='/forgot-password' element={<Forgot/>}/>
-            <Route path='/reset-password' element={<Reset/>}/>
+            <Route path='/reset-password/:id/:token' element={<Reset/>}/>
             <Route path='/register' element={<Register />} />
             <Route path='/checkout' element={<CheckOut />} />  
             <Route path='/profile' element ={<Profile/>} />       
           </Route>
             <Route path='*' element ={<NotFound />} />
+
              
             <Route path='/dashboard/index' element ={<Index />} />
 

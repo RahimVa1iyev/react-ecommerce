@@ -4,6 +4,8 @@ import dashboardReducer from './control/dashboardSlice';
 import selectReducer from './control/selectSlice';
 import basketReducer from './control/basketSlice';
 import fetchReducer from './control/fetchSlice';
+import navReducer from './control/navSlice';
+
 
 
 
@@ -15,5 +17,6 @@ export const store =configureStore({
        select: selectReducer,
        basket : basketReducer,
        fetch : fetchReducer,
+       nav : navReducer
     },
 });

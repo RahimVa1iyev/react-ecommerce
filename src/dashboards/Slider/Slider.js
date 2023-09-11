@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom'
 import PrTable from '../../components/Tables/PrTable'
 import SliderTable from '../../components/Tables/SliderTable'
 import { useSelector } from 'react-redux'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Slider = () => {
    const [datas , setDatas] = useState();
@@ -26,6 +28,18 @@ const Slider = () => {
 console.log(datas);
   return (
     <>
+              <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+         />
          <div className="top-side">
         <div className="container-fluid">
           <div className="row  ">

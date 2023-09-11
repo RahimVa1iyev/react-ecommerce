@@ -1,8 +1,10 @@
 import React from 'react'
 import { TiStarFullOutline } from 'react-icons/ti';
 import { TiStarOutline } from 'react-icons/ti';
+import { Link } from 'react-router-dom';
 const SecondPluginItem = (props) => {
-    const { name, rate, discountedPrice, salePrice, images } = props.product
+    const {id, name, rate, discountedPrice, salePrice, images } = props.product
+  
 
 
     const getStarIcon = (i) => {
@@ -14,20 +16,20 @@ const SecondPluginItem = (props) => {
             <div key={props.key} className="container-own">
                 <div className="second-plugin-box d-flex align-items-center  gap-2 p-1 ">
 
-                    <div className="second-pl-left">
+                    <Link to={`/detail/${id}`}> <div className="second-pl-left">
 
                         {images.map((img, index) => (
                             img.imageStatus === true && <img key={index} src={img.imageName} alt="my clock" />
                         ))
 
                         }
-                    </div>
+                    </div></Link>
                     <div className="second-pl-right">
 
                         <div className="second-pl-box">
 
                             <h4>
-                                {name.substring(0, 20)}...
+                                {name.substring(0, 18)}...
                             </h4>
 
                             <div className="stars">

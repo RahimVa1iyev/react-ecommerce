@@ -5,6 +5,7 @@ import SingleSelect from '../Select/SingleSelect';
 import MultiSelect from '../Select/MultiSelect';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 
 const PrPostForm = (props) => {
@@ -115,12 +116,21 @@ const PrPostForm = (props) => {
             });
 
             try {
-                const response = await axios.post("https://localhost:7039/api/Products", formData, {
+                 await axios.post("https://localhost:7039/api/Products", formData, {
                     headers: {
                         "Content-Type": "multipart/form-data"
                     }
                 });
-                console.log("Products successfully created", response.data);
+                toast.success('Product added successfully', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    });
                 navigate("/dashboard/products")
             } catch (error) {
                 if (error.response.status === 400) {

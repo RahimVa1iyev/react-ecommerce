@@ -4,6 +4,10 @@
     @extend .container-extend;
 }
 
+.profile-page{
+    padding: 50px 0;
+}
+
 .main-container{
     margin-top:40px;    
 }
@@ -377,5 +381,53 @@ margin-bottom: 20px;
         }
       }
     }
+}
+
+@media(max-width:576px){
+    .form-content-profile{
+        width: 100%;}
+
+
+        .table-header{
+            tr{
+             th{
+                 font-size: 11px;
+                 color: #212529;
+                 font-weight: 600;
+                 text-align: center;
+             }
+            }
+         }
+         .table-body{
+            tr{
+             td{
+                 font-size: 10px;
+                 font-weight: 400;
+                 padding: 20px 0;
+                 text-align: center;
+             }
+             .view{
+                 font-size: 10px;
+                 font-weight: 400;
+                 padding: 15px 0;
+                 text-align: center;
+         
+              button{
+                 padding: 5px 10px;
+                 text-align: center;
+                 color: #fff;
+                 border: none;
+                 background-color: #f9706a;
+                 border-radius: 2px;
+                 transition: 0.4s;
+         
+                 &:hover{
+                     background-color: #212529;
+                     transition: 0.4s;
+                 }
+              }
+             }
+            }
+         }
 }
 

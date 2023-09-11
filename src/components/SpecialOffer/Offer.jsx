@@ -1,5 +1,6 @@
 import React from 'react'
 import img1 from '../../assets/image/offer-img.png';
+import { Link } from 'react-router-dom';
 
 const Offer = () => {
   return (
@@ -14,7 +15,7 @@ const Offer = () => {
                         <h3>SUCCULENT GARDEN</h3>
                         <h1>GIFT BOXES</h1>
                         <p>From planter materials to style options, discover which planter is best for your space.</p>
-                        <a href="#">Explore The Shop</a>
+                        <Link to='/shop'>Explore The Shop</Link>
                     </div>
                 </div>
                 <div className="col-lg-7 col-12">

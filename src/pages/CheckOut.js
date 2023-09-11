@@ -3,16 +3,19 @@ import { Formik, Form, Field } from 'formik';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { getBasketItems } from '../control/basketSlice';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 
 const CheckOut = () => {
     const [items, setItems] = useState();
     const [token, setToken] = useState(localStorage.getItem('authToken'));
     const [order, setOrder] = useState()
-    const [totalAmount , setTotalAmount] = useState(0);
-    const [clicked,setClicked] = useState(0);
+    const [totalAmount, setTotalAmount] = useState(0);
+    const [clicked, setClicked] = useState(0);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const initialValues = {
         firstname: order && order.firstName,
@@ -41,15 +44,28 @@ const CheckOut = () => {
 
     const onSubmit = (values) => {
         const createOrder = async () => {
-            await axios.post(`https://localhost:7039/api/Orders`,values, {
+            await axios.post(`https://localhost:7039/api/Orders`, values, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             })
-       
-        .then(res =>{console.log("Order Created Succesfully") ;  setClicked(clicked+1) } )
-                .catch(err=>console.log(err.response.data))
-    
+
+                .then(res => {
+                    toast.success('Order created successfully', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                    setClicked(clicked + 1)
+                    navigate('/profile')
+                })
+                .catch(err => console.log(err.response.data))
+
         }
         createOrder();
     }
@@ -59,14 +75,14 @@ const CheckOut = () => {
         getCheckout();
     }, [clicked])
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(getBasketItems())
-    },[clicked])
+    }, [clicked])
     return (
         <>
             <div className="container-own">
                 <div className="check-page">
-                    <div className="row align-items-start justify-content-between">
+                    <div className="row align-items-start justify-content-between ">
                         <div className="col-lg-7">
                             <div className="check-page-left">
                                 <Formik enableReinitialize initialValues={initialValues} onSubmit={onSubmit} >
@@ -105,7 +121,6 @@ const CheckOut = () => {
                                         </div>
 
 
-                                        <p >Return to Store</p>
                                     </Form>
 
                                 </Formik>

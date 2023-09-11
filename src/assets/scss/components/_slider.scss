@@ -7,6 +7,7 @@
 
 .slid {
     height: 75vh;
+    background-color: rgb(194, 169, 136);
 }
 
 .slider-class {}
@@ -14,6 +15,7 @@
 .slider-right-side {
     .watch-img {
         width: 100%;
+        padding: 50px;
     }
 }
 
@@ -61,12 +63,16 @@
 }
 
 
+
+
 @media(max-width :576px) {
 
     .slid {
         height: 90vh !important;
         z-index: -1;
     }
+
+   
 
     #slider-media {
         display: flex;
@@ -121,10 +127,12 @@
         .slider-right-side {
             padding: 50px !important;
 
-            img {
+            .watch-img {
                 width: 100%;
-                height: 250px;
+                padding: 0px;
             }
         }
+
+  
     }
 }

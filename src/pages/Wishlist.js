@@ -1,9 +1,19 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import  {FiX} from "react-icons/fi"
+import { AiOutlineHeart } from 'react-icons/ai';
+import { BiSolidBasket, BiSolidTrashAlt } from 'react-icons/bi';
+import { SlBasket } from 'react-icons/sl'
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+import { getBasketItems, setCount } from '../control/basketSlice';
 
 const Wishlist = () => {
 
     const [wishlistItems, setWishlidtItems] = useState([]);
+    const [token, setToken] = useState(localStorage.getItem('authToken'));
+    const [dataId, setDataId] = useState();
+    const [clicked, setClicked] = useState(0)
+    const disPatch = useDispatch();
 
     const basketHandler = () => {
         let wishlist = localStorage.getItem("wishlist");
@@ -14,7 +24,7 @@ const Wishlist = () => {
             setWishlidtItems([]);
         }
     }
-    const deleteHandler = (id) =>{
+    const deleteHandler = (id) => {
         let wishlists = JSON.parse(localStorage.getItem("wishlist"));
         const index = wishlists.indexOf(wishlists.find(c => c.id === id));
         wishlists.splice(index, 1);
@@ -27,40 +37,127 @@ const Wishlist = () => {
         basketHandler();
     }
 
+
+
+    const AddBasketHandle = async (id) => {
+  const values = {id}
+
+        if (token) {
+            await axios.post(`https://localhost:7039/api/Shops/`, values, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+                .then(res => {
+                    setDataId(res.data.count);
+                    setClicked(clicked + 1)
+                    disPatch(setCount(res.data.count))
+                  
+
+                })
+                .catch(err => {
+                    err.response && console.log(err.response.data);
+                })
+        }
+        else {
+            alert("Xeta bas verdi")
+        }
+    }
+
     console.log(wishlistItems);
     useEffect(() => {
         basketHandler();
     }, [])
+
+    useEffect(() => {
+        disPatch(getBasketItems())
+    }, [clicked])
 
     return (
         <>
 
             <div className="container-own">
                 <div className="wishlist">
+                  <div className="wishlist-top">
+                  <h2 className='wishlist-title'>My Wishlist</h2>
+                    <h2><AiOutlineHeart className='wishlist-i' /></h2>
+                  </div>
+
                     <div className="row align-items-center justify-content-center gap-5 ">
-                        {
-                            wishlistItems && wishlistItems.map((item, index) => (
-                                <div className="col-lg-3">
-                                    <div key={index} class="wishlist-item">
-                                        {
-                                            item.images.map((img, index) => (
-                                            
-                                                img.imageStatus &&  <img key={index} src={ img.imageName} alt="Product 1" />
-                                            ))
-                                        }
-                                        <FiX onClick={()=>deleteHandler(item.id)} className='wishlist-delete'/>
-                                        <h2>{item.name}</h2>
-                                        <p class="price">${item.discountedPrice>0?item.discountedPrice: item.salePrice}</p>
-                                        <button class="add-to-cart">Add to Cart</button>
-                                    </div>
-                                </div>
-                            ))
-                        }
 
 
+
+                       {
+                        wishlistItems ===null ?
+                        <div className='empty'>Wishlist is empty</div>:
+                        <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="border-0 bg-light">
+                                        <div class="p-2 px-3 text-uppercase">Product</div>
+                                    </th>
+                                    <th scope="col" class="border-0 bg-light">
+                                        <div class="py-2 text-uppercase">Price</div>
+                                    </th>
+
+                                    <th scope="col" class="border-0 bg-light">
+                                        <div class="py-2 text-uppercase">Stock</div>
+                                    </th>
+                                    <th scope="col" class="border-0 bg-light">
+                                        <div class="py-2 text-uppercase">Action</div>
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    wishlistItems && wishlistItems.map((item, index) => (
+                                        <tr>
+                                            <th scope="row" class="border-0">
+                                                <div class="p-2">
+                                                    {
+                                                        item && item.images.map((img, index) => (
+
+                                                            img.imageStatus && <img key={index} src={img.imageName} alt="Product 1" width="70" class="img-fluid rounded shadow-sm p-1" />
+                                                        ))
+                                                    }
+                                                    <div class="ml-3 d-inline-block align-middle">
+                                                        <h5 class="mb-0 ms-3 "> <a href="#" class="text-dark  d-inline-block align-middle">{item.name}</a></h5>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                            <td class="border-0 align-middle"><strong>${item.discountedPrice > 0 ? item.discountedPrice : item.salePrice}</strong></td>
+                                            <td class="border-0 align-middle"><strong>{item.stockStatus === true ? <span className='text-success'>In Stock</span> : <span className='text-danger'>Out Stock</span>}</strong></td>
+                                            <td class="border-0 align-middle">
+                                                <button type="button" onClick={()=>AddBasketHandle(item.id)} className="shopping-cart-heart-btn me-1 mb-2 " data-mdb-toggle="tooltip"
+                                                    title="Remove item">
+                                                    <BiSolidBasket />
+                                                </button>
+                                                <button type="button" onClick={()=>deleteHandler(item.id)} className="shopping-cart-del-btn me-1 mb-2 " data-mdb-toggle="tooltip"
+                                                    title="Remove item">
+                                                    <BiSolidTrashAlt />
+                                                </button>
+
+
+                                            </td>
+                                        </tr>
+                                    ))
+                                }
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                       }
                     </div>
                 </div>
             </div>
+
+
+
+
 
 
 
