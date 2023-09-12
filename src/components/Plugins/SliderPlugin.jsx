@@ -9,6 +9,7 @@ import pr4 from '../../assets/image/pr4.png';
 import PluginItem from './PluginItem';
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from 'react-icons/md';
 import SecondPluginItem from './SecondPluginItem';
+import MyLoader from '../Loader/MyLoader';
 
 
 const CustomPrevArrow = (props) => {
@@ -31,8 +32,8 @@ const CustomNextArrow = (props) => {
 };
 const SliderPlugin = (props) => {
 
-   const [remainingTime, setRemainingTime] = useState(86400);
-   const{title,slideshow,plugin,responsiveRow, row,perrow,visible,products} = props
+    const [remainingTime, setRemainingTime] = useState(86400);
+    const { title, slideshow, plugin, responsiveRow, row, perrow, visible, products } = props
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -58,7 +59,7 @@ const SliderPlugin = (props) => {
         slidesToShow: slideshow,
         slidesToScroll: 1,
         slidesPerRow: perrow,
-        row:row,
+        row: row,
 
         initialSlide: 0,
         prevArrow: <CustomPrevArrow />,
@@ -98,7 +99,7 @@ const SliderPlugin = (props) => {
                     <div className="discounted-top-side ">
                         <h2>{title}</h2>
 
-                        <div className={visible==="d-block"?"count-timer d-block":"count-timer d-none"}>
+                        <div className={visible === "d-block" ? "count-timer d-block" : "count-timer d-none"}>
                             {remainingTime !== null ? (
                                 <p>
                                     Ends in:{" "}
@@ -115,13 +116,17 @@ const SliderPlugin = (props) => {
                     <div id='slider-id' className="row flex-wrap align-items-center ">
                         <Slider {...settings}>
                             {
-                               plugin==="first"? products && products.map((pr,index) => (
-                                    <PluginItem size={'0'} key={index} product={pr}  />
-                                    
-                                )) : products && products.map((pr,index) => (
-                                    <SecondPluginItem key={index} product={pr}  />
-                                    
+                                plugin === "first" ? products === undefined ? products.map((pr, index) => (
+                                    <MyLoader />
+
+                                )) : products.map((pr, index) => (
+                                    <PluginItem size={'0'} key={index} product={pr} />
+
                                 ))
+                                    : products && products.map((pr, index) => (
+                                        <SecondPluginItem key={index} product={pr} />
+
+                                    ))
                             }
                         </Slider>
                     </div>

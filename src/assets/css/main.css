@@ -4971,6 +4971,7 @@ p {
   padding: 8px;
 }
 
+#export-btn,
 #cr-btn {
   font-size: 14px;
   font-weight: 500;

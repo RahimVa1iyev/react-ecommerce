@@ -4,6 +4,8 @@ import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import "../../assets/css/main.css";
 import axios from 'axios';
+import MyLoader from '../Loader/MyLoader';
+import SliderLoader from '../Loader/SliderLoader';
 
 
 
@@ -27,29 +29,8 @@ const Carousell = () => {
   
     return (
   
-      
-        // <Carousel nextIcon={<span className="custom-next-icon" ></span>}
-        //   prevIcon={<span className="custom-prev-icon"></span>}
-        //   interval={null} activeIndex={index} draggable={true} onSelect={handleSelect} indicators={true} touch={true} className='my-carousel' >
-        //   {
-        //     items.map((item, index) => {
-  
-        //       return (
-        //         <Carousel.Item key={index}>
-        //          <div style={{ backgroundColor: item.background_color }}>
-        //         <div className="container-own">
-        //         <div className="row">
-        //           <SliderItem item={item} />
-        //           </div>
-        //         </div>
-        //          </div>
-        //         </Carousel.Item>
-        //       )
-  
-        //     })
-  
-        //   }
-        // </Carousel>
+
+    
 
         <Carousel
       showArrows={true}    
@@ -61,7 +42,9 @@ const Carousell = () => {
       dynamicHeight={false}
       
     >
-      {items && items.map((item, index) => ( 
+
+
+      {items ===undefined ?  <SliderLoader  /> : items.map((item, index) => ( 
         <div key={index}>
           <div className='slid' style={{ backgroundColor: item.background_color  }}>
             <div className="container-own">

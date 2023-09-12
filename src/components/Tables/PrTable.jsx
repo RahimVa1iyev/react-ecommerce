@@ -2,17 +2,47 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { LuEdit } from 'react-icons/lu';
 import { MdDeleteForever } from 'react-icons/md';
+import axios from 'axios';
 
 const PrTable = (props) => {
     let count = 1;
+
+    const exportHandle = async () => {
+        try {
+            const response = await axios.get(`https://localhost:7039/api/Products/export-excel`, {
+            });
+
+            const blob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+            const url = window.URL.createObjectURL(blob);
+
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'product.xlsx';
+            document.body.appendChild(link);
+            link.click();
+
+            window.URL.revokeObjectURL(url);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+
+ 
+
 
     return (
         <>
 
             <div className="prtable">
 
-                <div className="table-head">
-                    <h6>Product table</h6>
+                <div className="table-head d-flex align-items-center justify-content-between">
+                    <h6>Product table  </h6>
+                    <div className="action-side d-flex align-items-center gap-1">
+                        <Link to={props.route} id='cr-btn' className='btn btn-success'  >Create</Link>
+                        <button onClick={exportHandle} id='export-btn' className='btn btn-primary'>Export</button>
+                    </div>
                 </div>
 
                 <div className="table-body">
@@ -41,7 +71,7 @@ const PrTable = (props) => {
                                 props.products && props.products.map((pr, index) => (
                                     <tr key={index}>
                                         <td >{count++}</td>
-                                        <td>{pr.name.substring(0, 35    )}...</td>
+                                        <td>{pr.name.substring(0, 35)}...</td>
                                         <td>
                                             {pr.sizes.map((size, index) => (
                                                 <span key={index}>
