@@ -6,9 +6,15 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 
 const Size = () => {
+
+  const navigate = useNavigate()
+  useEffect(()=>{
+      localStorage.getItem('adminToken') === null && navigate('/dashboard/login')
+    },[])
 
     const [sizes, setSizes] = useState();
   

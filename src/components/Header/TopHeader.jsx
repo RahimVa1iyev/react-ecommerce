@@ -6,14 +6,16 @@ import { TfiInstagram } from 'react-icons/tfi';
 import { TiSocialYoutube } from 'react-icons/ti';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { setSelectedNav, setSelectedRoute } from '../../control/navSlice';
 
 const TopHeader = () => {
 
     const [show, setShow] = useState("visible")
     const [user, setUser] = useState();
-    const [log ,setLog] = useState(0)
+    const [log, setLog] = useState(0)
+    const dispatch = useDispatch()
 
     const DropdownHandler = () => {
         setShow(show === "visible" ? "" : "visible")
@@ -22,13 +24,13 @@ const TopHeader = () => {
 
     let count = 0
 
-   const logOutHandle = (e)=>{
+    const logOutHandle = (e) => {
 
-    e.preventDefault();
-    
-    localStorage.removeItem('authToken')
-    setUser(undefined)
-   }
+        e.preventDefault();
+
+        localStorage.removeItem('authToken')
+        setUser(undefined)
+    }
 
     const getData = async () => {
         count++
@@ -52,9 +54,9 @@ const TopHeader = () => {
     }
 
     useEffect(() => {
-    
+
         getData();
-    }, [show,log]);
+    }, [show, log]);
     // useEffect(() => {
     //     var ddd = localStorage.getItem('authToken');
     //     if (token && token.length > 0) {
@@ -97,14 +99,26 @@ const TopHeader = () => {
                             <div className={show === "visible" ? "dropdown-account visible" : "dropdown-account"}>
                                 {
                                     user === undefined ? <div className="row g-3" >
-                                        <Link to="/login" className='login'> Log in </Link>
+                                        <Link to="/login" className='login' onClick={() => {
 
-                                        <Link to="/register" className='createAccount'> Create account </Link>
+                                            dispatch(setSelectedNav('Login'))
+                                            dispatch(setSelectedRoute(`/login`))
+                                        }} > Log in </Link>
+
+                                        <Link to="/register" className='createAccount' onClick={() => {
+
+                                            dispatch(setSelectedNav('Register'))
+                                            dispatch(setSelectedRoute(`/register`))
+                                        }}> Create account </Link>
                                     </div> :
                                         <div className="row g-3" >
-                                            <Link to="/profile" className='login'> {user && user.userName} </Link>
+                                            <Link to="/profile" className='login' onClick={() => {
 
-                                            <Link to='/'  onClick={logOutHandle} className='createAccount'> Log Out </Link>
+                                                dispatch(setSelectedNav('Profile'))
+                                                dispatch(setSelectedRoute(`/profile`))
+                                            }} > {user && user.userName} </Link>
+
+                                            <Link to='/' onClick={logOutHandle} className='createAccount'> Log Out </Link>
                                         </div>
                                 }
                             </div>

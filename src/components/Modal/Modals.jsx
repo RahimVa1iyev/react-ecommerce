@@ -3,7 +3,7 @@ import Box from '@mui/material/Box'
 import Modal from '@mui/material/Modal'
 import Button from '@mui/material/Button'
 import { useDispatch, useSelector } from 'react-redux';
-import { handleOpen, removeFromCompareProduct, setCompareProduct, setIds } from '../../control/modalSlice';
+import { handleOpen, removeFromCompareProduct, setCompareCount, setCompareProduct, setIds } from '../../control/modalSlice';
 import { handleClose } from '../../control/modalSlice';
 import DetailItem from '../Detail/DetailItem';
 import  {FiX} from "react-icons/fi"
@@ -45,6 +45,7 @@ const Modals = () => {
     disPatch(setCompareProduct(filteredData))
     let filteredIds = ids.filter(item=> item !==id)
     disPatch(setIds(filteredIds))
+    disPatch(setCompareCount(-1))
 
   }
 
@@ -98,7 +99,7 @@ const Modals = () => {
                       <td>Action</td>
                       {
                        compareProduct && compareProduct.map((pr,index)=>(
-                          <th  data-product-id={pr.id}  key={index} onClick={()=> handleDeletePr(pr.id)} className='text-center' >x</th>
+                          <th  data-product-id={pr.id}  key={index} onClick={()=> handleDeletePr(pr.id)} className='text-center cursor-pointer' >x</th>
                         ))
                       }
                     </tr>
@@ -153,7 +154,7 @@ const Modals = () => {
             <div>
               {
                 orderItems && orderItems.map((item,index)=>(
-                  <div  className='my-wishlist-side '>
+                  <div  className='my-wishlist-side w-100 '>
 
                   <div className="my-wishlist-box d-flex align-items-center justify-content-between">
                       <div className="left-side d-flex align-items-center ">

@@ -6,10 +6,14 @@ import pr1 from '../assets/image/pr1.png'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Modals from '../components/Modal/Modals'
-import { getBasketItems, handleOpen, handleView } from '../control/modalSlice'
+import {  handleOpen, handleView, setOrderItem } from '../control/modalSlice'
 import { getOrders } from '../control/fetchSlice'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { setCount } from '../control/basketSlice'
+import { getBasketItems } from '../control/basketSlice';
+import { setSelectedNav, setSelectedRoute } from '../control/navSlice'
+
 
 
 
@@ -17,17 +21,19 @@ import 'react-toastify/dist/ReactToastify.css';
 const Profile = () => {
 
     const [token, setToken] = useState(localStorage.getItem('authToken'));
+    const [dataId, setDataId] = useState();
+    const [basketClicked, setBasketClicked] = useState(0)
     const [user, setUser] = useState();
     const [wishlistItems, setWishlistItems] = useState();
     const [clicked , setClicked] = useState(0);
     const [toggle,setToggle] = useState(1)
+    const [error,setError] = useState();
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const {orders} = useSelector((store)=>store.fetch)
-    console.log("order",orders);
 
-    console.log(wishlistItems);
+
     const initialValues = {
         firstname: user && user.firstName,
         lastname: user && user.lastName,
@@ -35,9 +41,9 @@ const Profile = () => {
         phoneNumber: user && user.phoneNumber,
         username: user && user.userName,
         address: '',
-        currentPassword: '',
-        newPassword: '',
-        confirmPassword: ''
+        currentPassword: null,
+        newPassword: null,
+        confirmPassword: null
     }
 
     function formatDateTime(dateTimeString) {
@@ -55,6 +61,7 @@ const Profile = () => {
     }
 
     const onSubmit = (values) => {
+        console.log("values",values);
         const updateUser = async () => {
             await axios.put(`https://localhost:7039/api/Users`, values, {
                 headers: {
@@ -66,7 +73,15 @@ const Profile = () => {
                     navigate('/login');
 
                 })
-                .catch(err => console.log(err.response.data))
+                .catch(error =>{
+                    if (error.response.status === 400) {
+                        {error.response.data.errors.forEach(err => setError(err.errorMessage)); console.log(error.response.data);}
+                    } else if (error.response.status === 404) {
+                        navigate("*");
+                    } else {
+                        setError("An unexpected error occurred");
+                    }
+                })
         }
 
         updateUser();
@@ -116,16 +131,67 @@ const Profile = () => {
 
     }
 
+      const AddBasketHandle = async (id) => {
+        
+        const values = {id}
+
+        if (token) {
+            await axios.post(`https://localhost:7039/api/Shops/`, values, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+                .then(res => {
+                    toast.success('Product added successfully', {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        });
+                    setDataId(res.data.count);
+                    setBasketClicked(basketClicked + 1)
+                    dispatch(setCount(res.data.count))
+                  
+
+                })
+                .catch(err => {
+                    err.response && console.log(err.response.data);
+                })
+        }
+        else {
+            toast.warning('You must register to add a product', {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
+        }
+    }
+
     const toggleHandle = (number) =>{
 
         setToggle(number)
     }
 
-    const getOrderItems = (id) =>{
-        
+    const getOrderItems = async (id) =>{
         dispatch(handleView())
         dispatch(handleOpen())
-        dispatch(getOrderItems(id))
+        const token = localStorage.getItem('authToken')
+        const response = await axios.get(`https://localhost:7039/api/Orders/orderitems/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        dispatch(setOrderItem(response.data));
+
     }
 
 
@@ -139,6 +205,16 @@ const Profile = () => {
         getWishlistItem();
     },[clicked])
 
+    useEffect(()=>{
+        localStorage.getItem('adminToken') !==null && localStorage.removeItem('adminToken')
+     },[])
+     useEffect(()=>{
+        token ===null && navigate('/login')
+     },[])
+
+     useEffect(() => {
+        dispatch(getBasketItems())
+    }, [basketClicked])
     return (
         <>
              <ToastContainer
@@ -192,7 +268,8 @@ const Profile = () => {
                                 </div>
 
                                 <div className="nav-box">
-                                    <div className='nav-title'>
+                                    <div onClick={()=>{localStorage.removeItem('adminToken') ; navigate('/login') ;   dispatch(setSelectedNav('Login'))
+            dispatch(setSelectedRoute('/login'))}}  className='nav-title'>
                                         Log Out
                                     </div>
                                 </div>
@@ -303,8 +380,10 @@ const Profile = () => {
                                         </div>
 
                                     </div>
+                                    {error && <div className="error-message text-danger ">{error}</div>}
 
-                                    <div className="update-btn">
+
+                                    <div className="update-btn mt-2">
                                         <button type='submit' >Update Profile</button>
 
                                     </div>
@@ -348,7 +427,7 @@ const Profile = () => {
                                             </div>
                                         </div>
                                         <div className="add-to-card">
-                                            <button>Add to Cart</button>
+                                            <button onClick={()=>AddBasketHandle(item.id)}>Add to Cart</button>
                                         </div>
                                         <FiX onClick={()=> DeleteHandler(item.id)} className='delete-wish' />
                                     </div>

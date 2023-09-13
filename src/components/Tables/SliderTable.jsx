@@ -70,7 +70,7 @@ let count = 1;
                             <td> 
                             <img  width={60} src={sr.imageUri} alt='my img' />
                              </td>
-                        <td className='d-flex align-items-center justify-content-center gap-3' >
+                        <td className='p-4 d-flex align-items-center justify-content-center gap-3' >
                           <Link  to={`/dashboard/sliders/${sr.id}`} id='up-btn' className='btn btn-warning d-flex align-items-center gap-1'>
                            <LuEdit className='table-icon' /> Edit
                           </Link> 

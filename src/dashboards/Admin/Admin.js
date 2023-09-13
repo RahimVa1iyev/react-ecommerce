@@ -4,12 +4,16 @@ import DashNavbar from '../../layouts/Dashboard/DashNavbar'
 import AdminTable from '../../components/Tables/AdminTable'
 import { useSelector } from 'react-redux'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Admin = () => {
 
     const [admins, setAdmins] = useState();
 
     const {Id} = useSelector((store) => store.table)
+    const navigate = useNavigate();
   
     const getAdmins = async () => {
       const response = await axios.get("https://localhost:7039/api/Accounts/all")
@@ -21,8 +25,25 @@ const Admin = () => {
     useEffect(() => {
       getAdmins()
     }, [Id])
+
+    useEffect(()=>{
+      localStorage.getItem('adminToken') === null && navigate('/dashboard/login')
+    })
+    
   return (
     <>
+     <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+         />
  <div className="top-side">
         <div className="container-fluid">
           <div className="row  ">

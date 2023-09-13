@@ -1,7 +1,8 @@
 import React from 'react'
-import { FiSearch } from 'react-icons/fi';
-import { BsFillPersonFill } from 'react-icons/bs';
+import {BiLogOut} from 'react-icons/bi'
+import { useNavigate } from 'react-router-dom'
 const DashNavbar = () => {
+    const navigate = useNavigate();
     return (
         <>
             <div className="d-flex align-items-center justify-content-between ">
@@ -11,13 +12,10 @@ const DashNavbar = () => {
                 </div>
 
                 <div className="top-side-right d-flex align-items-center gap-4">
-                    <div className="search-side d-flex align-items-center">
-                        <FiSearch className='search-icon' />
-                        <input type="text" placeholder='Type here..' />
-                    </div>
-                    <div className="sign-side d-flex align-items-center gap-2 ">
-                        <BsFillPersonFill className='person-icon' />
-                        <span>Sign In</span>
+                   
+                    <div  className="sign-side d-flex align-items-center gap-2 ">
+                        <BiLogOut className='person-icon' />
+                        <span onClick={()=>{localStorage.removeItem('adminToken');navigate('/dashboard/login')}} >Log Out</span>
                     </div>
                 </div>
 

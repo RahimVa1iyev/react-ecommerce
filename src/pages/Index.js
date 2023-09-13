@@ -4,15 +4,18 @@ import { TbCoins } from 'react-icons/tb';
 import SideBar from '../layouts/Dashboard/SideBar';
 import DashNavbar from '../layouts/Dashboard/DashNavbar';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Index = () => {
 
 
   const chartRef1 = useRef(null);
   const chartRef2 = useRef(null);
+  const navigate = useNavigate();
 
   const [months , setMonths] = useState();
   const [price ,setPrice] = useState();
+  const [userCount,setUserCount] = useState(0);
   const [orderCount,setOrderCount] =useState()
   const [income,setIncome] =useState({
     daily : {},
@@ -31,6 +34,11 @@ const getMonthlySale = async () =>{
 const getOrderStatusCount = async () =>{
     await axios.get(`https://localhost:7039/api/Charts/count`)
                 .then(res=>setOrderCount(res.data))
+}
+
+const getUserCount = async () =>{
+ var response = await axios.get(`https://localhost:7039/api/Accounts/count`)
+   setUserCount(response.data.count);
 }
 
 const getIncome = async () => {
@@ -124,7 +132,11 @@ const getIncome = async () => {
      getMonthlySale();
      getOrderStatusCount();
      getIncome();
+     getUserCount();
+  },[])
 
+  useEffect(()=>{
+    localStorage.getItem('adminToken') === null && navigate('/dashboard/login')
   },[])
 
     return (
@@ -143,13 +155,13 @@ const getIncome = async () => {
                                 <DashNavbar />
 
                                 <div className="stat">
-                                    <div className="row">
+                                    <div className="row align-items-center justify-content-center">
                                         <div className="col-lg-3">
                                             <div className="stat-box d-flex align-items-baseline">
-                                                <div className="stat-box-left">
+                                                <div className="stat-box-left ">
                                                     <h6>Daily Revenue</h6>
                                                     <p className='money'>${income.daily && income.daily.income}</p>
-                                                    <p className='d-flex align-items-baseline gap-2' >{income.daily && income.daily.interestRate > 0 ? <span className='percent'>+{ income.daily.interestRate}%</span> : <span className='percent text-danger'>{ income && income.daily.interestRate}%</span>}
+                                                    <p className='d-flex align-items-baseline gap-2' >{income.daily && income.daily.interestRate >= 0 ? <span className='percent'>+{ income.daily.interestRate}%</span> : <span className='percent text-danger'>{ income && income.daily.interestRate}%</span>}
                                                      <span className='text'>since yesterday</span>  </p>
                                                 </div>
 
@@ -163,8 +175,8 @@ const getIncome = async () => {
                                                 <div className="stat-box-left">
                                                     <h6>Monthly Revenue</h6>
                                                     <p className='money'>${income && income.monthly.income}</p>
-                                                    <p className='d-flex align-items-baseline gap-2' >{income && income.monthly.interestRate > 0 ? <span className='percent'>+{income.monthly.interestRate}%</span> : <span className='percent text-danger'>{income.monthly.interestRate}%</span>}
-                                                     <span className='text'>since yesterday</span>  </p>
+                                                    <p className='d-flex align-items-baseline gap-2' >{income && income.monthly.interestRate >= 0 ? <span className='percent'>+{income.monthly.interestRate}%</span> : <span className='percent text-danger'>{income.monthly.interestRate}%</span>}
+                                                     <span className='text'>since month</span>  </p>
                                                 </div>
 
                                                 <div className="stat-box-right ">
@@ -177,8 +189,8 @@ const getIncome = async () => {
                                                 <div className="stat-box-left">
                                                     <h6>Yearly Revenue</h6>
                                                     <p className='money'>${income && income.yearly.income}</p>
-                                                    <p className='d-flex align-items-baseline gap-2' >{income && income.yearly.interestRate > 0 ? <span className='percent'>+{income.yearly.interestRate}%</span> : <span className='percent text-danger'>{income.yearly.interestRate}%</span>}
-                                                     <span className='text'>since yesterday</span>  </p>
+                                                    <p className='d-flex align-items-baseline gap-2' >{income && income.yearly.interestRate >= 0 ? <span className='percent'>+{income.yearly.interestRate}%</span> : <span className='percent text-danger'>{income.yearly.interestRate}%</span>}
+                                                     <span className='text'>since year</span>  </p>
                                                 </div>
 
                                                 <div className="stat-box-right ">
@@ -186,19 +198,7 @@ const getIncome = async () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-lg-3">
-                                            <div className="stat-box d-flex align-items-baseline">
-                                                <div className="stat-box-left">
-                                                    <h6>TODAY'S MONEY</h6>
-                                                    <p className='money'>$53,000</p>
-                                                    <p ><span className='percent'>+55%</span> <span className='text'>since yesterday</span>  </p>
-                                                </div>
-
-                                                <div className="stat-box-right ">
-                                                    <TbCoins className='coin' />
-                                                </div>
-                                            </div>
-                                        </div>
+                                     
                                     </div>
                                 </div>
 

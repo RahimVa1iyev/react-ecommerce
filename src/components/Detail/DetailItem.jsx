@@ -35,7 +35,7 @@ const DetailItem = (props) => {
             .then(res => {
                setClicked(clicked + 1)
                dispatch(setCount(res.data.count))
-             
+
 
             })
             .catch(err => {
@@ -43,47 +43,84 @@ const DetailItem = (props) => {
             })
       }
       else {
-         alert("Xeta bas verdi")
+         toast.warning('You must register to add a product', {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+         });
       }
    }
 
    const changeInput = (e) => {
       const values = { count: e.target.value, id: id }
       AddBasketHandle(values);
-     
+
    }
 
    const addBasket = () => {
-      const value = document.querySelector("#qty").value
-      const data = { count: value, id: id }
-      AddBasketHandle(data)
-      toast.success('Product added successfully', {
-         position: "top-right",
-         autoClose: 5000,
-         hideProgressBar: false,
-         closeOnClick: true,
-         pauseOnHover: true,
-         draggable: true,
-         progress: undefined,
-         theme: "light",
+      if (token) {
+         const value = document.querySelector("#qty").value
+         const data = { count: value, id: id }
+         AddBasketHandle(data)
+         toast.success('Product added successfully', {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
          });
+      }
+      else {
+         toast.warning('You must register to add a product', {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+         });
+      }
    }
 
    const addCheckOut = () => {
-      const value = document.querySelector("#qty").value
-      const data = { count: value, id: id }
-      AddBasketHandle(data)
-      toast.success('Product added successfully', {
-         position: "top-right",
-         autoClose: 5000,
-         hideProgressBar: false,
-         closeOnClick: true,
-         pauseOnHover: true,
-         draggable: true,
-         progress: undefined,
-         theme: "light",
+      if (token) {
+         const value = document.querySelector("#qty").value
+         const data = { count: value, id: id }
+         AddBasketHandle(data)
+         toast.success('Product added successfully', {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
          });
-      navigate('/checkout')
+         navigate('/checkout')
+      }
+      else {
+         toast.warning('You must register to order a product', {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+         });
+      }
    }
 
 
@@ -95,7 +132,7 @@ const DetailItem = (props) => {
 
    return (
       <>
-       
+
 
          <h2 className='pr-name' >{name}</h2>
          <div className="rate d-flex align-items-center">{

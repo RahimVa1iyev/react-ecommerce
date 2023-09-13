@@ -6,6 +6,8 @@ import { SlBasket } from 'react-icons/sl'
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { getBasketItems, setCount } from '../control/basketSlice';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Wishlist = () => {
 
@@ -60,7 +62,16 @@ const Wishlist = () => {
                 })
         }
         else {
-            alert("Xeta bas verdi")
+            toast.warning('You must register to add a product', {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
         }
     }
 
@@ -73,9 +84,24 @@ const Wishlist = () => {
         disPatch(getBasketItems())
     }, [clicked])
 
+    useEffect(()=>{
+        localStorage.getItem('adminToken') !==null && localStorage.removeItem('adminToken')
+     },[])
+
     return (
         <>
-
+<ToastContainer
+            position="bottom-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+         />
             <div className="container-own">
                 <div className="wishlist">
                   <div className="wishlist-top">

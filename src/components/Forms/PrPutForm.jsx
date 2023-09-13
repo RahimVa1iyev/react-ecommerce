@@ -33,8 +33,6 @@ const PrPutForm = (props) => {
     })
 
 
-    const [product, setProduct] = useState();
-
 
     const [initialValues, setInitialValues] = useState({
         brandId: 0,
@@ -47,6 +45,7 @@ const PrPutForm = (props) => {
         discountedPrice: 0,
         isNew: true,
         isFeatured: false,
+        stockStatus:false,
         posterFile: null,
         hoverFile: null,
         imageFiles: [],
@@ -72,6 +71,7 @@ const PrPutForm = (props) => {
         formData.append("discountedPrice", values.discountedPrice);
         formData.append("isNew", values.isNew);
         formData.append("isFeatured", values.isFeatured);
+        formData.append("stockStatus", values.stockStatus);
 
         formData.append("posterFile", values.posterFile);
         formData.append("hoverFile", values.hoverFile);
@@ -82,12 +82,19 @@ const PrPutForm = (props) => {
 
         
         values.sizeIds.forEach(sizeId=>{
-             console.log("Size" ,sizeId);
-            formData.append("sizeIds",sizeId.sizeId)
+            if (typeof sizeId === 'object') {
+                formData.append("sizeIds", sizeId.sizeId);
+            } else {
+                formData.append("sizeIds", sizeId);
+            }
         })
 
         values.colorIds.forEach(colorId => {
-            formData.append("colorIds", colorId.colorId);
+            if (typeof colorId === 'object') {
+                formData.append("colorIds", colorId.colorId);
+            } else {
+                formData.append("colorIds", colorId);
+            }
         });
 
         values.imageIds.forEach(imgId => {
@@ -168,6 +175,7 @@ const PrPutForm = (props) => {
                 costPrice: productData.costPrice,
                 discountedPrice: productData.discountedPrice,
                 isNew: productData.isNew,
+                stockStatus : productData.stockStatus,
                 isFeatured: productData.isFeatured,
                 sizeIds: productData.sizes,
                 colorIds: productData.colors,
@@ -480,7 +488,7 @@ const PrPutForm = (props) => {
                                                     const clickidId = parseInt(e.target.id);
 
                                                     var newIds = reaminingIds.filter((imgId) => imgId !== clickidId)
-
+                                                      setRemainingIds(newIds)
                                                       setFieldValue("imageIds", newIds)
                                                    
 
@@ -501,15 +509,20 @@ const PrPutForm = (props) => {
 
 
                                 <div className="row">
-                                    <div className="col-lg-6">
+                                    <div className="col-lg-4">
                                         <div className="form-body d-flex flex-column align-items-center gap-2 ">
                                             <Field className="check-input" type="checkbox" name='isNew' />
                                             <label >Is New</label>
                                         </div>
                                     </div>
-                                    <div className="col-lg-6">
+                                    <div className="col-lg-4">
                                         <div className="form-body d-flex flex-column align-items-center gap-2">
                                             <Field type="checkbox" className="check-input" name='isFeatured' />   <label >Is Feautred</label>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-4">
+                                        <div className="form-body d-flex flex-column align-items-center gap-2">
+                                            <Field type="checkbox" className="check-input" name='stockStatus' />   <label >Is Stock</label>
                                         </div>
                                     </div>
 

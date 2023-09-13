@@ -23,6 +23,9 @@ const Register = () => {
         dispatch(createUser(values))
     }
 
+    useEffect(()=>{
+        localStorage.getItem('adminToken') !==null && localStorage.removeItem('adminToken')
+     },[])
     return (
         <>
 

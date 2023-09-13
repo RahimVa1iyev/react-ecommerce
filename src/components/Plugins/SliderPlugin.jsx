@@ -32,22 +32,9 @@ const CustomNextArrow = (props) => {
 };
 const SliderPlugin = (props) => {
 
-    const [remainingTime, setRemainingTime] = useState(86400);
     const { title, slideshow, plugin, responsiveRow, row, perrow, visible, products } = props
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setRemainingTime((prevTime) => {
-                if (prevTime <= 0) {
-                    clearInterval(interval);
-                    return 0;
-                }
-                return prevTime - 1;
-            });
-        }, 1000);
-
-        return () => clearInterval(interval);
-    }, []);
+  
 
 
 
@@ -99,27 +86,13 @@ const SliderPlugin = (props) => {
                     <div className="discounted-top-side ">
                         <h2>{title}</h2>
 
-                        <div className={visible === "d-block" ? "count-timer d-block" : "count-timer d-none"}>
-                            {remainingTime !== null ? (
-                                <p>
-                                    Ends in:{" "}
-                                    {Math.floor(remainingTime / 3600)}h{" "}
-                                    {Math.floor((remainingTime % 3600) / 60)}m{" "}
-                                    {remainingTime % 60}s
-                                </p>
-                            ) : (
-                                <p>Ends in: 0h 0m 0s</p>
-                            )}
-                        </div>
+                       
                     </div>
 
                     <div id='slider-id' className="row flex-wrap align-items-center ">
                         <Slider {...settings}>
                             {
-                                plugin === "first" ? products === undefined ? products.map((pr, index) => (
-                                    <MyLoader />
-
-                                )) : products.map((pr, index) => (
+                                plugin === "first" ? products && products.map((pr, index) => (
                                     <PluginItem size={'0'} key={index} product={pr} />
 
                                 ))

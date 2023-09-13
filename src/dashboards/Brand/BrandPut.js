@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import PutForm from '../../components/Forms/PutForm';
 import SideBar from '../../layouts/Dashboard/SideBar';
 import DashNavbar from '../../layouts/Dashboard/DashNavbar';
@@ -9,6 +9,11 @@ const BrandPut = () => {
 
   const { id } = useParams();
   console.log(id);
+
+  const navigate = useNavigate()
+  useEffect(()=>{
+      localStorage.getItem('adminToken') === null && navigate('/dashboard/login')
+    },[])
   return (
     <>
       <div className="top-side">

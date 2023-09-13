@@ -126,7 +126,16 @@ const SecondShopItem = (props) => {
                 })
         }
         else {
-            alert("Xeta bas verdi")
+            toast.warning('You must register to add a product', {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
         }
     }
 

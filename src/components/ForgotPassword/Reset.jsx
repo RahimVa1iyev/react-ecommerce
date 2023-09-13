@@ -30,7 +30,7 @@ const Reset = () => {
     try {
       await axios.post(`https://localhost:7039/api/Users/reset-password`, data);
       toast.success('Password changed succesfully', {
-        position: "top-right",
+        position: "bottom-right",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -56,18 +56,7 @@ const Reset = () => {
   return (
     <>
 
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
+    
       <div className="container-own">
         <div className="login-page">
           <div className="login-text">

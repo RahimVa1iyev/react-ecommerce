@@ -26,6 +26,10 @@ const Category = () => {
       getCategories()
     }, [Id])
   
+    const navigate = useNavigate()
+    useEffect(()=>{
+        localStorage.getItem('adminToken') === null && navigate('/dashboard/login')
+      },[])
   
     return (
       <>

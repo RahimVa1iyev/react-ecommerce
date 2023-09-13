@@ -74,6 +74,7 @@ const PrPostForm = (props) => {
         salePrice: 0,
         costPrice: 0,
         discountedPrice: 0,
+        stockStatus:true,
         isNew: true,
         isFeatured: false,
         posterFile: null,
@@ -99,6 +100,7 @@ const PrPostForm = (props) => {
             formData.append("discountedPrice", values.discountedPrice);
             formData.append("isNew", values.isNew);
             formData.append("isFeatured", values.isFeatured);
+            formData.append("stockStatus", values.stockStatus);
 
             formData.append("posterFile", values.posterFile);
             formData.append("hoverFile", values.hoverFile);
@@ -295,27 +297,35 @@ const PrPostForm = (props) => {
 
 
                                 </div>
-                                <div className="preview-img mt-5">
+                                <div className="mt-4">
                                     <div className="row align-items-center justify-content-center  g-1">
                                         {imageFile && imageFile.map((imgFile, index) => (
-                                            <div className="col-lg-4">
-                                                <img key={index}  className='images' src={URL.createObjectURL(imgFile)} alt={`Image ${index}`} />
+                                            <div className="col-lg-3">
+                                                <img key={index} width={100} height={100}  className='images' src={URL.createObjectURL(imgFile)} alt={`Image ${index}`} />
                                             </div>
                                         ))}
                                     </div>
                                 </div>
 
 
+                             
+
+
                                 <div className="row">
-                                    <div className="col-lg-6">
+                                    <div className="col-lg-4">
                                         <div className="form-body d-flex flex-column align-items-center gap-2 ">
                                             <Field className="check-input" type="checkbox" name='isNew' />
                                             <label >Is New</label>
                                         </div>
                                     </div>
-                                    <div className="col-lg-6">
+                                    <div className="col-lg-4">
                                         <div className="form-body d-flex flex-column align-items-center gap-2">
                                             <Field type="checkbox" className="check-input" name='isFeatured' />   <label >Is Feautred</label>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-4">
+                                        <div className="form-body d-flex flex-column align-items-center gap-2">
+                                            <Field type="checkbox" className="check-input" name='stockStatus' />   <label >Is Stock</label>
                                         </div>
                                     </div>
 

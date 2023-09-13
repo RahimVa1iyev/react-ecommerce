@@ -7,7 +7,9 @@ import { Field, Formik, Form } from 'formik';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { store } from '../../store';
-import { toast } from 'react-toastify';
+import { ToastContainer,toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { setSelectedNav, setSelectedRoute } from '../../control/navSlice';
 
 function ConfirmModal(props) {
     const dispatch = useDispatch();
@@ -31,7 +33,7 @@ function ConfirmModal(props) {
     const onSubmit = async (values) => {
       
        await axios.post(`https://localhost:7039/api/Users/EmailConfirm`, values)
-       .then(res => { navigate('/login') ;
+       .then(res => { 
          toast.success('Email confirmed successfully', {
         position: "top-right",
         autoClose: 5000,
@@ -41,7 +43,12 @@ function ConfirmModal(props) {
         draggable: true,
         progress: undefined,
         theme: "light",
-        }); }) 
+        }); 
+        dispatch(setSelectedNav('Login'))
+        dispatch(setSelectedRoute(`/login`))
+        navigate('/login') ;
+    
+    }) 
 
       
     }
@@ -55,6 +62,18 @@ function ConfirmModal(props) {
 
     return (
         <>
+        <ToastContainer
+            position="bottom-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+         />
             <Modal show={confirmModalOpen} >
                 <Modal.Header>
                     <Modal.Title>Email Confirmation</Modal.Title>

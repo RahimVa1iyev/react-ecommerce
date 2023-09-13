@@ -23,12 +23,12 @@ const Header = () => {
 
     const currentScroll = window.scrollY;
     if (currentScroll > 150) {
-      header.classList.add(toggleClass);
+      header && header.classList.add(toggleClass);
 
 
 
     } else {
-      header.classList.remove(toggleClass);
+      header && header.classList.remove(toggleClass);
 
 
     }

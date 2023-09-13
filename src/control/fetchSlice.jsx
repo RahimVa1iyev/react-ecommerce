@@ -47,12 +47,22 @@ const fetchSlice = createSlice({
 
 export const getOrders = () => async (dispatch) => {
     try {
-        const token = localStorage.getItem('authToken');
+        
         const response = await axios.get(`https://localhost:7039/api/Orders/all`, {
             headers: {
-                Authorization: `Bearer ${token}`
-            }
+                Authorization: `Bearer ${initialState.token}`,
+            },
         })
+
+        dispatch(setOrder(response.data))
+    }
+    catch (error) { }
+}
+
+export const getDashOrders = () => async (dispatch) => {
+    try {
+        
+        const response = await axios.get(`https://localhost:7039/api/Orders/dash-all`    )
 
         dispatch(setOrder(response.data))
     }

@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { LuEdit } from 'react-icons/lu';
 import { MdDeleteForever } from 'react-icons/md';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { setId } from '../../control/dashboardSlice';
 
 const PrTable = (props) => {
     let count = 1;
+    const navigate = useNavigate();
+    const disPatch = useDispatch();
 
     const exportHandle = async () => {
         try {
@@ -29,6 +34,27 @@ const PrTable = (props) => {
     };
 
 
+    const deleteHandle = async (id) => {
+        await axios.delete(`https://localhost:7039/api/Products/${id}`)
+                .then(response =>
+                  toast.error(`Products deleted successfully`, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    })
+        
+                  )
+                .catch(error => console.log(error))
+          navigate(`/dashboard/products`)
+          disPatch(setId(id))
+    }
+
+
  
 
 
@@ -40,7 +66,7 @@ const PrTable = (props) => {
                 <div className="table-head d-flex align-items-center justify-content-between">
                     <h6>Product table  </h6>
                     <div className="action-side d-flex align-items-center gap-1">
-                        <Link to={props.route} id='cr-btn' className='btn btn-success'  >Create</Link>
+                        <Link to='/dashboard/products/create' id='cr-btn' className='btn btn-success'  >Create</Link>
                         <button onClick={exportHandle} id='export-btn' className='btn btn-primary'>Export</button>
                     </div>
                 </div>
@@ -98,7 +124,7 @@ const PrTable = (props) => {
                                                 <LuEdit className='table-icon ' /> Edit
                                             </Link>
 
-                                            <Link id='dlt-btn' className='w-100 btn btn-danger d-flex align-items-center justify-content-center gap-1  ' > <MdDeleteForever className='table-icon' /> Delete</Link> </td>
+                                            <Link  onClick={() => deleteHandle(pr.id)} id='dlt-btn' className='w-100 btn btn-danger d-flex align-items-center justify-content-center gap-1  ' > <MdDeleteForever className='table-icon' /> Delete</Link> </td>
 
                                     </tr>
                                 ))

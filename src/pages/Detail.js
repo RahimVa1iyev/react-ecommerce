@@ -34,7 +34,10 @@ const Detail = () => {
 
 
   }, [id])
-
+  
+  useEffect(()=>{
+    localStorage.getItem('adminToken') !==null && localStorage.removeItem('adminToken')
+ },[])
 
   return (
     <>

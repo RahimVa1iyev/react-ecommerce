@@ -176,8 +176,6 @@ const Shop = () => {
 
         }
 
-
-
     }
 
     const indexOfLastItem = currentPage * itemsPerPage;
@@ -202,7 +200,9 @@ const Shop = () => {
     const ColHandler3 = (e) => {
         setCols(e.target.id)
     }
-
+    useEffect(()=>{
+        localStorage.getItem('adminToken') !==null && localStorage.removeItem('adminToken')
+     },[])
 
     return (
         <>

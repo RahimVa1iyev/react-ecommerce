@@ -70,7 +70,9 @@ const CheckOut = () => {
         createOrder();
     }
 
-
+    useEffect(()=>{
+        localStorage.getItem('adminToken') !==null && localStorage.removeItem('adminToken')
+     },[])
     useEffect(() => {
         getCheckout();
     }, [clicked])

@@ -55,6 +55,9 @@ const Home = () => {
 
    }
   
+   useEffect(()=>{
+      localStorage.getItem('adminToken') !==null && localStorage.removeItem('adminToken')
+   },[])
   
 
   

@@ -41,14 +41,14 @@ const toggleHandle = (e) =>{
         <>
 
             <div className="dash-side-bar-top">
-                <FaReact className='react-icon' />  <span className='dash-text'>Admin VR</span>
+                <Link to='/dashboard/index'><FaReact className='react-icon' />  <span className='dash-text'>Admin VR</span></Link>
             </div>
 
             <hr className='horizontal dark mt-3' />
 
             <div className="dash-side-bar-body">
                 <div className="dashboard-link d-flex align-items-center gap-2">
-                    <TbBrandDisqus className='dash-icon' /> <span className='dash-text'>Dashboard</span>
+                   <Link to='/dashboard/index'> <TbBrandDisqus className='dash-icon' /> <span className='dash-text'>Dashboard</span></Link>
                 </div>
                 <div onClick={tablesHandler} className="tables-link d-flex align-items-center gap-2">
                     <MdTableView className='tabs-icon' /> <span className='dash-text'>Tables</span>  {open === true ? <MdKeyboardArrowDown className='arrow-icon' /> : <MdKeyboardArrowUp className='arrow-icon' />}

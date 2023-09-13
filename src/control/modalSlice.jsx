@@ -101,7 +101,7 @@ export const createUser = (values) => async (dispatch) => {
         await axios.post(`https://localhost:7039/api/Users/register`, values)
         .then(res => {console.log("User created succesfully") 
          dispatch(handleConfirmModalOpen())
-        dispatch(setUserId(res.data.id.id)) } )
+         dispatch(setUserId(res.data.id.id)) } )
     } catch (error){
         console.log(error.response.data);
     }   

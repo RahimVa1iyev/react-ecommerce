@@ -4,7 +4,8 @@ import DashNavbar from '../../layouts/Dashboard/DashNavbar'
 import OrderTable from '../../components/Tables/OrderTable'
 import { useDispatch, useSelector } from 'react-redux'
 import { store } from '../../store'
-import { getOrders } from '../../control/fetchSlice'
+import { getDashOrders } from '../../control/fetchSlice'
+import { useNavigate } from 'react-router-dom'
 
 const Order = () => {
 
@@ -14,8 +15,13 @@ const Order = () => {
   console.log(orders);
 
   useEffect(()=>{
-     dispatch(getOrders())
+     dispatch(getDashOrders())
   },[])
+
+  const navigate = useNavigate()
+  useEffect(()=>{
+      localStorage.getItem('adminToken') === null && navigate('/dashboard/login')
+    },[])
 
   return (
     <>

@@ -275,7 +275,7 @@ header {
 }
 
 .bottom-header {
-  padding: 20px 0;
+  padding: 10px 0;
   background-color: #fff;
   z-index: 1;
   position: relative;
@@ -351,7 +351,7 @@ header {
 }
 .bottom-header .basket-dropdown {
   position: absolute;
-  top: 74px;
+  top: 92px;
   right: 82px;
   z-index: 10000000000000000000;
   width: 350px;
@@ -435,7 +435,7 @@ header {
 
 .bottom-header.isSticky {
   position: fixed;
-  padding: 21px 179px;
+  padding: 8px 179px;
   width: 100%;
   top: 0;
   margin-left: -181px;
@@ -443,7 +443,7 @@ header {
 }
 .bottom-header.isSticky .basket-dropdown {
   position: absolute;
-  top: 78px;
+  top: 88px;
   right: 260px;
   z-index: 10000000000000000000;
   width: 350px;
@@ -469,6 +469,16 @@ header {
 }
 
 @media (max-width: 576px) {
+  .dropdown-account {
+    position: absolute;
+    top: 53px !important;
+    right: 145px !important;
+    width: 170px;
+    padding: 15px 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1019607843);
+    z-index: 99999999999999;
+  }
   #top-header {
     z-index: 1;
   }
@@ -499,11 +509,12 @@ header {
   }
   .bottom-header {
     position: relative;
+    padding: 2px 0;
   }
   .bottom-header .bottom-icons {
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: center;
     gap: 10px;
   }
   .bottom-header .bottom-icons .basket {
@@ -550,7 +561,7 @@ header {
     color: #fff;
   }
   .bottom-header .basket-dropdown {
-    top: 120px;
+    top: 75px;
     right: -10px;
   }
   .bottom-header #navbar-media {
@@ -569,15 +580,11 @@ header {
   .bottom-header #bar {
     display: block;
   }
-  .bottom-header #bar .side-bar {
-    text-align: left;
-    margin-top: 10px;
-  }
   .bottom-header #bar .side-bar .bar-icon {
     font-size: 25px;
   }
   .bottom-header .logo img {
-    width: 130px;
+    width: 100px;
   }
   #side-bar-on {
     display: block;
@@ -1501,7 +1508,7 @@ p {
     height: 280px;
     top: 38px;
     bottom: 0;
-    left: 50%;
+    left: 52% !important;
     right: 0;
     padding: 35px 20px;
     transform: translate(-50%);
@@ -2562,14 +2569,14 @@ p {
   /* Change the color of the thumb */
 }
 .MuiSlider-root .MuiSlider-track {
-  background-color: #ff5722; /* Change this color to your desired color */
-  border: 2px solid #ff5722;
-  color: #ff5722;
+  background-color: #f9706a; /* Change this color to your desired color */
+  border: 2px solid #f9706a;
+  color: #f9706a;
 }
 .MuiSlider-root .MuiSlider-thumb {
-  background-color: #ff5722; /* Change this color to your desired color */
-  border: 2px solid #ff5722;
-  color: #ff5722;
+  background-color: #f9706a; /* Change this color to your desired color */
+  border: 2px solid #f9706a;
+  color: #f9706a;
 }
 
 .filter-btn {
@@ -2583,7 +2590,7 @@ p {
   border: none;
 }
 .filter-btn:hover {
-  background-color: #ff5722;
+  background-color: #f9706a;
 }
 
 .shop-right-side .top-side {
@@ -4200,7 +4207,7 @@ p {
     box-shadow: 0 5px 4px rgba(0, 0, 0, 0.1019607843);
   }
   .link-forgot {
-    font-size: 10px;
+    font-size: 11px !important;
     font-weight: 500;
     color: #f9706a;
   }
@@ -4705,11 +4712,13 @@ p {
   color: #fff;
   height: 40px;
   width: 25px;
+  cursor: pointer;
 }
 .top-side .dashboard-index .top-side-right .sign-side span {
   color: #fff;
   font-size: 16px;
   font-weight: 500;
+  cursor: pointer;
 }
 .top-side .stat {
   margin-top: 30px;
@@ -5131,6 +5140,10 @@ td:last-child {
   font-size: 14px;
   font-weight: 500;
   text-align: center;
+}
+
+.preview-img img {
+  padding: 40px;
 }
 
 .container-extend, .container-header, .container-own, .conatiner-own, .containe-own {
@@ -5612,6 +5625,7 @@ a.list-group-item, .list-group-item-action {
   padding: 5px;
 }
 .my-wishlist-side .left-side .my-wishlist-img img {
+  padding: 5px;
   width: 70px;
   height: 70px;
 }
@@ -5666,6 +5680,86 @@ a.list-group-item, .list-group-item-action {
 }
 
 @media (max-width: 576px) {
+  .my-wishlist-side {
+    width: 100% !important;
+    padding: 25px 30px;
+    position: relative;
+    box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+    margin-bottom: 20px;
+  }
+  .my-wishlist-side .my-wishlist-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .my-wishlist-side .left-side {
+    width: 78%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+  .my-wishlist-side .left-side .my-wishlist-img {
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    padding: 5px;
+  }
+  .my-wishlist-side .left-side .my-wishlist-img img {
+    padding: 5px;
+    width: 70px;
+    height: 70px;
+  }
+  .my-wishlist-side .left-side .my-wishlist-content .content-title {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 22px;
+  }
+  .my-wishlist-side .left-side .my-wishlist-content .content-price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .my-wishlist-side .left-side .my-wishlist-content .content-price .new-price {
+    font-size: 13px;
+    font-weight: 500;
+    color: #f9706a;
+  }
+  .my-wishlist-side .left-side .my-wishlist-content .content-price .old-price {
+    font-size: 11px;
+    font-weight: 500;
+    color: #8c8c8c;
+  }
+  .my-wishlist-side .left-side .my-wishlist-content .content-stock {
+    font-size: 13px;
+    font-weight: 500;
+    padding-top: 4px;
+  }
+  .my-wishlist-side .left-side .my-wishlist-content .inStock {
+    color: greenyellow;
+  }
+  .my-wishlist-side .left-side .my-wishlist-content .outStock {
+    color: red;
+  }
+  .my-wishlist-side .delete-wish {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: #f9706a;
+    cursor: pointer;
+  }
+  .my-wishlist-side .add-to-card button {
+    background-color: #f9706a;
+    color: #fff;
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 2px;
+  }
+  .my-wishlist-side .add-to-card button:hover {
+    background-color: #212529;
+  }
   .form-content-profile {
     width: 100%;
   }
@@ -5731,7 +5825,6 @@ a.list-group-item, .list-group-item-action {
   bottom: -100px;
 }
 .admin-login form {
-  height: 580px;
   width: 580px;
   background-color: rgba(255, 255, 255, 0.13);
   position: absolute;
@@ -5786,7 +5879,7 @@ a.list-group-item, .list-group-item-action {
   width: 100%;
   background-color: #ffffff;
   color: #080710;
-  padding: 15px 0;
+  padding: 10px 0;
   font-size: 18px;
   font-weight: 600;
   border-radius: 5px;

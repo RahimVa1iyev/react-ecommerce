@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import SideBar from '../../layouts/Dashboard/SideBar'
 import DashNavbar from '../../layouts/Dashboard/DashNavbar'
 import MessageForm from '../../components/Forms/MessageForm'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const Response = () => {
     const {id} = useParams();
+
+    const navigate = useNavigate()
+    useEffect(()=>{
+        localStorage.getItem('adminToken') === null && navigate('/dashboard/login')
+      },[])
   return (
     <>
          <div className="top-side">

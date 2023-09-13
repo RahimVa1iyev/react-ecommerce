@@ -5,6 +5,7 @@ import MessageTable from '../../components/Tables/MessageTable'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { getMessages } from '../../control/fetchSlice'
+import { useNavigate } from 'react-router-dom'
 
 const ContactUs = () => {
     const {messages} = useSelector(store => store.fetch);
@@ -14,6 +15,11 @@ const ContactUs = () => {
     useEffect(()=>{
        dispatch(getMessages())
     },[])
+
+    const navigate = useNavigate()
+    useEffect(()=>{
+        localStorage.getItem('adminToken') === null && navigate('/dashboard/login')
+      },[])
   return (
     <>
             <div className="top-side">

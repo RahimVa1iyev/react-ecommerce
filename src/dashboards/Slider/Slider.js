@@ -25,6 +25,10 @@ const Slider = () => {
      getSliders();
    },[Id])
 
+   useEffect(()=>{
+       localStorage.getItem('adminToken') === null && navigate('/dashboard/login')
+     },[])
+
 console.log(datas);
   return (
     <>

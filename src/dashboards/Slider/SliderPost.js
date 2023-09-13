@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import SideBar from '../../layouts/Dashboard/SideBar'
 import DashNavbar from '../../layouts/Dashboard/DashNavbar'
 import SliderPostForm from '../../components/Forms/SliderPostForm'
+import { useNavigate } from 'react-router-dom'
 
 const SliderPost = () => {
+   const navigate = useNavigate()
+
+   useEffect(()=>{
+    localStorage.getItem('adminToken') === null && navigate('/dashboard/login')
+  },[])
   return (
     <>
     

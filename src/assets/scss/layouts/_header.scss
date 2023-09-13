@@ -149,7 +149,7 @@ header{
 
 .bottom-header {
 
-    padding: 20px 0;
+    padding: 10px 0;
     background-color: #fff;
     z-index: 1;
     position: relative;
@@ -248,7 +248,7 @@ header{
 
     .basket-dropdown {
         position: absolute;
-        top: 74px;
+        top: 92px;
         right: 82px;
         z-index: 9999999999999999999;
         width: 350px;
@@ -360,7 +360,7 @@ header{
 
 .bottom-header.isSticky {
     position: fixed;
-    padding: 21px 179px;
+    padding: 8px 179px;
     width: 100%;
     top: 0;
     margin-left: -181px;
@@ -368,7 +368,7 @@ header{
 
     .basket-dropdown {
         position: absolute;
-        top: 78px;
+        top: 88px;
         right: 260px;
         z-index: 9999999999999999999;
         width: 350px;
@@ -402,6 +402,16 @@ header{
 }
 
 @media(max-width :576px) {
+
+    .dropdown-account {
+        position: absolute;
+        top: 53px !important;
+        right: 145px !important;
+        width: 170px;
+        padding: 15px 20px;
+        background-color: #fff;
+        box-shadow: 0 2px 8px #0000001a;
+        z-index: 99999999999999;}
 
     #top-header {
         z-index: 1;
@@ -441,11 +451,11 @@ header{
 
     .bottom-header {
         position: relative;
-
+        padding: 2px 0;
         .bottom-icons{
             display: flex;
             align-items: center;
-            justify-content: end;
+            justify-content: center;
             gap: 10px;
 
             .basket {
@@ -509,7 +519,7 @@ header{
         }
 
         .basket-dropdown{
-            top: 120px;
+            top: 75px;
             right: -10px;
         }
 
@@ -520,6 +530,7 @@ header{
         }
 
         #bottom-header-media {
+           
             display: flex;
             align-items: center;
             justify-content: space-between !important;
@@ -540,8 +551,6 @@ header{
             display: block;
 
             .side-bar {
-                text-align: left;
-                margin-top: 10px;
 
                 .bar-icon {
                     font-size: 25px;
@@ -551,7 +560,7 @@ header{
 
         .logo {
             img {
-                width: 130px;
+                width: 100px;
             }
         }
     }

@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Formik, Form, Field } from 'formik';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setLogin, setToken } from '../control/fetchSlice';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { setSelectedNav, setSelectedRoute } from '../control/navSlice';
 
 
 const Login = () => {
@@ -13,6 +14,7 @@ const Login = () => {
   const [error, setError] = useState();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
 
   const initialValues = {
     userName: '',
@@ -35,11 +37,15 @@ const Login = () => {
         }
       })
   }
+
+  useEffect(()=>{
+    localStorage.getItem('adminToken') !==null && localStorage.removeItem('adminToken')
+ },[])
   return (
     <>
 
 <ToastContainer
-            position="top-right"
+            position="bottom-right"
             autoClose={5000}
             hideProgressBar={false}
             newestOnTop={false}
@@ -69,11 +75,19 @@ const Login = () => {
                 {error && <div className="error-message">{error}</div>}
                 <div className="btn-side">
                   <button type='submit' >Sign In</button>
-                  <Link to='/forgot-password' className='link-forgot' >Forgot your password?</Link>
+                  <Link to='/forgot-password' className='link-forgot' onClick={()=>{
+
+dispatch(setSelectedNav('Forgot Password'))
+dispatch(setSelectedRoute(`/forgot-password`))
+                  }} >Forgot your password?</Link>
                 </div>
 
 
-                <Link to='/register' className='create-account'>Create account</Link>
+                <Link to='/register'  onClick={()=>{
+
+dispatch(setSelectedNav('Register'))
+dispatch(setSelectedRoute(`/register`))
+                  }} className='create-account'>Create account</Link>
               </Form>
 
             </Formik>

@@ -18,7 +18,7 @@ const Brand = () => {
   const {Id} = useSelector((store) => store.table)
 
   const getBrands = async () => {
-    const response = await axios.get("https://localhost:7039/api/Brands/all")
+    const response = await axios.get("https://localhost:7039/api/Brands/all" )
     setBrands(response.data)
   }
 
@@ -27,6 +27,9 @@ const Brand = () => {
     getBrands()
   }, [Id])
 
+  useEffect(()=>{
+    localStorage.getItem('adminToken') === null && navigate('/dashboard/login')
+  },[])
 
   return (
     <>

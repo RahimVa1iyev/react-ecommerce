@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 
@@ -8,6 +8,7 @@ const AdminPost = () => {
 
   const [error, setError] = useState();
   const navigate = useNavigate();
+  const [token, setToken] = useState(localStorage.getItem('adminToken'))
 
   const initialValues = {
     firstName: '',
@@ -18,23 +19,30 @@ const AdminPost = () => {
   }
 
   const onSubmit = async (values) => {
-   
-     await axios.post(`https://localhost:7039/api/Accounts`,values)
-                 .then(res => navigate('/dashboard/admins') )
-                 .catch(error => {
-                  if (error.response.status === 400)
-                      error.response.data.errors.forEach(err => setError(err.errorMessage));
-                  else if (error.response.status === 404)
-                      navigate("*")
-                  else {
-                      console.log("An unexpected error occurred ");
-                  }
-              })
 
-     
+    await axios.post(`https://localhost:7039/api/Accounts`, values, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+      .then(res => navigate('/dashboard/admins'))
+      .catch(error => {
+        if (error.response.status === 400)
+        
+         { console.log(error.response.data);}
+        else if (error.response.status === 404)
+          navigate("*")
+        else {
+          console.log("An unexpected error occurred ");
+        }
+      })
+
+
   }
 
-  
+  useEffect(() => {
+    localStorage.getItem('adminToken') === null && navigate('/dashboard/login')
+  })
 
   return (
     <>

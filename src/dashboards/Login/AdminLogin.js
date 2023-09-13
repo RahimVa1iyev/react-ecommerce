@@ -19,7 +19,7 @@ const AdminLogin = () => {
     const onSubmit = async (values) => {
         console.log(values);
         await axios.post(`https://localhost:7039/api/Accounts/login`, values)
-            .then(res => navigate('/dashboard/index'))
+            .then(res => { localStorage.setItem('adminToken',res.data.token);navigate('/dashboard/index') ;  })
             .catch(error => {
                 if (error.response.status === 400)
                     error.response.data.errors.forEach(err => setError(err.errorMessage));

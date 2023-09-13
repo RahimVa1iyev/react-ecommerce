@@ -104,7 +104,22 @@ const TabPlugin = (props) => {
   }
 
   const handleReviewWrite = () => {
+
+   if(token !==null){
     setReviewToggle(reviewToggle ? false : true)
+   }
+   else{
+    toast.warning('You must register to add a product', {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
+   }
   }
 
 

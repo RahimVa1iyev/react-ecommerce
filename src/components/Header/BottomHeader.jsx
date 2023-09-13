@@ -16,7 +16,7 @@ const BottomHeader = () => {
     const [toggle, setToggle] = useState("side-bar-off");
     const { count, product } = useSelector((store) => store.basket)
     const [dropdown, setDropdown] = useState(false)
-    const [toggleNavlink, setToggleNavlink] = useState(1);
+    // const [toggleNavlink, setToggleNavlink] = useState(1);
     const [token, setToken] = useState(localStorage.getItem('authToken'));
 
     const { selectedNav } = useSelector(store => store.nav)
@@ -74,13 +74,13 @@ const BottomHeader = () => {
             dispatch(setSelectedNav(''))
             dispatch(setSelectedRoute(''))
         }
-        console.log('if',selectedNav);
-        if (selectedNav === 'Detail') {
-            setToggleNavlink(0)
-        }
-        else {
-            setToggleNavlink(id)
-        }
+        // console.log('if',selectedNav);
+        // if (selectedNav === 'Detail') {
+        //     setToggleNavlink(0)
+        // }
+        // else {
+        //     setToggleNavlink(id)
+        // }
     }
 
 
@@ -98,13 +98,13 @@ const BottomHeader = () => {
 
         const currentScroll = window.scrollY;
         if (currentScroll > 150) {
-            header.classList.add(toggleClass);
+           header && header.classList.add(toggleClass);
             bar.classList.add(toggleClass);
 
 
 
         } else {
-            header.classList.remove(toggleClass);
+            header && header.classList.remove(toggleClass);
             bar.classList.remove(toggleClass);
             bar.classList.remove(toggleClass);
 
@@ -118,20 +118,20 @@ const BottomHeader = () => {
 
                 <div id='bottom-header-media' className="row align-items-center justify-content-between">
 
-                    <div className="col-lg-2 col-3">
+                    <div className="col-lg-2 col-4">
                         <Link to="/" className='logo' > <img src={logo} alt="my image" /> </Link>
                     </div>
 
                     <div id='navbar-media' className="col-lg-6">
                         <div className="navbar-bottom d-flex align-items-center justify-content-around">
-                            <Link className={toggleNavlink === 1 ? "nav-active" : "nav-deactive"} onClick={() => toggleNav(1)} to="/">Home</Link>
-                            <Link className={toggleNavlink === 2 ? "nav-active" : "nav-deactive"} onClick={() => toggleNav(2)} to="/shop" >Shop</Link>
-                            <Link className={toggleNavlink === 3 ? "nav-active" : "nav-deactive"} onClick={() => toggleNav(3)} to="/contact-us" >Contact</Link>
+                            <Link className='nav-deactive' onClick={() => toggleNav(1)} to="/">Home</Link>
+                            <Link className='nav-deactive' onClick={() => toggleNav(2)} to="/shop" >Shop</Link>
+                            <Link className='nav-deactive' onClick={() => toggleNav(3)} to="/contact-us" >Contact</Link>
                         </div>
 
                     </div>
-                    <div className="col-lg-2 col-9">
-                        <div className="bottom-icons ">
+                    <div className="col-lg-2 col-6">
+                        <div className="bottom-icons  ">
                             <div className="wishlist">
                                <Link to='/wishlist'> <AiOutlineHeart onClick={()=>{
                                           dispatch(setSelectedNav('Wishlist'));
@@ -183,9 +183,11 @@ const BottomHeader = () => {
                                         <Link onClick={() => {setDropdown(false) ;
                                           dispatch(setSelectedNav('Basket'));
                                           dispatch(setSelectedRoute(`/basket`))} } to='/basket' className='go-link' >View Cart</Link>
-                                        <Link onClick={() => {setDropdown(false) ;
+                                         {token !==null ?   <Link onClick={() => {setDropdown(false) ;
                                           dispatch(setSelectedNav('Checkout'));
-                                          dispatch(setSelectedRoute(`/checkout`))}} to='/checkout' className='go-link' >Checkout</Link>
+                                          dispatch(setSelectedRoute(`/checkout`))}} to='/checkout' className='go-link' >Checkout</Link>:
+                                          <Link className='go-link' >Checkout</Link>
+                                          }
                                     </div>
                                 </div>
 
@@ -194,7 +196,7 @@ const BottomHeader = () => {
                         </div>
                     </div>
 
-                    <div id='bar' className="col-12">
+                    <div id='bar' className="col-2">
                         <div className="side-bar">
                             <AiOutlineBars onClick={SidebarHandler} className='bar-icon' />
                         </div>

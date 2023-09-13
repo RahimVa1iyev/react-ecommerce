@@ -25,15 +25,39 @@ const Contact = () => {
     subject: '',
     text: ''
   }
-  const onSubmit = async (values , {resetForm}) => {
+  const onSubmit = async (values, { resetForm }) => {
     console.log(values);
-    await axios.post(`https://localhost:7039/api/Contacts`, values, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
-      .then(res => { 
-         toast.success('Messge send successfully', {
+    if (token) {
+      await axios.post(`https://localhost:7039/api/Contacts`, values, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+        .then(res => {
+          toast.success('Messge send successfully', {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          resetForm();
+        })
+        .catch(error => {
+          if (error.response.status === 400)
+            error.response.data.errors.forEach(err => setError(err.errorMessage));
+          else if (error.response.status === 404)
+            navigate("*")
+          else {
+            console.log("An unexpected error occurred ");
+          }
+        })
+    }
+    else {
+      toast.warning('You must register to send a Message', {
         position: "bottom-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -42,18 +66,10 @@ const Contact = () => {
         draggable: true,
         progress: undefined,
         theme: "light",
-        });
-         resetForm(); })
-      .catch(error => {
-        if (error.response.status === 400)
-          error.response.data.errors.forEach(err => setError(err.errorMessage));
-        else if (error.response.status === 404)
-          navigate("*")
-        else {
-          console.log("An unexpected error occurred ");
-        }
-      })
+      });
+    }
   }
+
 
   const getUser = async () => {
 
@@ -75,25 +91,29 @@ const Contact = () => {
     }
   }
 
-useEffect(()=>{
- getUser();
-},[])
+  useEffect(() => {
+    localStorage.getItem('adminToken') !== null && localStorage.removeItem('adminToken')
+  }, [])
+
+  useEffect(() => {
+    getUser();
+  }, [])
 
   return (
     <>
 
-<ToastContainer
-            position="bottom-right"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-         />
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div className="container-own">
         <div className="contact-us">
           <div className="row align-items-start justify-content-between">

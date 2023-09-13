@@ -6,6 +6,8 @@ import { AiFillHeart } from "react-icons/ai"
 import { BiPlus } from "react-icons/bi"
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { setSelectedNav, setSelectedRoute } from '../control/navSlice'
 
 const Basket = () => {
 
@@ -23,6 +25,10 @@ const Basket = () => {
 
         total += item.count * price;
     });
+
+    useEffect(() => {
+        localStorage.getItem('adminToken') !== null && localStorage.removeItem('adminToken')
+    }, [])
 
 
     const AddBasketHandle = async (values) => {
@@ -44,7 +50,16 @@ const Basket = () => {
                 })
         }
         else {
-            alert("Xeta bas verdi")
+            toast.warning('You must register to add a product', {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
         }
     }
 
@@ -142,12 +157,12 @@ const Basket = () => {
                                                                     </span>
                                                                 ))
                                                             }</p>
-                                                         
-                                                                <button type="button" className="shopping-cart-del-btn me-1 mb-2 " data-mdb-toggle="tooltip"
-                                                                    title="Remove item">
-                                                                    <BiSolidTrashAlt onClick={() => DeletePrHandle(item.product.id)} />
-                                                                </button>
-                                                           
+
+                                                            <button type="button" className="shopping-cart-del-btn me-1 mb-2 " data-mdb-toggle="tooltip"
+                                                                title="Remove item">
+                                                                <BiSolidTrashAlt onClick={() => DeletePrHandle(item.product.id)} />
+                                                            </button>
+
 
                                                         </div>
 
@@ -218,9 +233,12 @@ const Basket = () => {
                                         </li>
                                     </ul>
 
-                                    <Link to='/checkout' type="button" className="go-to-checkout-btn">
+                                    {token !== null ? <Link to='/checkout' onClick={()=>{  dispatch(setSelectedNav('Checkout'))
+        dispatch(setSelectedRoute(`/checkout`))}} type="button" className="go-to-checkout-btn">
                                         Go to checkout
-                                    </Link>
+                                    </Link> : <Link type="button" className="go-to-checkout-btn">
+                                        Go to checkout
+                                    </Link>}
                                 </div>
                             </div>
                         </div>
@@ -235,4 +253,4 @@ const Basket = () => {
     )
 }
 
-export default Basket
+export default Basket   
