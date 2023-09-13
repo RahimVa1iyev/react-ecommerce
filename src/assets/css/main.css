@@ -4926,6 +4926,51 @@ p {
   background-color: #344767;
 }
 
+@media (max-width: 576px) {
+  .dash-side-bar {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    height: 90vh;
+    box-shadow: 7px 16px 22px -1px rgba(0, 0, 0, 0.37);
+    margin-top: 105px;
+    position: static !important;
+    width: 347px !important;
+  }
+  #admin-media {
+    display: flex;
+    flex-direction: column;
+  }
+  .dash-nav {
+    position: absolute;
+    top: 20px;
+    width: 90%;
+  }
+  .f-span,
+  .s-span {
+    display: none;
+  }
+  .route-page h6 {
+    padding-top: 12px;
+  }
+  .stat-box {
+    box-shadow: 7px 16px 22px -1px rgba(0, 0, 0, 0.37);
+    margin-bottom: 15px;
+    width: 347px !important;
+  }
+  .charts {
+    margin-top: 50px !important;
+    margin: 0 auto;
+  }
+  .charts .column-chart {
+    width: 330px;
+  }
+  .charts .bar-chart {
+    margin-top: 20px;
+    margin-left: 50px !important;
+    width: 95% !important;
+  }
+}
 .prtable {
   margin-top: 50px;
   background-color: #fff;

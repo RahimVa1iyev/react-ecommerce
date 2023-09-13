@@ -143,20 +143,22 @@ const getIncome = async () => {
         <>
             <div className="top-side">
                 <div className="container-fluid">
-                    <div className="row  ">
-                        <div className="col-lg-2-5">
+                    <div id='admin-media' className=" row  ">
+                        <div className="col-lg-2-5 col-12">
                             <div className="dash-side-bar">
                                 <SideBar openTab={false} />
                             </div>
                         </div>
-                        <div className="col-lg-9-5">
+                        <div className="col-lg-9-5 col-12">
                             <div className="dashboard-index">
 
-                                <DashNavbar />
+                              <div className="dash-nav">
+                              <DashNavbar />
+                              </div>
 
                                 <div className="stat">
                                     <div className="row align-items-center justify-content-center">
-                                        <div className="col-lg-3">
+                                        <div className="col-lg-3 col-12">
                                             <div className="stat-box d-flex align-items-baseline">
                                                 <div className="stat-box-left ">
                                                     <h6>Daily Revenue</h6>
@@ -170,7 +172,7 @@ const getIncome = async () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-lg-3">
+                                        <div className="col-lg-3 col-12">
                                             <div className="stat-box d-flex align-items-baseline">
                                                 <div className="stat-box-left">
                                                     <h6>Monthly Revenue</h6>
@@ -184,7 +186,7 @@ const getIncome = async () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-lg-3">
+                                        <div className="col-lg-3 col-12">
                                             <div className="stat-box d-flex align-items-baseline">
                                                 <div className="stat-box-left">
                                                     <h6>Yearly Revenue</h6>
@@ -205,13 +207,13 @@ const getIncome = async () => {
 
                                 <div className="charts row align-items-center  ">
 
-                                    <div className="col-lg-8">
+                                    <div className="col-lg-8 col-12">
                                        <div className="column-chart">
                                        <canvas ref={chartRef1} ></canvas>
                                        </div>
 
                                     </div>
-                                    <div className="col-lg-4">
+                                    <div className="col-lg-4 col-12">
 
                                     <div className="bar-chart">
                                     <canvas ref={chartRef2} ></canvas>

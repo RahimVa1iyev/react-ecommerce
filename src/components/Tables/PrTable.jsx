@@ -12,27 +12,30 @@ const PrTable = (props) => {
     const navigate = useNavigate();
     const disPatch = useDispatch();
 
+  
+
     const exportHandle = async () => {
         try {
             const response = await axios.get(`https://localhost:7039/api/Products/export-excel`, {
+                responseType: 'arraybuffer', 
             });
-
+    
             const blob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-
+    
             const url = window.URL.createObjectURL(blob);
-
+    
             const link = document.createElement('a');
             link.href = url;
             link.download = 'product.xlsx';
             document.body.appendChild(link);
             link.click();
-
+    
             window.URL.revokeObjectURL(url);
         } catch (error) {
             console.error(error);
         }
     };
-
+    
 
     const deleteHandle = async (id) => {
         await axios.delete(`https://localhost:7039/api/Products/${id}`)
