@@ -63,7 +63,7 @@ const PostForm = (props) => {
           <h6>{props.tableName}</h6>
         </div>
 
-        <Formik initialValues={initialValues} validationSchema={basicSchema} onSubmit={onSubmit} >
+        <Formik initialValues={initialValues}  onSubmit={onSubmit} >
           <Form>
 
             <div className="form-content">

@@ -158,7 +158,7 @@ const PrPostForm = (props) => {
                     <h6>{props.tableName}</h6>
                 </div>
 
-                <Formik initialValues={initialValues} validationSchema={productSchema} onSubmit={onSubmit} >
+                <Formik initialValues={initialValues}  onSubmit={onSubmit} >
                     {({ values, setFieldValue }) => (
                         <Form>
 

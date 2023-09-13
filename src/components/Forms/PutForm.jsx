@@ -86,7 +86,7 @@ const PutForm = (props) => {
           <h6>{props.tableName}</h6>
         </div>
 
-        <Formik   enableReinitialize initialValues={initialValues} validationSchema={basicSchema} onSubmit={onSubmit} >
+        <Formik   enableReinitialize initialValues={initialValues}  onSubmit={onSubmit} >
           <Form>
 
             <div className="form-content">
