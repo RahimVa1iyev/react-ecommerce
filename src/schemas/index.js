@@ -125,3 +125,57 @@ export const productSchema = yup.object().shape({
 
 
 })
+
+export const loginSchema = yup.object().shape({
+    userName : yup.string()
+    .required('Username is requred')
+    .max(25,'Username must be at maximum 25 characters')
+    .min(4,'Username must be at minimum 4 characters'),
+
+    password : yup.string()
+    .required('Password is required')
+    .max(25,'Password must be at maximum 25 characters')
+    .min(6,'Password must be at minimum 6 characters')
+
+})
+
+export const registerSchema = yup.object().shape({
+    firstname : yup.string()
+    .required('Firstname is required')
+    .max(20,'Firstname must be at maximum 20 characters')
+    .min(3,'Firstname must be at minimum 3 characters'),
+
+    lastname : yup.string()
+    .required('Lastname is required')
+    .max(20,'Lastname must be at maximum 20 characters')
+    .min(3,'Lastname must be at minimum 3 characters'),
+
+    userName : yup.string()
+    .required('Username is required')
+    .max(20,'Username must be at maximum 20 characters')
+    .min(3,'Username must be at minimum 3 characters'),
+
+    email : yup.string()
+    .required('Email is required')
+    .max(80,'Email must be at maximum 80 characters')
+    .min(15,'Email must be at minimum 15 characters'),
+
+    phoneNumber : yup.string()
+    .required('Phone number is required')
+    .max(20,'Phone number must be at maximum 20 characters')
+    .min(10,'Phone number must be at minimum 10 characters'),
+
+    password : yup.string()
+    .required('Password is required')
+    .max(25,'Passwor must be at maximum 25 characters')
+    .min(6,'Passwor must be at minimum 6 characters'),
+
+    confirmPassword : yup.string()
+    .required('Confirm password is required')
+    .max(25,'Confirm passwor must be at maximum 25 characters')
+    .min(6,'Confirm passwor must be at minimum 6 characters')
+    .oneOf([yup.ref('password')], 'Passwords must match'),
+
+
+
+})

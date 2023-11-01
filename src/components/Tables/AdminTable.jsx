@@ -14,7 +14,7 @@ const AdminTable = (props) => {
 
     const deleteHandle = async (id) => {
         console.log(id);
-        await axios.delete(`https://localhost:7039/api/Accounts/${id}`)
+        await axios.delete(`http://rahimcode-001-site1.ftempurl.com/api/Accounts/${id}`)
                 .then(response => 
                     toast.error('Admin deleted successfully', {
                         position: "top-right",

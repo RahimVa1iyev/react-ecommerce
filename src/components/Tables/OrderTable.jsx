@@ -1,31 +1,42 @@
 import axios from 'axios';
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { getOrders } from '../../control/fetchSlice';
+import { getDashOrders, getOrders } from '../../control/fetchSlice';
+import Modals from '../Modal/Modals';
+import { handleOpen, handleView, setOrderItem } from '../../control/modalSlice';
 
 const OrderTable = (props) => {
     let count = 1;
     const dispatch = useDispatch();
+    const [items, setItems] = useState();
 
 
     const acceptHandle = async (id) => {
-        await axios.put(`https://localhost:7039/api/Orders/accepted/${id}`)
+        await axios.put(`http://rahimcode-001-site1.ftempurl.com/api/Orders/accepted/${id}`)
             .then(res => {
                 console.log("Order Accepted Succesfully")
-                dispatch(getOrders())
+                dispatch(getDashOrders())
             })
             .catch(err => console.log("Error"))
     }
 
     const rejectHandle = async (id) => {
 
-        await axios.put(`https://localhost:7039/api/Orders/rejected/${id}`)
-        .then(res => {
-            console.log("Order Rejected Succesfully")
-            dispatch(getOrders())
-        })
-        .catch(err => console.log("Error"))
+        await axios.put(`http://rahimcode-001-site1.ftempurl.com/api/Orders/rejected/${id}`)
+            .then(res => {
+                console.log("Order Rejected Succesfully")
+                dispatch(getDashOrders())
+            })
+            .catch(err => console.log("Error"))
 
+    }
+
+    const viewHandle = async (id) => {
+        dispatch(handleView())
+        dispatch(handleOpen())
+        await axios.get(`http://rahimcode-001-site1.ftempurl.com/api/Orders/orderitems/${id}`)
+        .then(res => dispatch(setOrderItem(res.data)))
+            .catch(err => console.log(err))
     }
 
     return (
@@ -66,8 +77,9 @@ const OrderTable = (props) => {
                                         <td>{order.totalItem}</td>
                                         <td>{order.totalAmount}</td>
                                         <td className='d-flex flex-column gap-4' >
-                                            <button disabled={order.status !==1} className='btn btn-warning accept-btn' onClick={() => acceptHandle(order.id)} >Accepted</button>
-                                            <button disabled={order.status !==1} className='btn btn-danger reject-btn ' onClick={() => rejectHandle(order.id)} >Rejected</button>
+                                            <button className='btn btn-primary' onClick={() => viewHandle(order.id)} >View</button>
+                                            <button disabled={order.status !== 1} className='btn btn-warning accept-btn' onClick={() => acceptHandle(order.id)} >Accepted</button>
+                                            <button disabled={order.status !== 1} className='btn btn-danger reject-btn ' onClick={() => rejectHandle(order.id)} >Rejected</button>
                                         </td>
                                     </tr>
                                 ))
@@ -75,6 +87,12 @@ const OrderTable = (props) => {
                         </tbody>
                     </table>
                 </div>
+            </div>
+
+
+
+            <div className="modal">
+                <Modals />
             </div>
         </>
     )

@@ -14,7 +14,7 @@ const SliderTable = (props) => {
   const dishPatch = useDispatch();
 let count = 1;
   const deleteHandle = async (id) => {
-    await axios.delete(`https://localhost:7039/api/sliders/${id}`)
+    await axios.delete(`http://rahimcode-001-site1.ftempurl.com/api/sliders/${id}`)
             .then(response => 
               toast.error('Slider deleted successfully', {
                 position: "top-right",

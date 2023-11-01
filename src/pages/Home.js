@@ -25,32 +25,32 @@ const Home = () => {
 
    const getRelatedPr = async () => {
        
-      await axios.get("https://localhost:7039/api/Products/discounted")
+      await axios.get("http://rahimcode-001-site1.ftempurl.com/api/Products/discounted")
                  .then(res=> setProducts(previousState => {return {...previousState , relatedProducts : res.data}}) )
                  .catch(err => console.log("An unexpected error occured"))
 
    }
 
    const getNewestPr = async () =>{
-    await axios.get("https://localhost:7039/api/Products/new")
+    await axios.get("http://rahimcode-001-site1.ftempurl.com/api/Products/new")
                .then(res=> setProducts(previousState => {return {...previousState , newProducts : res.data}}) )
                .catch(err => console.log("An unexpected error occured"))
    }
 
    const getFeaturedPr = async () => {
-    await axios.get("https://localhost:7039/api/Products/featured")
+    await axios.get("http://rahimcode-001-site1.ftempurl.com/api/Products/featured")
                .then(res=> setProducts(previousState => {return {...previousState , featuredProducts : res.data}}) )
                .catch(err => console.log("An unexpected error occured"))
    }
 
    const getMostViewPr = async () => {
-    await axios.get("https://localhost:7039/api/Products/mostview")
+    await axios.get("http://rahimcode-001-site1.ftempurl.com/api/Products/mostview")
                .then(res=> setProducts(previousState => {return {...previousState , mowstViewProducts : res.data}}) )
                .catch(err => console.log("An unexpected error occured"))
    }
 
    const getBestSellerPr = async () => {
-    await axios.get(`https://localhost:7039/api/Products/best-seller`)
+    await axios.get(`http://rahimcode-001-site1.ftempurl.com/api/Products/best-seller`)
                .then(res=> setProducts(previousState => {return {...previousState , bestSellerProducts : res.data}}) )
 
    }
@@ -89,7 +89,7 @@ const Home = () => {
          />
       <Carousell />
       <Features />
-      <SliderPlugin title="Today's Deals" slideshow={4} row={1} responsiveRow={2} perrow={1} plugin="first" products = {products.relatedProducts}  visible="d-block" />
+      <SliderPlugin title="Discounted Products" slideshow={4} row={1} responsiveRow={2} perrow={1} plugin="first" products = {products.relatedProducts}  visible="d-block" />
       <Offer />
       <SliderPlugin title="New Products" slideshow={4} row={2} responsiveRow={2} perrow={2} plugin="first"  products = {products.newProducts}  visible="d-none" />
       <Collection />

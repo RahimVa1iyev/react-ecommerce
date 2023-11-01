@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { getBasketItems } from '../control/basketSlice';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { setSelectedNav, setSelectedRoute } from '../control/navSlice';
 
 
 const CheckOut = () => {
@@ -28,7 +29,7 @@ const CheckOut = () => {
     }
 
     const getCheckout = async () => {
-        await axios.get(`https://localhost:7039/api/Orders/checkout`, {
+        await axios.get(`http://rahimcode-001-site1.ftempurl.com/api/Orders/checkout`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -44,7 +45,7 @@ const CheckOut = () => {
 
     const onSubmit = (values) => {
         const createOrder = async () => {
-            await axios.post(`https://localhost:7039/api/Orders`, values, {
+            await axios.post(`http://rahimcode-001-site1.ftempurl.com/api/Orders`, values, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -62,6 +63,8 @@ const CheckOut = () => {
                         theme: "light",
                     });
                     setClicked(clicked + 1)
+                    dispatch(setSelectedNav('Profile'))
+                    dispatch(setSelectedRoute(`/profile`))
                     navigate('/profile')
                 })
                 .catch(err => console.log(err.response.data))

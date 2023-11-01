@@ -16,7 +16,7 @@ const Colour = () => {
     const {Id} = useSelector((store) => store.table)
   
     const getColours = async () => {
-      const response = await axios.get("https://localhost:7039/api/Colors/all")
+      const response = await axios.get("http://rahimcode-001-site1.ftempurl.com/api/Colors/all")
       setColours(response.data)
     }
   

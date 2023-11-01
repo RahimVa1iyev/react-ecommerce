@@ -2,7 +2,9 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { TiStarFullOutline } from 'react-icons/ti';
 import { TiStarOutline } from 'react-icons/ti';
+import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
+import { setReviewCount } from '../../control/fetchSlice';
 
 const TabPlugin = (props) => {
   const [toggle, setToggle] = useState(1);
@@ -13,6 +15,8 @@ const TabPlugin = (props) => {
   const [user, setUser] = useState();
   const [reviewToggle, setReviewToggle] = useState(false);
   const [clicked, setClicked] = useState(0);
+
+  const dispatch = useDispatch();
 
   const getExistUserReview = reviews && reviews.filter(review =>
     user && review.appUserId === user.id
@@ -34,27 +38,40 @@ const TabPlugin = (props) => {
 
   const createReview = async () => {
     const data = { productId: props.product.id, rate: reviewRate, text: text }
-    await axios.post(`https://localhost:7039/api/Products/review`, data, {
+    await axios.post(`http://rahimcode-001-site1.ftempurl.com/api/Products/review`, data, {
       headers: {
         Authorization: `Bearer ${token}`
       }
     })
       .then(res => { setReviewToggle(false); setClicked(clicked + 1); 
         toast.success('Review added successfully', {
-        position: "top-right",
+        position: "bottom-right",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "dark",
-        }); })
-      .catch(err => console.log(err.response.data))
+        theme: "light",
+        }); 
+        dispatch(setReviewCount(1))
+      })
+      .catch(err => 
+      toast.warning('You have already added a review', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        })
+      )
   }
 
   const getReview = async () => {
-    await axios.get(`https://localhost:7039/api/Products/review/${props.product.id}`, {
+    await axios.get(`http://rahimcode-001-site1.ftempurl.com/api/Products/review/${props.product.id}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -65,7 +82,7 @@ const TabPlugin = (props) => {
   const getUser = async () => {
 
     if (token) {
-      await axios.get('https://localhost:7039/api/Users', {
+      await axios.get('http://rahimcode-001-site1.ftempurl.com/api/Users', {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -109,7 +126,7 @@ const TabPlugin = (props) => {
     setReviewToggle(reviewToggle ? false : true)
    }
    else{
-    toast.warning('You must register to add a product', {
+    toast.warning('You must register to review a product', {
       position: "bottom-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -227,7 +244,7 @@ const TabPlugin = (props) => {
 
                 <div className="review-btn">
 
-                  <button onClick={createReview} >Submit Review</button>
+                  <button onClick={createReview} >Add Review</button>
                 </div>
 
               </div>

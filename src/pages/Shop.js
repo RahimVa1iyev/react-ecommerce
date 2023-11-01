@@ -32,30 +32,30 @@ const Shop = () => {
 
 
     const getBrands = async () => {
-        await axios.get("https://localhost:7039/api/Brands/all")
+        await axios.get("http://rahimcode-001-site1.ftempurl.com/api/Brands/all")
             .then(res => { setProducts(previousState => { return { ...previousState, brands: res.data } }) })
 
     }
 
     const getCategories = async () => {
-        await axios.get("https://localhost:7039/api/Categories/all")
+        await axios.get("http://rahimcode-001-site1.ftempurl.com/api/Categories/all")
             .then(res => { setProducts(previousState => { return { ...previousState, categories: res.data } }) })
 
     }
 
     const getGender = async () => {
-        await axios.get("https://localhost:7039/api/Genders/all")
+        await axios.get("http://rahimcode-001-site1.ftempurl.com/api/Genders/all")
             .then(res => { setProducts(previousState => { return { ...previousState, genders: res.data } }) })
     }
 
     const getSizes = async () => {
-        await axios.get("https://localhost:7039/api/Sizes/all")
+        await axios.get("http://rahimcode-001-site1.ftempurl.com/api/Sizes/all")
             .then(res => { setProducts(previousState => { return { ...previousState, sizes: res.data } }) })
 
     }
 
     const getProducts = async () => {
-        await axios.get(`https://localhost:7039/api/Products/shop`)
+        await axios.get(`http://rahimcode-001-site1.ftempurl.com/api/Products/shop`)
             .then(res => {
                 const updatedPrices = res.data.map(pr =>
                     pr.discountedPrice > 0 ? pr.discountedPrice : pr.salePrice
@@ -223,12 +223,7 @@ const Shop = () => {
                     <div className="col-lg-3 col-12 ">
 
                         <div className="shop-side-bar">
-                            <span className='sidebar-title' >Search</span>
-                            <div className="search-form ">
-                                <input type="text" placeholder='Search our store' />
-                                <span>|</span>
-                                <button > Search</button>
-                            </div>
+                           
 
 
                             <Formik initialValues={initialValues} onSubmit={onSubmit}>

@@ -14,7 +14,7 @@ const FrTable = (props) => {
  let count =1;
 
   const deleteHandle = async (id) => {
-      await axios.delete(`https://localhost:7039/api/${props.link}/${id}`)
+      await axios.delete(`http://rahimcode-001-site1.ftempurl.com/api/${props.link}/${id}`)
               .then(response =>
                 toast.error(`${props.tableName} deleted successfully`, {
                   position: "top-right",

@@ -16,7 +16,7 @@ const PrTable = (props) => {
 
     const exportHandle = async () => {
         try {
-            const response = await axios.get(`https://localhost:7039/api/Products/export-excel`, {
+            const response = await axios.get(`http://rahimcode-001-site1.ftempurl.com/api/Products/export-excel`, {
                 responseType: 'arraybuffer', 
             });
     
@@ -38,7 +38,7 @@ const PrTable = (props) => {
     
 
     const deleteHandle = async (id) => {
-        await axios.delete(`https://localhost:7039/api/Products/${id}`)
+        await axios.delete(`http://rahimcode-001-site1.ftempurl.com/api/Products/${id}`)
                 .then(response =>
                   toast.error(`Products deleted successfully`, {
                     position: "top-right",

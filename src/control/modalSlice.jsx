@@ -11,6 +11,7 @@ const initialState ={
     orderItems:[],
     email:'',
     compareCount : 0,
+    errors:[],
     ids: []
 }
 console.log("slice",initialState.email);
@@ -49,7 +50,9 @@ const modalSlice = createSlice({
         setCompareProduct : (state,action)=>{
             state.compareProduct = action.payload;
         },
-        
+        setError :(state,action)=>{
+            state.errors = action.payload;
+        },
 
         handleEye :(state)=>{
             state.activeIcon ="eye";
@@ -83,7 +86,7 @@ export const getOrderItems = (id) => async (dispatch) => {
     console.log("id",id);
     try {
         const token = localStorage.getItem('authToken')
-        const response = await axios.get(`https://localhost:7039/api/Orders/orderitems/${id}`, {
+        const response = await axios.get(`http://rahimcode-001-site1.ftempurl.com/api/Orders/orderitems/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -98,16 +101,22 @@ export const getOrderItems = (id) => async (dispatch) => {
 export const createUser = (values) => async (dispatch) => {
     console.log("id",values);
     try {
-        await axios.post(`https://localhost:7039/api/Users/register`, values)
+        await axios.post(`http://rahimcode-001-site1.ftempurl.com/api/Users/register`, values)
         .then(res => {console.log("User created succesfully") 
          dispatch(handleConfirmModalOpen())
          dispatch(setUserId(res.data.id.id)) } )
     } catch (error){
-        console.log(error.response.data);
+        if (error.response.status === 400)
+        error.response.data.errors.forEach(err => dispatch(setError(err.errorMessage)));
+      else if (error.response.status === 404)
+        console.log('Not Found')
+      else {
+        console.log("An unexpected error occurred ");
+      }
     }   
 };
 
 
 
-export const { handleOpen,setIds, handleClose, setUserId ,handleConfirmModalClose,handleConfirmModalOpen, setSelectedProduct , setCompareProduct ,handleEye,handleView,handleScale,removeFromCompareProduct,setOrderItem,setEmail,setCompareCount } = modalSlice.actions;
+export const { handleOpen,setIds,setError, handleClose, setUserId ,handleConfirmModalClose,handleConfirmModalOpen, setSelectedProduct , setCompareProduct ,handleEye,handleView,handleScale,removeFromCompareProduct,setOrderItem,setEmail,setCompareCount } = modalSlice.actions;
 export default modalSlice.reducer

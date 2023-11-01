@@ -254,7 +254,7 @@ header {
 #top-header .account-side .dropdown-account {
   position: absolute;
   top: 37px;
-  right: 45px;
+  right: 0px;
   width: 170px;
   padding: 15px 20px;
   background-color: #fff;
@@ -472,7 +472,7 @@ header {
   .dropdown-account {
     position: absolute;
     top: 53px !important;
-    right: 145px !important;
+    right: 115px !important;
     width: 170px;
     padding: 15px 20px;
     background-color: #fff;
@@ -4452,12 +4452,13 @@ p {
 .check-page-right .checkout-item-box .check-product-desc .pr-img img {
   width: 80px;
   height: 90px;
+  padding: 7px;
 }
 .check-page-right .checkout-item-box .check-product-desc .pr-img .pr-count {
   background-color: #737373;
   position: absolute;
-  top: -12px;
-  right: -8px;
+  top: -8px;
+  right: -4px;
   width: 20px;
   height: 20px;
   border-radius: 50px;
@@ -5084,6 +5085,10 @@ td:last-child {
   padding: 5px 8px;
   border: 2px solid #344767;
   color: #344767;
+}
+
+.x-btn-r {
+  cursor: pointer;
 }
 
 .images {

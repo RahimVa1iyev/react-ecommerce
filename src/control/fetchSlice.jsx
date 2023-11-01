@@ -12,6 +12,7 @@ const initialState = {
     messages : [],
     message: '',
     errors : [],
+    reviewCount:0,
     navId:1
 };
 
@@ -22,6 +23,9 @@ const fetchSlice = createSlice({
     reducers: {
         setOrder: (state, action) => {
             state.orders = action.payload;
+        },
+        setReviewCount: (state,action) =>{
+            state.reviewCount += action.payload
         },
         setLogin: (state) =>{
             state.login = true
@@ -48,7 +52,7 @@ const fetchSlice = createSlice({
 export const getOrders = () => async (dispatch) => {
     try {
         
-        const response = await axios.get(`https://localhost:7039/api/Orders/all`, {
+        const response = await axios.get(`http://rahimcode-001-site1.ftempurl.com/api/Orders/all`, {
             headers: {
                 Authorization: `Bearer ${initialState.token}`,
             },
@@ -62,7 +66,7 @@ export const getOrders = () => async (dispatch) => {
 export const getDashOrders = () => async (dispatch) => {
     try {
         
-        const response = await axios.get(`https://localhost:7039/api/Orders/dash-all`    )
+        const response = await axios.get(`http://rahimcode-001-site1.ftempurl.com/api/Orders/dash-all`    )
 
         dispatch(setOrder(response.data))
     }
@@ -71,7 +75,7 @@ export const getDashOrders = () => async (dispatch) => {
 
 export const getMessages = () => async (dispatch) => {
     try {
-     const response =   await axios.get(`https://localhost:7039/api/Contacts/all`)
+     const response =   await axios.get(`http://rahimcode-001-site1.ftempurl.com/api/Contacts/all`)
         dispatch(setMessages(response.data))
     }
     catch (error) { console.log(error.response.data)}
@@ -79,7 +83,7 @@ export const getMessages = () => async (dispatch) => {
 
 export const getMessage = (id) => async (dispatch) => {
     try {
-     const response =   await axios.get(`https://localhost:7039/api/Contacts/${id}`)
+     const response =   await axios.get(`http://rahimcode-001-site1.ftempurl.com/api/Contacts/${id}`)
         dispatch(setMessage(response.data))
     }
     catch (error) { console.log(error.response.data)}
@@ -87,7 +91,7 @@ export const getMessage = (id) => async (dispatch) => {
 
 export const responseMessage = (data) => async (dispatch) => {
     try {
-      await axios.post(`https://localhost:7039/api/Contacts/response`,data)
+      await axios.post(`http://rahimcode-001-site1.ftempurl.com/api/Contacts/response`,data)
                 .then(res=>    toast.success('Message send succesfully', {
                     position: "top-right",
                     autoClose: 5000,
@@ -105,5 +109,5 @@ export const responseMessage = (data) => async (dispatch) => {
 
 
 
-export const { setOrder ,setLogin,setToken ,setMessages,setId,setMessage ,setErrors} = fetchSlice.actions
+export const {setReviewCount, setOrder ,setLogin,setToken ,setMessages,setId,setMessage ,setErrors} = fetchSlice.actions
 export default fetchSlice.reducer

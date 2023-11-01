@@ -28,7 +28,7 @@ const Reset = () => {
     };
 
     try {
-      await axios.post(`https://localhost:7039/api/Users/reset-password`, data);
+      await axios.post(`http://rahimcode-001-site1.ftempurl.com/api/Users/reset-password`, data);
       toast.success('Password changed succesfully', {
         position: "bottom-right",
         autoClose: 5000,

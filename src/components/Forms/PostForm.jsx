@@ -22,7 +22,7 @@ const PostForm = (props) => {
   const onSubmit =  (values) => {
    
    const postFetch = async () =>{
-    await axios.post(`https://localhost:7039/api/${props.controller}`, values)
+    await axios.post(`http://rahimcode-001-site1.ftempurl.com/api/${props.controller}`, values)
     .then(response => {
       navigate(`/dashboard/${props.route}`)
       toast.success(`${props.label} created successfully`, {

@@ -15,7 +15,7 @@ const Forgot = () => {
 
     const onSubmit = async (values, { resetForm }) => {
         try {
-            await axios.post(`https://localhost:7039/api/Users/forgot-password`, values);
+            await axios.post(`http://rahimcode-001-site1.ftempurl.com/api/Users/forgot-password`, values);
             resetForm();
             toast.success('Check your email', {
                 position: "top-right",
@@ -81,7 +81,7 @@ const Forgot = () => {
             </div>
 
 
-            <ConfirmModal data={2} />
+           
 
         </>
     )

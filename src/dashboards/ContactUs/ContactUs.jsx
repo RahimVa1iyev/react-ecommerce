@@ -6,6 +6,9 @@ import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { getMessages } from '../../control/fetchSlice'
 import { useNavigate } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const ContactUs = () => {
     const {messages} = useSelector(store => store.fetch);
@@ -22,6 +25,18 @@ const ContactUs = () => {
       },[])
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
             <div className="top-side">
         <div className="container-fluid">
           <div className="row  ">

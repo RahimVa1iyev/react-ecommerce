@@ -41,16 +41,26 @@ const Wishlist = () => {
 
 
 
-    const AddBasketHandle = async (id) => {
+  const AddBasketHandle = async (id) => {
   const values = {id}
 
         if (token) {
-            await axios.post(`https://localhost:7039/api/Shops/`, values, {
+            await axios.post(`http://rahimcode-001-site1.ftempurl.com/api/Shops/`, values, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             })
                 .then(res => {
+                    toast.success('Product add succesfully', {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        });
                     setDataId(res.data.count);
                     setClicked(clicked + 1)
                     disPatch(setCount(res.data.count))

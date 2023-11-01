@@ -20,7 +20,7 @@ const AdminPost = () => {
 
   const onSubmit = async (values) => {
 
-    await axios.post(`https://localhost:7039/api/Accounts`, values, {
+    await axios.post(`http://rahimcode-001-site1.ftempurl.com/api/Accounts`, values, {
       headers: {
         Authorization: `Bearer ${token}`
       }

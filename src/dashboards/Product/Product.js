@@ -25,7 +25,7 @@ const Product = () => {
 
     const fetchMoreData = async () => {
         const values = { pageScroll: page, perPage: 5 };
-        const response = await axios.post("https://localhost:7039/api/Products/all", values);
+        const response = await axios.post("http://rahimcode-001-site1.ftempurl.com/api/Products/all", values);
 
         if (response.data.length === 0) {
             setHasMore(false);
@@ -44,7 +44,8 @@ const Product = () => {
         setLoading(true);
 
         const values = { pageScroll: 1, perPage: 5 }; // Fetch initial data
-        const response = await axios.post("https://localhost:7039/api/Products/all", values);
+        const response = await axios.post("http://rahimcode-001-site1.ftempurl.com/api/Products/all", values);
+        console.log(response.data)
 
         if (response.data.length === 0) {
             setHasMore(false);

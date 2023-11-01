@@ -27,7 +27,7 @@ const DetailItem = (props) => {
    const AddBasketHandle = async (values) => {
 
       if (token) {
-         await axios.post(`https://localhost:7039/api/Shops/`, values, {
+         await axios.post(`http://rahimcode-001-site1.ftempurl.com/api/Shops/`, values, {
             headers: {
                Authorization: `Bearer ${token}`
             }
@@ -135,12 +135,12 @@ const DetailItem = (props) => {
 
 
          <h2 className='pr-name' >{name}</h2>
-         <div className="rate d-flex align-items-center">{
+         {/* <div className="rate d-flex align-items-center">{
             [1, 2, 3, 4, 5].map((i, index) => (
 
                getStart(i, index)
             ))
-         }   <span className='review' >Review</span> </div>
+         }   <span className='review' >Review</span> </div> */}
 
          {
             discountedPrice > 0 ?

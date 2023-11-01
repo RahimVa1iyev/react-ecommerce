@@ -63,7 +63,7 @@ const Profile = () => {
     const onSubmit = (values) => {
         console.log("values",values);
         const updateUser = async () => {
-            await axios.put(`https://localhost:7039/api/Users`, values, {
+            await axios.put(`http://rahimcode-001-site1.ftempurl.com/api/Users`, values, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -91,7 +91,7 @@ const Profile = () => {
     const getUser = async () => {
 
         if (token) {
-            await axios.get('https://localhost:7039/api/Users', {
+            await axios.get('http://rahimcode-001-site1.ftempurl.com/api/Users', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -136,7 +136,7 @@ const Profile = () => {
         const values = {id}
 
         if (token) {
-            await axios.post(`https://localhost:7039/api/Shops/`, values, {
+            await axios.post(`http://rahimcode-001-site1.ftempurl.com/api/Shops/`, values, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -185,7 +185,7 @@ const Profile = () => {
         dispatch(handleView())
         dispatch(handleOpen())
         const token = localStorage.getItem('authToken')
-        const response = await axios.get(`https://localhost:7039/api/Orders/orderitems/${id}`, {
+        const response = await axios.get(`http://rahimcode-001-site1.ftempurl.com/api/Orders/orderitems/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -240,7 +240,7 @@ const Profile = () => {
                                 <div className="author-card-avatar"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Daniel Adams" />
                                 </div>
                                 <div className="author-card-details">
-                                    <h5 className="author-card-name text-lg">Daniel Adams</h5><span className="author-card-position">Joined February 06, 2017</span>
+                                    <h5 className="author-card-name text-lg">{user && user.lastName} {user && user.firstName}</h5>
                                 </div>
                             </div>
                         </div>

@@ -24,7 +24,7 @@ const Index = () => {
   })
 
 const getMonthlySale = async () =>{
-    await axios.get(`https://localhost:7039/api/Charts/montlysales`)
+    await axios.get(`http://rahimcode-001-site1.ftempurl.com/api/Charts/montlysales`)
                                 .then(res=> {
                                     setMonths(res.data.months.reverse());
                                     setPrice(res.data.prices.reverse())
@@ -32,17 +32,17 @@ const getMonthlySale = async () =>{
 }
 
 const getOrderStatusCount = async () =>{
-    await axios.get(`https://localhost:7039/api/Charts/count`)
+    await axios.get(`http://rahimcode-001-site1.ftempurl.com/api/Charts/count`)
                 .then(res=>setOrderCount(res.data))
 }
 
 const getUserCount = async () =>{
- var response = await axios.get(`https://localhost:7039/api/Accounts/count`)
+ var response = await axios.get(`http://rahimcode-001-site1.ftempurl.com/api/Accounts/count`)
    setUserCount(response.data.count);
 }
 
 const getIncome = async () => {
-  var response = await axios.get(`https://localhost:7039/api/Charts/income`)
+  var response = await axios.get(`http://rahimcode-001-site1.ftempurl.com/api/Charts/income`)
   console.log(response.data);
   setIncome(previousState => {return {...previousState,daily : response.data.daily}})
   setIncome(previousState => {return {...previousState,monthly : response.data.monthly}})
@@ -163,7 +163,7 @@ const getIncome = async () => {
                                                 <div className="stat-box-left ">
                                                     <h6>Daily Revenue</h6>
                                                     <p className='money'>${income.daily && income.daily.income}</p>
-                                                    <p className='d-flex align-items-baseline gap-2' >{income.daily && income.daily.interestRate >= 0 ? <span className='percent'>+{ income.daily.interestRate}%</span> : <span className='percent text-danger'>{ income && income.daily.interestRate}%</span>}
+                                                    <p className='d-flex align-items-baseline gap-2' >{income.daily && income.daily.interestRate > 0 ? <span className='percent'>+{ income.daily.interestRate}%</span> : <span className='percent text-danger'>{ income && income.daily.interestRate}%</span>}
                                                      <span className='text'>since yesterday</span>  </p>
                                                 </div>
 

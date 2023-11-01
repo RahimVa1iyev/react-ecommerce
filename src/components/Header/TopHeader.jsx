@@ -36,7 +36,7 @@ const TopHeader = () => {
         count++
         console.log("Count", count);
         if (token) {
-            await axios.get('https://localhost:7039/api/Users', {
+            await axios.get('http://rahimcode-001-site1.ftempurl.com/api/Users', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -77,11 +77,22 @@ const TopHeader = () => {
 
                                 <div className="social-icons">
                                     <div className="d-flex align-items-center gap-3 ">
-                                        <TiSocialFacebook className='iconStyle' />
-                                        <TiSocialTwitter className='iconStyle' />
-                                        <TfiGoogle className='iconStyle-2' />
-                                        <TfiInstagram className='iconStyle-2' />
-                                        <TiSocialYoutube className='iconStyle' />
+                                        <a target='blank' href='facebook.com' >
+                                            <TiSocialFacebook className='iconStyle' />
+                                        </a>
+                                        <a target='blank' href='twitter.com' >
+                                            <TiSocialTwitter className='iconStyle' />
+                                        </a>
+                                        <a target='blank' href='google.com' >
+                                            <TfiGoogle className='iconStyle-2' />
+                                        </a>
+                                        <a target='blank' href='instagram.com' >
+                                            <TfiInstagram className='iconStyle-2' />
+                                        </a>
+                                        <a target='blank' href='youtube.com' >
+                                            <TiSocialYoutube className='iconStyle' />
+                                        </a>
+
                                     </div>
                                 </div>
                             </div>
@@ -91,8 +102,7 @@ const TopHeader = () => {
                         <div className="account-side ">
                             <div id='account-side-media' className="d-flex align-items-center  justify-content-end gap-3">
                                 <span className='account' onClick={DropdownHandler} >My Account <MdKeyboardArrowDown /></span>
-                                <span className='seperator' >|</span>
-                                <span className='language' >AZ</span>
+
                             </div>
 
 

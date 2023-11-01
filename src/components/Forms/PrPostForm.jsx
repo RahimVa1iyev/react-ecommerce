@@ -27,35 +27,35 @@ const PrPostForm = (props) => {
     useEffect(() => {
 
         const getBrands = async () => {
-            var response = await axios.get("https://localhost:7039/api/Brands/all")
+            var response = await axios.get("http://rahimcode-001-site1.ftempurl.com/api/Brands/all")
             const data = response.data.map(item => ({ value: item.id, label: item.name }))
             setWatch(previousState => { return { ...previousState, brands: data } })
         }
         getBrands();
 
         const getCategories = async () => {
-            var response = await axios.get("https://localhost:7039/api/Categories/all")
+            var response = await axios.get("http://rahimcode-001-site1.ftempurl.com/api/Categories/all")
             const data = response.data.map(item => ({ value: item.id, label: item.name }))
             setWatch(previousState => { return { ...previousState, categories: data } })
         }
         getCategories();
 
         const getColors = async () => {
-            var response = await axios.get("https://localhost:7039/api/Colors/all")
+            var response = await axios.get("http://rahimcode-001-site1.ftempurl.com/api/Colors/all")
             const data = response.data.map(item => ({ value: item.id, label: item.name }))
             setWatch(previousState => { return { ...previousState, colors: data } })
         }
         getColors();
 
         const getSizes = async () => {
-            var response = await axios.get("https://localhost:7039/api/Sizes/all")
+            var response = await axios.get("http://rahimcode-001-site1.ftempurl.com/api/Sizes/all")
             const data = response.data.map(item => ({ value: item.id, label: item.name }))
             setWatch(previousState => { return { ...previousState, sizes: data } })
         }
         getSizes();
 
         const getGenders = async () => {
-            var response = await axios.get("https://localhost:7039/api/Genders/all")
+            var response = await axios.get("http://rahimcode-001-site1.ftempurl.com/api/Genders/all")
             const data = response.data.map(item => ({ value: item.id, label: item.gender }))
             setWatch(previousState => { return { ...previousState, genderStatus: data } })
         }
@@ -118,7 +118,7 @@ const PrPostForm = (props) => {
             });
 
             try {
-                 await axios.post("https://localhost:7039/api/Products", formData, {
+                 await axios.post("http://rahimcode-001-site1.ftempurl.com/api/Products", formData, {
                     headers: {
                         "Content-Type": "multipart/form-data"
                     }

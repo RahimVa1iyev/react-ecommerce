@@ -27,7 +27,7 @@ const BottomHeader = () => {
 
     const DeletePrHandle = async (id) => {
         console.log("Id", id);
-        await axios.delete(`https://localhost:7039/api/Shops/${id}`, {
+        await axios.delete(`http://rahimcode-001-site1.ftempurl.com/api/Shops/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -151,7 +151,7 @@ const BottomHeader = () => {
                                             <div className="basket-img">
                                                 {
                                                     item.product.images.map((img, index) => (
-                                                        <img key={index} src={`https://localhost:7039/uploads/products/${img.imageName}`} alt="my img" />
+                                                        <img key={index} src={`http://rahimcode-001-site1.ftempurl.com/uploads/products/${img.imageName}`} alt="my img" />
 
                                                     ))
                                                 }

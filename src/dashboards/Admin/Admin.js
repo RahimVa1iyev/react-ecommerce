@@ -16,7 +16,7 @@ const Admin = () => {
     const navigate = useNavigate();
   
     const getAdmins = async () => {
-      const response = await axios.get("https://localhost:7039/api/Accounts/all")
+      const response = await axios.get("http://rahimcode-001-site1.ftempurl.com/api/Accounts/all")
       console.log(response.data);
       setAdmins(response.data)
     }

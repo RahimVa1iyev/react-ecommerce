@@ -15,6 +15,7 @@ const Contact = () => {
   const [token, setToken] = useState(localStorage.getItem('authToken'))
   const [error, setError] = useState();
   const [user, setUser] = useState();
+  const [info , setInfo] = useState();
   const navigate = useNavigate();
 
 
@@ -28,7 +29,7 @@ const Contact = () => {
   const onSubmit = async (values, { resetForm }) => {
     console.log(values);
     if (token) {
-      await axios.post(`https://localhost:7039/api/Contacts`, values, {
+      await axios.post(`http://rahimcode-001-site1.ftempurl.com/api/Contacts`, values, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -74,7 +75,7 @@ const Contact = () => {
   const getUser = async () => {
 
     if (token) {
-      await axios.get('https://localhost:7039/api/Users', {
+      await axios.get('http://rahimcode-001-site1.ftempurl.com/api/Users', {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -91,12 +92,20 @@ const Contact = () => {
     }
   }
 
+  const getInfo = async () => {
+    var response = await axios.get('http://rahimcode-001-site1.ftempurl.com/api/Infos/all')
+       setInfo(response.data)
+       console.log(response.data);
+       
+  }
+
   useEffect(() => {
     localStorage.getItem('adminToken') !== null && localStorage.removeItem('adminToken')
   }, [])
 
   useEffect(() => {
     getUser();
+    getInfo();
   }, [])
 
   return (
@@ -148,7 +157,7 @@ const Contact = () => {
 
                     </div>
 
-                    {error && <div className="error-message">{error}</div>}
+                    {error && <div className="error-message text-danger">{error}</div>}
 
                     <button type="submit">Send Message</button>
                   </Form>
@@ -157,7 +166,9 @@ const Contact = () => {
             </div>
             <div className="col-lg-5">
 
-              <div className="contact-right">
+             {
+              info && info.map((item,index)=>(
+                <div className="contact-right">
                 <div className="contact-right-head">
                   <h2>Contact Us</h2>
                   <p className='info'>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram anteposuerit litterarum formas human. qui sequitur mutationem consuetudium lectorum. Mirum est notare quam</p>
@@ -167,24 +178,26 @@ const Contact = () => {
                   <div className="title">
                     <FaAddressCard className='contact-icon-adres' /> <span>Address</span>
                   </div>
-                  <p className='info'>123 Main Street, Anytown, CA 12345 – USA</p>
+                  <p className='info'>{item.address}</p>
                 </div>
 
                 <div className="head">
                   <div className="title">
                     <HiPhone className='contact-icon-phone' /> <span>Phone</span>
                   </div>
-                  <p className='info' >Mobile: (08) 123 456 789</p>
-                  <p className='info' >Hotline: 1009 678 456</p>
+                  <p className='info' >Mobile: {item.phoneNumber}</p>
+                  <p className='info' >Hotline: {item.hotNumber}</p>
                 </div>
 
                 <div className="head">
                   <div className="title">
                     <HiOutlineMail className='contact-icon-email' /> <span> Email</span>
                   </div>
-                  <p className='info'>yourmail@domain.com</p>
+                  <p className='info'>{item.email}</p>
                 </div>
               </div>
+              ))
+             }
 
             </div>
 

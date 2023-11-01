@@ -10,6 +10,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useSelector } from 'react-redux';
 
 
 const Detail = () => {
@@ -19,7 +20,7 @@ const Detail = () => {
 
 
   const getProduct = async () => {
-    await axios.get(`https://localhost:7039/api/Products/detail/${id}`)
+    await axios.get(`http://rahimcode-001-site1.ftempurl.com/api/Products/detail/${id}`)
       .then(res => {
         setProduct(res.data.product)
         setRelatedProducts(res.data.relatedProducts)
@@ -28,12 +29,14 @@ const Detail = () => {
       .catch(err => console.log("An unexpected error occured"))
   }
 
-
+  
   useEffect(() => {
     getProduct();
-
-
   }, [id])
+
+ 
+
+
   
   useEffect(()=>{
     localStorage.getItem('adminToken') !==null && localStorage.removeItem('adminToken')
@@ -42,7 +45,7 @@ const Detail = () => {
   return (
     <>
       <ToastContainer
-            position="top-right"
+            position="bottom-right"
             autoClose={5000}
             hideProgressBar={false}
             newestOnTop={false}

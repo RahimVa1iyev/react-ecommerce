@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getMessage, getMessages, responseMessage } from '../../control/fetchSlice';
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const MessageForm = (props) => {
 
@@ -10,6 +11,7 @@ const MessageForm = (props) => {
     const {message} = useSelector(store => store.fetch)
     const [text ,setTtext] =useState(); 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
 
     const initialValues = {
@@ -25,6 +27,7 @@ const MessageForm = (props) => {
         dispatch(responseMessage(data))
 
      
+        navigate('/dashboard/contacts')
         resetForm();
     }
 

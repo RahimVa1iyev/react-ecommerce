@@ -23,7 +23,7 @@ const SecondShopItem = (props) => {
 
 
     const EyeIconHandle = async () => {
-        await axios.get(`https://localhost:7039/api/Products/modal/${props.product.id}`)
+        await axios.get(`http://rahimcode-001-site1.ftempurl.com/api/Products/modal/${props.product.id}`)
             .then(res => {
                 disPatch(setSelectedProduct(res.data));
 
@@ -46,7 +46,7 @@ const SecondShopItem = (props) => {
         if (!ids.includes(props.product.id) && compareCount < 3) {
             
 
-            await axios.get(`https://localhost:7039/api/Products/compare/${props.product.id}`)
+            await axios.get(`http://rahimcode-001-site1.ftempurl.com/api/Products/compare/${props.product.id}`)
                 .then(res => {
                     disPatch(setCompareProduct([...compareProduct, res.data]))
                     disPatch(setCompareCount(1))
@@ -99,7 +99,7 @@ const SecondShopItem = (props) => {
     e.preventDefault()
 
         if (token) {
-            await axios.post(`https://localhost:7039/api/Shops/`, values, {
+            await axios.post(`http://rahimcode-001-site1.ftempurl.com/api/Shops/`, values, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

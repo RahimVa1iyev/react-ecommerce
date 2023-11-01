@@ -45,7 +45,7 @@ const PrPutForm = (props) => {
         discountedPrice: 0,
         isNew: true,
         isFeatured: false,
-        stockStatus:false,
+        stockStatus:true,
         posterFile: null,
         hoverFile: null,
         imageFiles: [],
@@ -103,7 +103,7 @@ const PrPutForm = (props) => {
        
 
         const putProduct = async () => {
-            await axios.put(`https://localhost:7039/api/Products/${props.id}`, formData, {
+            await axios.put(`http://rahimcode-001-site1.ftempurl.com/api/Products/${props.id}`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 }
@@ -149,7 +149,7 @@ const PrPutForm = (props) => {
     useEffect(() => {
 
         const getProducts = async () => {
-            var response = await axios.get(`https://localhost:7039/api/Products/${props.id}`)
+            var response = await axios.get(`http://rahimcode-001-site1.ftempurl.com/api/Products/${props.id}`)
 
 
             const productData = response.data;
@@ -226,21 +226,21 @@ const PrPutForm = (props) => {
         getProducts();
 
         const getBrands = async () => {
-            var response = await axios.get("https://localhost:7039/api/Brands/all")
+            var response = await axios.get("http://rahimcode-001-site1.ftempurl.com/api/Brands/all")
             const data = response.data.map(item => ({ value: item.id, label: item.name }))
             setWatch(previousState => { return { ...previousState, brands: data } })
         }
         getBrands();
 
         const getCategories = async () => {
-            var response = await axios.get("https://localhost:7039/api/Categories/all")
+            var response = await axios.get("http://rahimcode-001-site1.ftempurl.com/api/Categories/all")
             const data = response.data.map(item => ({ value: item.id, label: item.name }))
             setWatch(previousState => { return { ...previousState, categories: data } })
         }
         getCategories();
 
         const getColors = async () => {
-            var response = await axios.get("https://localhost:7039/api/Colors/all")
+            var response = await axios.get("http://rahimcode-001-site1.ftempurl.com/api/Colors/all")
             const data = response.data.map(item => ({ value: item.id, label: item.name }))
             setWatch(previousState => { return { ...previousState, colors: data } })
 
@@ -248,14 +248,14 @@ const PrPutForm = (props) => {
         getColors();
 
         const getSizes = async () => {
-            var response = await axios.get("https://localhost:7039/api/Sizes/all")
+            var response = await axios.get("http://rahimcode-001-site1.ftempurl.com/api/Sizes/all")
             const data = response.data.map(item => ({ value: item.id, label: item.name }))
             setWatch(previousState => { return { ...previousState, sizes: data } })
         }
         getSizes();
 
         const getGenders = async () => {
-            var response = await axios.get("https://localhost:7039/api/Genders/all")
+            var response = await axios.get("http://rahimcode-001-site1.ftempurl.com/api/Genders/all")
             const data = response.data.map(item => ({ value: item.id, label: item.gender }))
             setWatch(previousState => { return { ...previousState, genderStatus: data } })
         }
@@ -384,7 +384,7 @@ const PrPutForm = (props) => {
                                     <div className="col-lg-4">
                                         <div className="form-body">
                                             <label >Sale Price <span>*</span></label>
-                                            <Field className="dash-input" type="number" id="salePrice" name="salePrice" placeholder=" Sale Price" />
+                                            <Field className="dash-input" type="text" id="salePrice" name="salePrice" placeholder=" Sale Price" />
                                             <ErrorMessage name="salePrice" component="div" className="error-message" />
                                             {error && <div className="error-message">{error}</div>}
 
@@ -393,7 +393,7 @@ const PrPutForm = (props) => {
                                     <div className="col-lg-4">
                                         <div className="form-body">
                                             <label >Cost Price <span>*</span></label>
-                                            <Field className="dash-input" type="number" id="costPrice" name="costPrice" placeholder=" Cost Price" />
+                                            <Field className="dash-input" type="text" id="costPrice" name="costPrice" placeholder=" Cost Price" />
                                             <ErrorMessage name="costPrice" component="div" className="error-message" />
                                             {error && <div className="error-message">{error}</div>}
 
@@ -402,7 +402,7 @@ const PrPutForm = (props) => {
                                     <div className="col-lg-4">
                                         <div className="form-body">
                                             <label >Discounted Price <span>*</span></label>
-                                            <Field className="dash-input" type="number" id="discountedPrice" name="discountedPrice" placeholder="Discounted Price" />
+                                            <Field className="dash-input" type="text" id="discountedPrice" name="discountedPrice" placeholder="Discounted Price" />
                                             <ErrorMessage name="discountedPrice" component="div" className="error-message" />
                                             {error && <div className="error-message">{error}</div>}
 
@@ -483,7 +483,7 @@ const PrPutForm = (props) => {
                                     <div className="row align-items-center justify-content-center g-1">
                                         {imageFile && imageFile.map((file) => (
                                             <div className="col-lg-4">
-                                                <span id={file.id} onClick={(e) => {
+                                                <span className='x-btn-r' id={file.id} onClick={(e) => {
                                                     e.target.closest('.col-lg-4').remove();
                                                     const clickidId = parseInt(e.target.id);
 
@@ -532,7 +532,7 @@ const PrPutForm = (props) => {
 
                                 {error && <div className="error-message">{error}</div>}
 
-                                <button type="submit">Create</button>
+                                <button type="submit">Edit</button>
                             </div>
 
 

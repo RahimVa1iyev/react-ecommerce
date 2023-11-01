@@ -7,7 +7,7 @@ import { Field, Formik, Form } from 'formik';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { store } from '../../store';
-import { ToastContainer,toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { setSelectedNav, setSelectedRoute } from '../../control/navSlice';
 
@@ -16,64 +16,67 @@ function ConfirmModal(props) {
     const navigate = useNavigate();
     const { confirmModalOpen, userId } = useSelector(store => store.modal)
     const [error, setError] = useState();
-    const {email} = useSelector(store => store.modal)
+    const { email } = useSelector(store => store.modal)
 
-    console.log("Confirm",email);
+    console.log("Confirm", email);
 
-    const initialValues = 
+    const initialValues =
     {
         code: '',
         userName: ''
-    } 
-   
+    }
 
 
-    
+
+
 
     const onSubmit = async (values) => {
-      
-       await axios.post(`https://localhost:7039/api/Users/EmailConfirm`, values)
-       .then(res => { 
-         toast.success('Email confirmed successfully', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        }); 
-        dispatch(setSelectedNav('Login'))
-        dispatch(setSelectedRoute(`/login`))
-        navigate('/login') ;
-    
-    }) 
 
-      
+        await axios.post(`http://rahimcode-001-site1.ftempurl.com/api/Users/EmailConfirm`, values)
+            .then(res => {
+                toast.success('Email confirmed successfully', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+                setTimeout(() => {
+                    dispatch(setSelectedNav('Login'))
+                    dispatch(setSelectedRoute(`/login`))
+                    navigate('/login');
+                }, 2000);
+              
+
+            })
+
+
     }
 
     const againConfirmCode = async () => {
         const data = { userId: userId }
-        await axios.post(`https://localhost:7039/api/Users/AgainEmailConfirm`, data)
+        await axios.post(`http://rahimcode-001-site1.ftempurl.com/api/Users/AgainEmailConfirm`, data)
             .then(res => { console.log("Code send again"); })
             .catch(err => console.log(err.response.data))
     }
 
     return (
         <>
-        <ToastContainer
-            position="bottom-right"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-         />
+            <ToastContainer
+                position="bottom-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
             <Modal show={confirmModalOpen} >
                 <Modal.Header>
                     <Modal.Title>Email Confirmation</Modal.Title>
@@ -100,6 +103,27 @@ function ConfirmModal(props) {
                 </Modal.Body>
 
             </Modal>
+
+
+          {/* <div className={confirmModalOpen === true? 'modal' : 'd-none'}>
+          <div class="confirm-container">
+                <header className='confirm-header'>
+                    <i class="bx bxs-check-shield"></i>
+                </header>
+                <h4 className='confirm-title'>Enter OTP Code</h4>
+                <Formik initialValues={initialValues} onSubmit={onSubmit} >
+                    <Form className='confirm-form'>
+                        <div class="input-field">
+                            <Field className='confirm-input' type="number" />
+                            <Field className='confirm-input' type="number" disabled />
+                            <Field className='confirm-input' type="number" disabled />
+                            <Field className='confirm-input' type="number" disabled />
+                        </div>
+                        <button className='confirm-btn'>Verify OTP</button>
+                    </Form>
+                </Formik>
+            </div>
+          </div> */}
         </>
     );
 }
