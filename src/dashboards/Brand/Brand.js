@@ -43,7 +43,7 @@ const Brand = () => {
             pauseOnFocusLoss
             draggable
             pauseOnHover
-            theme="light"
+            theme="dark"
          />
       <div className="top-side">
         <div className="container-fluid">
