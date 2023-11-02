@@ -25,32 +25,32 @@ const Home = () => {
 
    const getRelatedPr = async () => {
        
-      await axios.get("http://rahimcode-001-site1.ftempurl.com/api/Products/discounted")
+      await axios.get("http://rahimfront-001-site1.anytempurl.com/api/Products/discounted")
                  .then(res=> setProducts(previousState => {return {...previousState , relatedProducts : res.data}}) )
                  .catch(err => console.log("An unexpected error occured"))
 
    }
 
    const getNewestPr = async () =>{
-    await axios.get("http://rahimcode-001-site1.ftempurl.com/api/Products/new")
+    await axios.get("http://rahimfront-001-site1.anytempurl.com/api/Products/new")
                .then(res=> setProducts(previousState => {return {...previousState , newProducts : res.data}}) )
                .catch(err => console.log("An unexpected error occured"))
    }
 
    const getFeaturedPr = async () => {
-    await axios.get("http://rahimcode-001-site1.ftempurl.com/api/Products/featured")
+    await axios.get("http://rahimfront-001-site1.anytempurl.com/api/Products/featured")
                .then(res=> setProducts(previousState => {return {...previousState , featuredProducts : res.data}}) )
                .catch(err => console.log("An unexpected error occured"))
    }
 
    const getMostViewPr = async () => {
-    await axios.get("http://rahimcode-001-site1.ftempurl.com/api/Products/mostview")
+    await axios.get("http://rahimfront-001-site1.anytempurl.com/api/Products/mostview")
                .then(res=> setProducts(previousState => {return {...previousState , mowstViewProducts : res.data}}) )
                .catch(err => console.log("An unexpected error occured"))
    }
 
    const getBestSellerPr = async () => {
-    await axios.get(`http://rahimcode-001-site1.ftempurl.com/api/Products/best-seller`)
+    await axios.get(`http://rahimfront-001-site1.anytempurl.com/api/Products/best-seller`)
                .then(res=> setProducts(previousState => {return {...previousState , bestSellerProducts : res.data}}) )
 
    }

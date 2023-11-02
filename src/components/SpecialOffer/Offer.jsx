@@ -7,7 +7,7 @@ const Offer = () => {
     const [offer, setOffer] = useState();
 
     const getOffer = async () => {
-        var response = await axios.get('http://rahimcode-001-site1.ftempurl.com/api/Features/all')
+        var response = await axios.get('http://rahimfront-001-site1.anytempurl.com/api/Features/all')
              setOffer(response.data)
              console.log(response.data);
     }
