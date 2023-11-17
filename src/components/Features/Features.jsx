@@ -13,7 +13,7 @@ const Features = () => {
   
 
     const getFeatures = async () => {
-        var response = await axios.get('http://rahimfront-001-site1.anytempurl.com/api/Offers/all')
+        var response = await axios.get('https://watch-ecommerce-app.azurewebsites.net/api/Offers/all')
         setFeatures(response.data)
     }
 

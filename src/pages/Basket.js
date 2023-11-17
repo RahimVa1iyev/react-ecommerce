@@ -34,7 +34,7 @@ const Basket = () => {
     const AddBasketHandle = async (values) => {
 
         if (token) {
-            await axios.post(`http://rahimcode-001-site1.ftempurl.com/api/Shops`, values, {
+            await axios.post(`https://watch-ecommerce-app.azurewebsites.net/api/Shops`, values, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -65,7 +65,7 @@ const Basket = () => {
 
     const DeletePrHandle = async (id) => {
         console.log("Id", id);
-        await axios.delete(`http://rahimcode-001-site1.ftempurl.com/api/Shops/${id}`, {
+        await axios.delete(`https://watch-ecommerce-app.azurewebsites.net/api/Shops/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -131,7 +131,7 @@ const Basket = () => {
                                                             <div className="shoping-cart-img">
                                                                 {
                                                                     item.product.images.map((img, index) => (
-                                                                        <img key={index} width={100} src={`http://rahimcode-001-site1.ftempurl.com/uploads/products/${img.imageName}`} alt="Gamming Mouse" />
+                                                                        <img key={index} width={100} src={`https://watch-ecommerce-app.azurewebsites.net/uploads/products/${img.imageName}`} alt="Gamming Mouse" />
                                                                     ))
                                                                 }
                                                                 <a href="#!">

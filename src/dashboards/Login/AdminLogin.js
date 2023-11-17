@@ -18,7 +18,7 @@ const AdminLogin = () => {
 
     const onSubmit = async (values) => {
         console.log(values);
-        await axios.post(`http://rahimcode-001-site1.ftempurl.com/api/Accounts/login`, values)
+        await axios.post(`https://watch-ecommerce-app.azurewebsites.net/api/Accounts/login`, values)
             .then(res => { localStorage.setItem('adminToken',res.data.token);navigate('/dashboard/index') ;  })
             .catch(error => {
                 if (error.response.status === 400)

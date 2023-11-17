@@ -32,7 +32,7 @@ function ConfirmModal(props) {
 
     const onSubmit = async (values) => {
 
-        await axios.post(`http://rahimcode-001-site1.ftempurl.com/api/Users/EmailConfirm`, values)
+        await axios.post(`https://watch-ecommerce-app.azurewebsites.net/api/Users/EmailConfirm`, values)
             .then(res => {
                 toast.success('Email confirmed successfully', {
                     position: "top-right",
@@ -58,7 +58,7 @@ function ConfirmModal(props) {
 
     const againConfirmCode = async () => {
         const data = { userId: userId }
-        await axios.post(`http://rahimcode-001-site1.ftempurl.com/api/Users/AgainEmailConfirm`, data)
+        await axios.post(`https://watch-ecommerce-app.azurewebsites.net/api/Users/AgainEmailConfirm`, data)
             .then(res => { console.log("Code send again"); })
             .catch(err => console.log(err.response.data))
     }

@@ -24,7 +24,7 @@ const Index = () => {
   })
 
 const getMonthlySale = async () =>{
-    await axios.get(`http://rahimcode-001-site1.ftempurl.com/api/Charts/montlysales`)
+    await axios.get(`https://watch-ecommerce-app.azurewebsites.net/api/Charts/montlysales`)
                                 .then(res=> {
                                     setMonths(res.data.months.reverse());
                                     setPrice(res.data.prices.reverse())
@@ -32,17 +32,17 @@ const getMonthlySale = async () =>{
 }
 
 const getOrderStatusCount = async () =>{
-    await axios.get(`http://rahimcode-001-site1.ftempurl.com/api/Charts/count`)
+    await axios.get(`https://watch-ecommerce-app.azurewebsites.net/api/Charts/count`)
                 .then(res=>setOrderCount(res.data))
 }
 
 const getUserCount = async () =>{
- var response = await axios.get(`http://rahimcode-001-site1.ftempurl.com/api/Accounts/count`)
+ var response = await axios.get(`https://watch-ecommerce-app.azurewebsites.net/api/Accounts/count`)
    setUserCount(response.data.count);
 }
 
 const getIncome = async () => {
-  var response = await axios.get(`http://rahimcode-001-site1.ftempurl.com/api/Charts/income`)
+  var response = await axios.get(`https://watch-ecommerce-app.azurewebsites.net/api/Charts/income`)
   console.log(response.data);
   setIncome(previousState => {return {...previousState,daily : response.data.daily}})
   setIncome(previousState => {return {...previousState,monthly : response.data.monthly}})

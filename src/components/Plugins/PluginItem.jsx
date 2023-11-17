@@ -60,7 +60,7 @@ const PluginItem = (props) => {
     }
 
     const EyeIconHandle = async () => {
-        await axios.get(`http://rahimcode-001-site1.ftempurl.com/api/Products/modal/${props.product.id}`)
+        await axios.get(`https://watch-ecommerce-app.azurewebsites.net/api/Products/modal/${props.product.id}`)
             .then(res => {
                 disPatch(setSelectedProduct(res.data));
 
@@ -82,7 +82,7 @@ const PluginItem = (props) => {
         if (!ids.includes(props.product.id) && compareCount < 3) {
             
 
-            await axios.get(`http://rahimcode-001-site1.ftempurl.com/api/Products/compare/${props.product.id}`)
+            await axios.get(`https://watch-ecommerce-app.azurewebsites.net/api/Products/compare/${props.product.id}`)
                 .then(res => {
                     disPatch(setCompareProduct([...compareProduct, res.data]))
                     disPatch(setCompareCount(1))
@@ -135,7 +135,7 @@ const PluginItem = (props) => {
 
 
         if (token) {
-            await axios.post(`http://rahimcode-001-site1.ftempurl.com/api/Shops/`, values, {
+            await axios.post(`https://watch-ecommerce-app.azurewebsites.net/api/Shops/`, values, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

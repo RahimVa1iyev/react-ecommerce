@@ -36,7 +36,7 @@ const SliderPostForm = (props) => {
 
 
             try {
-                await axios.post("http://rahimcode-001-site1.ftempurl.com/api/Sliders", formData, {
+                await axios.post("https://watch-ecommerce-app.azurewebsites.net/api/Sliders", formData, {
                     headers: {
                         "Content-Type": "multipart/form-data"
                     }

@@ -29,7 +29,7 @@ const Contact = () => {
   const onSubmit = async (values, { resetForm }) => {
     console.log(values);
     if (token) {
-      await axios.post(`http://rahimcode-001-site1.ftempurl.com/api/Contacts`, values, {
+      await axios.post(`https://watch-ecommerce-app.azurewebsites.net/api/Contacts`, values, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -75,7 +75,7 @@ const Contact = () => {
   const getUser = async () => {
 
     if (token) {
-      await axios.get('http://rahimcode-001-site1.ftempurl.com/api/Users', {
+      await axios.get('https://watch-ecommerce-app.azurewebsites.net/api/Users', {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -93,7 +93,7 @@ const Contact = () => {
   }
 
   const getInfo = async () => {
-    var response = await axios.get('http://rahimcode-001-site1.ftempurl.com/api/Infos/all')
+    var response = await axios.get('https://watch-ecommerce-app.azurewebsites.net/api/Infos/all')
        setInfo(response.data)
        console.log(response.data);
        

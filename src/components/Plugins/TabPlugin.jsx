@@ -38,7 +38,7 @@ const TabPlugin = (props) => {
 
   const createReview = async () => {
     const data = { productId: props.product.id, rate: reviewRate, text: text }
-    await axios.post(`http://rahimcode-001-site1.ftempurl.com/api/Products/review`, data, {
+    await axios.post(`https://watch-ecommerce-app.azurewebsites.net/api/Products/review`, data, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -71,7 +71,7 @@ const TabPlugin = (props) => {
   }
 
   const getReview = async () => {
-    await axios.get(`http://rahimcode-001-site1.ftempurl.com/api/Products/review/${props.product.id}`, {
+    await axios.get(`https://watch-ecommerce-app.azurewebsites.net/api/Products/review/${props.product.id}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -82,7 +82,7 @@ const TabPlugin = (props) => {
   const getUser = async () => {
 
     if (token) {
-      await axios.get('http://rahimcode-001-site1.ftempurl.com/api/Users', {
+      await axios.get('https://watch-ecommerce-app.azurewebsites.net/api/Users', {
         headers: {
           Authorization: `Bearer ${token}`
         }

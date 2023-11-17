@@ -18,7 +18,7 @@ const Brand = () => {
   const {Id} = useSelector((store) => store.table)
 
   const getBrands = async () => {
-    const response = await axios.get("http://rahimcode-001-site1.ftempurl.com/api/Brands/all" )
+    const response = await axios.get("https://watch-ecommerce-app.azurewebsites.net/api/Brands/all" )
     setBrands(response.data)
   }
 

@@ -15,7 +15,7 @@ const Carousell = () => {
 
    useEffect(()=>{
      const getSlider = async () =>{
-     await axios.get("http://rahimfront-001-site1.anytempurl.com/api/Sliders/all")    
+     await axios.get("https://watch-ecommerce-app.azurewebsites.net/api/Sliders/all")    
                 .then(res => setItems(res.data))
                 .catch(err=> console.log("An unexpected error occured"))
     

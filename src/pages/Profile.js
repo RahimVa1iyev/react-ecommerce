@@ -63,7 +63,7 @@ const Profile = () => {
     const onSubmit = (values) => {
         console.log("values",values);
         const updateUser = async () => {
-            await axios.put(`http://rahimcode-001-site1.ftempurl.com/api/Users`, values, {
+            await axios.put(`https://watch-ecommerce-app.azurewebsites.net/api/Users`, values, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -91,7 +91,7 @@ const Profile = () => {
     const getUser = async () => {
 
         if (token) {
-            await axios.get('http://rahimcode-001-site1.ftempurl.com/api/Users', {
+            await axios.get('https://watch-ecommerce-app.azurewebsites.net/api/Users', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -136,7 +136,7 @@ const Profile = () => {
         const values = {id}
 
         if (token) {
-            await axios.post(`http://rahimcode-001-site1.ftempurl.com/api/Shops/`, values, {
+            await axios.post(`https://watch-ecommerce-app.azurewebsites.net/api/Shops/`, values, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -185,7 +185,7 @@ const Profile = () => {
         dispatch(handleView())
         dispatch(handleOpen())
         const token = localStorage.getItem('authToken')
-        const response = await axios.get(`http://rahimcode-001-site1.ftempurl.com/api/Orders/orderitems/${id}`, {
+        const response = await axios.get(`https://watch-ecommerce-app.azurewebsites.net/api/Orders/orderitems/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },

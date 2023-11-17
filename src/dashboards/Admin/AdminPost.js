@@ -20,7 +20,7 @@ const AdminPost = () => {
 
   const onSubmit = async (values) => {
 
-    await axios.post(`http://rahimcode-001-site1.ftempurl.com/api/Accounts`, values, {
+    await axios.post(`https://watch-ecommerce-app.azurewebsites.net/api/Accounts`, values, {
       headers: {
         Authorization: `Bearer ${token}`
       }

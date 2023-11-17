@@ -20,7 +20,7 @@ const Detail = () => {
 
 
   const getProduct = async () => {
-    await axios.get(`http://rahimcode-001-site1.ftempurl.com/api/Products/detail/${id}`)
+    await axios.get(`https://watch-ecommerce-app.azurewebsites.net/api/Products/detail/${id}`)
       .then(res => {
         setProduct(res.data.product)
         setRelatedProducts(res.data.relatedProducts)

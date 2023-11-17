@@ -27,35 +27,35 @@ const PrPostForm = (props) => {
     useEffect(() => {
 
         const getBrands = async () => {
-            var response = await axios.get("http://rahimcode-001-site1.ftempurl.com/api/Brands/all")
+            var response = await axios.get("https://watch-ecommerce-app.azurewebsites.net/api/Brands/all")
             const data = response.data.map(item => ({ value: item.id, label: item.name }))
             setWatch(previousState => { return { ...previousState, brands: data } })
         }
         getBrands();
 
         const getCategories = async () => {
-            var response = await axios.get("http://rahimcode-001-site1.ftempurl.com/api/Categories/all")
+            var response = await axios.get("https://watch-ecommerce-app.azurewebsites.net/api/Categories/all")
             const data = response.data.map(item => ({ value: item.id, label: item.name }))
             setWatch(previousState => { return { ...previousState, categories: data } })
         }
         getCategories();
 
         const getColors = async () => {
-            var response = await axios.get("http://rahimcode-001-site1.ftempurl.com/api/Colors/all")
+            var response = await axios.get("https://watch-ecommerce-app.azurewebsites.net/api/Colors/all")
             const data = response.data.map(item => ({ value: item.id, label: item.name }))
             setWatch(previousState => { return { ...previousState, colors: data } })
         }
         getColors();
 
         const getSizes = async () => {
-            var response = await axios.get("http://rahimcode-001-site1.ftempurl.com/api/Sizes/all")
+            var response = await axios.get("https://watch-ecommerce-app.azurewebsites.net/api/Sizes/all")
             const data = response.data.map(item => ({ value: item.id, label: item.name }))
             setWatch(previousState => { return { ...previousState, sizes: data } })
         }
         getSizes();
 
         const getGenders = async () => {
-            var response = await axios.get("http://rahimcode-001-site1.ftempurl.com/api/Genders/all")
+            var response = await axios.get("https://watch-ecommerce-app.azurewebsites.net/api/Genders/all")
             const data = response.data.map(item => ({ value: item.id, label: item.gender }))
             setWatch(previousState => { return { ...previousState, genderStatus: data } })
         }
@@ -118,7 +118,7 @@ const PrPostForm = (props) => {
             });
 
             try {
-                 await axios.post("http://rahimcode-001-site1.ftempurl.com/api/Products", formData, {
+                 await axios.post("https://watch-ecommerce-app.azurewebsites.net/api/Products", formData, {
                     headers: {
                         "Content-Type": "multipart/form-data"
                     }
