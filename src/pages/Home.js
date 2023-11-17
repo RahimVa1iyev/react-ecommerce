@@ -122,8 +122,12 @@ import React, { useEffect } from 'react'
 
 const Home = () => {
   useEffect(()=>{
-    var res= axios.get('https://watch-ecommerce-app.azurewebsites.net/api/genders/all')
+    const data = async()=>{
+    var res= await axios.get('https://watch-ecommerce-app.azurewebsites.net/api/genders/all')
     console.log(res);
+
+    }
+    data()
   },[])
   return (
     <div>Home</div>
