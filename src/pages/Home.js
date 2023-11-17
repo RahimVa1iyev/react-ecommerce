@@ -122,7 +122,7 @@ import React, { useEffect } from 'react'
 
 const Home = () => {
   useEffect(()=>{
-    var res= axios.get('http://rahimfront-001-site1.anytempurl.com/api/genders/all')
+    var res= axios.get('https://rahimfront-001-site1.anytempurl.com/api/genders/all')
     console.log(res);
   },[])
   return (
