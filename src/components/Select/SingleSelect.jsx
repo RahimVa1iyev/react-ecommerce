@@ -14,8 +14,6 @@ const SingleSelect = ({ options ,defaultValue  , name , className }) => {
   const handleSelect = (e) => {
      var data = e !=null ? e.value : "";
      setFieldValue(name, data); 
-  
-     
   }
   
 
