@@ -7,7 +7,7 @@ const Offer = () => {
     const [offer, setOffer] = useState();
 
     const getOffer = async () => {
-        var response = await axios.get('https://watch-ecommerce-app.azurewebsites.net/api/Features/all')
+        var response = await axios.get('https://api-project-ecommerce.azurewebsites.net/api/Features/all')
              setOffer(response.data)
              console.log(response.data);
     }

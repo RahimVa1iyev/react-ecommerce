@@ -14,7 +14,7 @@ const FrTable = (props) => {
  let count =1;
 
   const deleteHandle = async (id) => {
-      await axios.delete(`https://watch-ecommerce-app.azurewebsites.net/api/${props.link}/${id}`)
+      await axios.delete(`https://api-project-ecommerce.azurewebsites.net/api/${props.link}/${id}`)
               .then(response =>
                 toast.error(`${props.tableName} deleted successfully`, {
                   position: "top-right",

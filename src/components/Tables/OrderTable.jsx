@@ -12,7 +12,7 @@ const OrderTable = (props) => {
 
 
     const acceptHandle = async (id) => {
-        await axios.put(`https://watch-ecommerce-app.azurewebsites.net/api/Orders/accepted/${id}`)
+        await axios.put(`https://api-project-ecommerce.azurewebsites.net/api/Orders/accepted/${id}`)
             .then(res => {
                 console.log("Order Accepted Succesfully")
                 dispatch(getDashOrders())
@@ -22,7 +22,7 @@ const OrderTable = (props) => {
 
     const rejectHandle = async (id) => {
 
-        await axios.put(`https://watch-ecommerce-app.azurewebsites.net/api/Orders/rejected/${id}`)
+        await axios.put(`https://api-project-ecommerce.azurewebsites.net/api/Orders/rejected/${id}`)
             .then(res => {
                 console.log("Order Rejected Succesfully")
                 dispatch(getDashOrders())
@@ -34,7 +34,7 @@ const OrderTable = (props) => {
     const viewHandle = async (id) => {
         dispatch(handleView())
         dispatch(handleOpen())
-        await axios.get(`https://watch-ecommerce-app.azurewebsites.net/api/Orders/orderitems/${id}`)
+        await axios.get(`https://api-project-ecommerce.azurewebsites.net/api/Orders/orderitems/${id}`)
         .then(res => dispatch(setOrderItem(res.data)))
             .catch(err => console.log(err))
     }

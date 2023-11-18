@@ -16,7 +16,7 @@ const Admin = () => {
     const navigate = useNavigate();
   
     const getAdmins = async () => {
-      const response = await axios.get("https://watch-ecommerce-app.azurewebsites.net/api/Accounts/all")
+      const response = await axios.get("https://api-project-ecommerce.azurewebsites.net/api/Accounts/all")
       console.log(response.data);
       setAdmins(response.data)
     }

@@ -14,7 +14,7 @@ const AdminTable = (props) => {
 
     const deleteHandle = async (id) => {
         console.log(id);
-        await axios.delete(`https://watch-ecommerce-app.azurewebsites.net/api/Accounts/${id}`)
+        await axios.delete(`https://api-project-ecommerce.azurewebsites.net/api/Accounts/${id}`)
                 .then(response => 
                     toast.error('Admin deleted successfully', {
                         position: "top-right",

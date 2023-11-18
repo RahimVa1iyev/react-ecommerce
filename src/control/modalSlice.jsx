@@ -86,7 +86,7 @@ export const getOrderItems = (id) => async (dispatch) => {
     console.log("id",id);
     try {
         const token = localStorage.getItem('authToken')
-        const response = await axios.get(`https://watch-ecommerce-app.azurewebsites.net/api/Orders/orderitems/${id}`, {
+        const response = await axios.get(`https://api-project-ecommerce.azurewebsites.net/api/Orders/orderitems/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -101,7 +101,7 @@ export const getOrderItems = (id) => async (dispatch) => {
 export const createUser = (values) => async (dispatch) => {
     console.log("id",values);
     try {
-        await axios.post(`https://watch-ecommerce-app.azurewebsites.net/api/Users/register`, values)
+        await axios.post(`https://api-project-ecommerce.azurewebsites.net/api/Users/register`, values)
         .then(res => {console.log("User created succesfully") 
          dispatch(handleConfirmModalOpen())
          dispatch(setUserId(res.data.id.id)) } )

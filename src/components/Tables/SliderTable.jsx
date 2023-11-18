@@ -14,7 +14,7 @@ const SliderTable = (props) => {
   const dishPatch = useDispatch();
 let count = 1;
   const deleteHandle = async (id) => {
-    await axios.delete(`https://watch-ecommerce-app.azurewebsites.net/api/sliders/${id}`)
+    await axios.delete(`https://api-project-ecommerce.azurewebsites.net/api/sliders/${id}`)
             .then(response => 
               toast.error('Slider deleted successfully', {
                 position: "top-right",

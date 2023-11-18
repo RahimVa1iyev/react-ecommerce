@@ -22,7 +22,7 @@ const PostForm = (props) => {
   const onSubmit =  (values) => {
    
    const postFetch = async () =>{
-    await axios.post(`https://watch-ecommerce-app.azurewebsites.net/api/${props.controller}`, values)
+    await axios.post(`https://api-project-ecommerce.azurewebsites.net/api/${props.controller}`, values)
     .then(response => {
       navigate(`/dashboard/${props.route}`)
       toast.success(`${props.label} created successfully`, {

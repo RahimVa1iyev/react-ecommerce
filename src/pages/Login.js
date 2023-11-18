@@ -25,7 +25,7 @@ const Login = () => {
   const onSubmit = async (values) => {
 
     //
-    await axios.post(`https://watch-ecommerce-app.azurewebsites.net/api/Users/login`, values)
+    await axios.post(`https://api-project-ecommerce.azurewebsites.net/api/Users/login`, values)
       .then(res => { localStorage.setItem('authToken', res.data.token);
        dispatch(setToken(res.data.token)); 
        dispatch(setSelectedNav(''))

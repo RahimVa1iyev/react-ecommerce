@@ -27,7 +27,7 @@ const DetailItem = (props) => {
    const AddBasketHandle = async (values) => {
 
       if (token) {
-         await axios.post(`https://watch-ecommerce-app.azurewebsites.net/api/Shops/`, values, {
+         await axios.post(`https://api-project-ecommerce.azurewebsites.net/api/Shops/`, values, {
             headers: {
                Authorization: `Bearer ${token}`
             }

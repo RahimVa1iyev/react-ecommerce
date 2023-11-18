@@ -25,7 +25,7 @@ const Product = () => {
 
     const fetchMoreData = async () => {
         const values = { pageScroll: page, perPage: 5 };
-        const response = await axios.post("https://watch-ecommerce-app.azurewebsites.net/api/Products/all", values);
+        const response = await axios.post("https://api-project-ecommerce.azurewebsites.net/api/Products/all", values);
 
         if (response.data.length === 0) {
             setHasMore(false);
@@ -44,7 +44,7 @@ const Product = () => {
         setLoading(true);
 
         const values = { pageScroll: 1, perPage: 5 }; // Fetch initial data
-        const response = await axios.post("https://watch-ecommerce-app.azurewebsites.net/api/Products/all", values);
+        const response = await axios.post("https://api-project-ecommerce.azurewebsites.net/api/Products/all", values);
         console.log(response.data)
 
         if (response.data.length === 0) {

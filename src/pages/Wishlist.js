@@ -45,7 +45,7 @@ const Wishlist = () => {
   const values = {id}
 
         if (token) {
-            await axios.post(`https://watch-ecommerce-app.azurewebsites.net/api/Shops/`, values, {
+            await axios.post(`https://api-project-ecommerce.azurewebsites.net/api/Shops/`, values, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

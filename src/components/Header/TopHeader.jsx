@@ -36,7 +36,7 @@ const TopHeader = () => {
         count++
         console.log("Count", count);
         if (token) {
-            await axios.get('https://watch-ecommerce-app.azurewebsites.net/api/Users', {
+            await axios.get('https://api-project-ecommerce.azurewebsites.net/api/Users', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

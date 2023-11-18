@@ -15,7 +15,7 @@ const Forgot = () => {
 
     const onSubmit = async (values, { resetForm }) => {
         try {
-            await axios.post(`https://watch-ecommerce-app.azurewebsites.net/api/Users/forgot-password`, values);
+            await axios.post(`https://api-project-ecommerce.azurewebsites.net/api/Users/forgot-password`, values);
             resetForm();
             toast.success('Check your email', {
                 position: "top-right",

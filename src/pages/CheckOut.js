@@ -29,7 +29,7 @@ const CheckOut = () => {
     }
 
     const getCheckout = async () => {
-        await axios.get(`https://watch-ecommerce-app.azurewebsites.net/api/Orders/checkout`, {
+        await axios.get(`https://api-project-ecommerce.azurewebsites.net/api/Orders/checkout`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -45,7 +45,7 @@ const CheckOut = () => {
 
     const onSubmit = (values) => {
         const createOrder = async () => {
-            await axios.post(`https://watch-ecommerce-app.azurewebsites.net/api/Orders`, values, {
+            await axios.post(`https://api-project-ecommerce.azurewebsites.net/api/Orders`, values, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

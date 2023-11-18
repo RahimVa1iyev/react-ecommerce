@@ -19,7 +19,7 @@ const Slider = () => {
 
    useEffect(()=>{
      const getSliders = async () => {
-         var response = await axios.get("https://watch-ecommerce-app.azurewebsites.net/api/Sliders/all")
+         var response = await axios.get("https://api-project-ecommerce.azurewebsites.net/api/Sliders/all")
          setDatas(response.data)
      }   
      getSliders();

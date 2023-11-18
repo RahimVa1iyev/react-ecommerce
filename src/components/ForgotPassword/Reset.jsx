@@ -28,7 +28,7 @@ const Reset = () => {
     };
 
     try {
-      await axios.post(`https://watch-ecommerce-app.azurewebsites.net/api/Users/reset-password`, data);
+      await axios.post(`https://api-project-ecommerce.azurewebsites.net/api/Users/reset-password`, data);
       toast.success('Password changed succesfully', {
         position: "bottom-right",
         autoClose: 5000,
