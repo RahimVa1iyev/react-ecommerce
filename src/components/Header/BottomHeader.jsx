@@ -27,7 +27,7 @@ const BottomHeader = () => {
 
     const DeletePrHandle = async (id) => {
         console.log("Id", id);
-        await axios.delete(`https://api-project-ecommerce.azurewebsites.net/api/Shops/${id}`, {
+        await axios.delete(`${process.env.REACT_APP_API_ENDPOINT}/api/Shops/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -151,7 +151,7 @@ const BottomHeader = () => {
                                             <div className="basket-img">
                                                 {
                                                     item.product.images.map((img, index) => (
-                                                        <img key={index} src={`https://api-project-ecommerce.azurewebsites.net/uploads/products/${img.imageName}`} alt="my img" />
+                                                        <img key={index} src={`${process.env.REACT_APP_API_ENDPOINT}/uploads/products/${img.imageName}`} alt="my img" />
 
                                                     ))
                                                 }

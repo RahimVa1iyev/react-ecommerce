@@ -32,30 +32,30 @@ const Shop = () => {
 
 
     const getBrands = async () => {
-        await axios.get("https://api-project-ecommerce.azurewebsites.net/api/Brands/all")
+        await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/Brands/all`)
             .then(res => { setProducts(previousState => { return { ...previousState, brands: res.data } }) })
 
     }
 
     const getCategories = async () => {
-        await axios.get("https://api-project-ecommerce.azurewebsites.net/api/Categories/all")
+        await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/Categories/all`)
             .then(res => { setProducts(previousState => { return { ...previousState, categories: res.data } }) })
 
     }
 
     const getGender = async () => {
-        await axios.get("https://api-project-ecommerce.azurewebsites.net/api/Genders/all")
+        await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/Genders/all`)
             .then(res => { setProducts(previousState => { return { ...previousState, genders: res.data } }) })
     }
 
     const getSizes = async () => {
-        await axios.get("https://api-project-ecommerce.azurewebsites.net/api/Sizes/all")
+        await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/Sizes/all`)
             .then(res => { setProducts(previousState => { return { ...previousState, sizes: res.data } }) })
 
     }
 
     const getProducts = async () => {
-        await axios.get(`https://api-project-ecommerce.azurewebsites.net/api/Products/shop`)
+        await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/Products/shop`)
             .then(res => {
                 const updatedPrices = res.data.map(pr =>
                     pr.discountedPrice > 0 ? pr.discountedPrice : pr.salePrice

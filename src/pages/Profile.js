@@ -63,7 +63,7 @@ const Profile = () => {
     const onSubmit = (values) => {
         console.log("values",values);
         const updateUser = async () => {
-            await axios.put(`https://api-project-ecommerce.azurewebsites.net/api/Users`, values, {
+            await axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/Users`, values, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -91,7 +91,7 @@ const Profile = () => {
     const getUser = async () => {
 
         if (token) {
-            await axios.get('https://api-project-ecommerce.azurewebsites.net/api/Users', {
+            await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/Users`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -136,7 +136,7 @@ const Profile = () => {
         const values = {id}
 
         if (token) {
-            await axios.post(`https://api-project-ecommerce.azurewebsites.net/api/Shops/`, values, {
+            await axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/Shops/`, values, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -185,7 +185,7 @@ const Profile = () => {
         dispatch(handleView())
         dispatch(handleOpen())
         const token = localStorage.getItem('authToken')
-        const response = await axios.get(`https://api-project-ecommerce.azurewebsites.net/api/Orders/orderitems/${id}`, {
+        const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/Orders/orderitems/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },

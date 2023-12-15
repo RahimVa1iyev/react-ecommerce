@@ -16,7 +16,7 @@ const PrTable = (props) => {
 
     const exportHandle = async () => {
         try {
-            const response = await axios.get(`https://api-project-ecommerce.azurewebsites.net/api/Products/export-excel`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/Products/export-excel`, {
                 responseType: 'arraybuffer', 
             });
     
@@ -38,7 +38,7 @@ const PrTable = (props) => {
     
 
     const deleteHandle = async (id) => {
-        await axios.delete(`https://api-project-ecommerce.azurewebsites.net/api/Products/${id}`)
+        await axios.delete(`${process.env.REACT_APP_API_ENDPOINT}/api/Products/${id}`)
                 .then(response =>
                   toast.error(`Products deleted successfully`, {
                     position: "top-right",

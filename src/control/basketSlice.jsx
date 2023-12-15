@@ -30,7 +30,7 @@ export const getBasketItems = () => async (dispatch) => {
     try {
         dispatch(setLoading(true));
         const token = localStorage.getItem('authToken'); 
-        const response = await axios.get(`https://api-project-ecommerce.azurewebsites.net/api/Shops/all`, {
+        const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/Shops/all`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },

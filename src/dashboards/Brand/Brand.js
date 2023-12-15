@@ -18,7 +18,7 @@ const Brand = () => {
   const {Id} = useSelector((store) => store.table)
 
   const getBrands = async () => {
-    const response = await axios.get("https://api-project-ecommerce.azurewebsites.net/api/Brands/all" )
+    const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/Brands/all` )
     setBrands(response.data)
   }
 

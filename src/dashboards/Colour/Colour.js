@@ -16,7 +16,7 @@ const Colour = () => {
     const {Id} = useSelector((store) => store.table)
   
     const getColours = async () => {
-      const response = await axios.get("https://api-project-ecommerce.azurewebsites.net/api/Colors/all")
+      const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/Colors/all`)
       setColours(response.data)
     }
   

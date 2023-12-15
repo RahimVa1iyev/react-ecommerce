@@ -20,7 +20,7 @@ const Detail = () => {
 
 
   const getProduct = async () => {
-    await axios.get(`https://api-project-ecommerce.azurewebsites.net/api/Products/detail/${id}`)
+    await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/Products/detail/${id}`)
       .then(res => {
         setProduct(res.data.product)
         setRelatedProducts(res.data.relatedProducts)

@@ -21,7 +21,7 @@ const Size = () => {
     const {Id} = useSelector((store) => store.table)
   
     const getSizes = async () => {
-      const response = await axios.get("https://api-project-ecommerce.azurewebsites.net/api/Sizes/all")
+      const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/Sizes/all`)
       setSizes(response.data)
     }
   

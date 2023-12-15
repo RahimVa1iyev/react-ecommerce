@@ -14,7 +14,7 @@ const SliderPutForm = (props) => {
 
     useEffect(()=>{
         const getSlider = async () => {
-            var response = await axios.get(`https://api-project-ecommerce.azurewebsites.net/api/Sliders/${props.id}`)
+            var response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/Sliders/${props.id}`)
                      setSlider(response.data)
                      setImage(response.data.imageUri)
                      console.log(response.data);
@@ -44,7 +44,7 @@ const onSubmit = async (values)=>{
     formData.append("imageFile", values.imageFile)
 
     try {
-        const response = await axios.put(`https://api-project-ecommerce.azurewebsites.net/api/Sliders/${props.id}`, formData, {
+        const response = await axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/Sliders/${props.id}`, formData, {
             headers: {
                 "Content-Type": "multipart/form-data"
             }

@@ -34,7 +34,7 @@ const Basket = () => {
     const AddBasketHandle = async (values) => {
 
         if (token) {
-            await axios.post(`https://api-project-ecommerce.azurewebsites.net/api/Shops`, values, {
+            await axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/Shops`, values, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -65,7 +65,7 @@ const Basket = () => {
 
     const DeletePrHandle = async (id) => {
         console.log("Id", id);
-        await axios.delete(`https://api-project-ecommerce.azurewebsites.net/api/Shops/${id}`, {
+        await axios.delete(`${process.env.REACT_APP_API_ENDPOINT}/api/Shops/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -131,7 +131,7 @@ const Basket = () => {
                                                             <div className="shoping-cart-img">
                                                                 {
                                                                     item.product.images.map((img, index) => (
-                                                                        <img key={index} width={100} src={`https://api-project-ecommerce.azurewebsites.net/uploads/products/${img.imageName}`} alt="Gamming Mouse" />
+                                                                        <img key={index} width={100} src={`${process.env.REACT_APP_API_ENDPOINT}/uploads/products/${img.imageName}`} alt="Gamming Mouse" />
                                                                     ))
                                                                 }
                                                                 <a href="#!">

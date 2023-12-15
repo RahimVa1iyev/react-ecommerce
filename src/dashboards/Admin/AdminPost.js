@@ -20,7 +20,7 @@ const AdminPost = () => {
 
   const onSubmit = async (values) => {
 
-    await axios.post(`https://watch-ecommerce-app.azurewebsites.net/api/Accounts`, values, {
+    await axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/Accounts`, values, {
       headers: {
         Authorization: `Bearer ${token}`
       }

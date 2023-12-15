@@ -103,7 +103,7 @@ const PrPutForm = (props) => {
        
 
         const putProduct = async () => {
-            await axios.put(`https://api-project-ecommerce.azurewebsites.net/api/Products/${props.id}`, formData, {
+            await axios.put(`${process.env.REACT_APP_API_ENDPOINT}/${props.id}`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 }
@@ -149,7 +149,7 @@ const PrPutForm = (props) => {
     useEffect(() => {
 
         const getProducts = async () => {
-            var response = await axios.get(`https://api-project-ecommerce.azurewebsites.net/api/Products/${props.id}`)
+            var response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/Products/${props.id}`)
 
 
             const productData = response.data;
@@ -226,21 +226,21 @@ const PrPutForm = (props) => {
         getProducts();
 
         const getBrands = async () => {
-            var response = await axios.get("https://api-project-ecommerce.azurewebsites.net/api/Brands/all")
+            var response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/Brands/all`)
             const data = response.data.map(item => ({ value: item.id, label: item.name }))
             setWatch(previousState => { return { ...previousState, brands: data } })
         }
         getBrands();
 
         const getCategories = async () => {
-            var response = await axios.get("https://api-project-ecommerce.azurewebsites.net/api/Categories/all")
+            var response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/Categories/all`)
             const data = response.data.map(item => ({ value: item.id, label: item.name }))
             setWatch(previousState => { return { ...previousState, categories: data } })
         }
         getCategories();
 
         const getColors = async () => {
-            var response = await axios.get("https://api-project-ecommerce.azurewebsites.net/api/Colors/all")
+            var response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/Colors/all`)
             const data = response.data.map(item => ({ value: item.id, label: item.name }))
             setWatch(previousState => { return { ...previousState, colors: data } })
 
@@ -248,14 +248,14 @@ const PrPutForm = (props) => {
         getColors();
 
         const getSizes = async () => {
-            var response = await axios.get("https://api-project-ecommerce.azurewebsites.net/api/Sizes/all")
+            var response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/Sizes/all`)
             const data = response.data.map(item => ({ value: item.id, label: item.name }))
             setWatch(previousState => { return { ...previousState, sizes: data } })
         }
         getSizes();
 
         const getGenders = async () => {
-            var response = await axios.get("https://api-project-ecommerce.azurewebsites.net/api/Genders/all")
+            var response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/Genders/all`)
             const data = response.data.map(item => ({ value: item.id, label: item.gender }))
             setWatch(previousState => { return { ...previousState, genderStatus: data } })
         }

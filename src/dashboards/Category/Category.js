@@ -17,7 +17,7 @@ const Category = () => {
     const {Id} = useSelector((store) => store.table)
   
     const getCategories = async () => {
-      const response = await axios.get("https://api-project-ecommerce.azurewebsites.net/api/Categories/all")
+      const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/Categories/all`)
       setCategories(response.data)
     }
   

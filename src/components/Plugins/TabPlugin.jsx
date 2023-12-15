@@ -38,7 +38,7 @@ const TabPlugin = (props) => {
 
   const createReview = async () => {
     const data = { productId: props.product.id, rate: reviewRate, text: text }
-    await axios.post(`https://watch-ecommerce-app.azurewebsites.net/api/Products/review`, data, {
+    await axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/Products/review`, data, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -71,7 +71,7 @@ const TabPlugin = (props) => {
   }
 
   const getReview = async () => {
-    await axios.get(`https://watch-ecommerce-app.azurewebsites.net/api/Products/review/${props.product.id}`, {
+    await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/Products/review/${props.product.id}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -82,7 +82,7 @@ const TabPlugin = (props) => {
   const getUser = async () => {
 
     if (token) {
-      await axios.get('https://watch-ecommerce-app.azurewebsites.net/api/Users', {
+      await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/Users`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

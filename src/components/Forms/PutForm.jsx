@@ -20,7 +20,7 @@ const PutForm = (props) => {
   useEffect(() => {
     const getProduct = async () => {
       try {
-        const response = await axios.get(`https://api-project-ecommerce.azurewebsites.net/api/${props.controller}/${props.id}`);
+        const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/${props.controller}/${props.id}`);
         setProduct(response.data);
       } catch (error) {
         if (error.response) {
@@ -42,7 +42,7 @@ const PutForm = (props) => {
   const onSubmit =  (values) => {
 
     const putFetch = async () =>{
-      await axios.put(`https://api-project-ecommerce.azurewebsites.net/api/${props.controller}/${props.id}`,values)
+      await axios.put(`${process.env.REACT_APP_API_ENDPOINT}/api/${props.controller}/${props.id}`,values)
       .then(response => {
         toast.success(`${props.label} updated successfully`, {
           position: "top-right",
